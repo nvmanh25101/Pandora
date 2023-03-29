@@ -1,6 +1,6 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<div class="row bg-white about-introduce">
-            <div class="col-md-6">
+<div class="row about-introduce" style="background: #f5f5f5;">
+            <div class="col-md">
                 <div class="list-social m-5">
                     <a href=""><i class="bi bi-facebook me-3"></i></a>
                     <a href=""><i class="bi bi-youtube me-3"></i></a>
@@ -9,7 +9,7 @@
                     
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md">
                 <h5 style="margin-top: 15px; font-style: bold;">Nhận tin mới từ Pandora </h5>
                 <p>Đăng kí ngay để nhận thông tin mới nhất về khuyến mãi, sự kiện, offer... từ Pandora.</p>
                 <input type="email" class="form-email" style="border: #000 solid 1px; width: 80%" id="exampleFormControlInput1" placeholder="Nhập email của bạn">
@@ -17,7 +17,7 @@
             </div>
     </div>
 
-<footer class="mt-3 bg-white">
+<footer class="pt-5" style="background: #f5f5f5;width: 100%;">
 	<div class="container pt-3">
         <div class="row">
             <div class="col-md mt-2">
@@ -70,10 +70,10 @@
         </div>
     </div>
 </footer>
-    <div class="row bg-white">
-        <div class=" list-footer ms-5 me-5 mt-3">
+    <div class="row" style="background: #f5f5f5;">
+        <div class=" list-footer me-5 mb-3 mt-3">
             <div class="ft-last col-md-6">
-                <p style="margin-top: 15px; font-size: 15px;">© Pandora Jewelry, LLC. All rights reserved. </p>
+                <p style="margin-top: 15px; margin-left: 130px; font-size: 15px;">© Pandora Jewelry, LLC. All rights reserved. </p>
             </div>
             <div class="ft-bct col-md-6 me-5">
                 <img class="me-5" src="img/bocongthuong.png" alt="">

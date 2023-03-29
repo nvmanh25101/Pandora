@@ -9,7 +9,6 @@ require './database/connect.php';
 
 $cart = (isset($_SESSION['cart']))? $_SESSION['cart'] : [];
 ?>
-
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
   <header class="medium-header fixed-top mb-5">
