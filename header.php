@@ -1,6 +1,6 @@
 <?php 
 
-require 'cart_function.php';
+// require 'cart_function.php';
 require './database/connect.php';
 
     
@@ -11,7 +11,7 @@ $cart = (isset($_SESSION['cart']))? $_SESSION['cart'] : [];
 ?>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
-  <header class="medium-header fixed-top mb-5">
+  <header class="medium-header fixed-top">
     <div class="site-header ">
       <div class="header-left col-md-6">
         <div id="mySidenav" class="sidenav">
@@ -125,7 +125,7 @@ $cart = (isset($_SESSION['cart']))? $_SESSION['cart'] : [];
                 <a href="#"><?= $category['name'] ?></a>
                 <ul class="sub-menu">
                     <?php  
-                        $sql = "select * from category_detail where category_id = '$category[id]'";
+                        $sql = "select * from category_child where category_id = '$category[id]'";
                         $result_sub = mysqli_query($connect,$sql);
                         foreach($result_sub as $each_sub) {
                     ?>

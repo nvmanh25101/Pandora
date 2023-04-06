@@ -6,7 +6,7 @@
   $where = 1;
   if(isset($_GET['category'])) {
     $category = $_GET['category'];
-    $where = "category_detail_id = '$category'";
+    $where = "category_child_id = '$category'";
   }
 
   $search = '';
@@ -15,10 +15,10 @@
       $where = "products.name like '%$search%'";
   }
 
-  $sql = "SELECT products.*, category_detail.name as category_name FROM products
-  join category_detail on category_detail.id = products.category_detail_id
+  $sql = "SELECT products.*, category_child.name as category_name FROM products
+  join category_child on category_child.id = products.category_child_id
   where $where
-  order by category_detail_id ASC, products.id desc";
+  order by category_child_id ASC, products.id desc";
 
   $result = mysqli_query($connect, $sql);
   if(mysqli_num_rows($result) == 0) {
