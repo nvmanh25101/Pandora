@@ -1,13 +1,13 @@
 <?php 
 
-require 'cart_function.php';
+//require 'cart_function.php';
 require './database/connect.php';
 
     
     $sql = "select * from categories";
     $categories = mysqli_query($connect, $sql);
 
-$cart = (isset($_SESSION['cart']))? $_SESSION['cart'] : [];
+$cart = $_SESSION['cart'] ?? [];
 ?>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 
