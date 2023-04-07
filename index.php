@@ -7,7 +7,7 @@ $where = 1;
 if (isset($_GET['category'])) {
     $category = $_GET['category'];
     $where = "category_child_id = '$category'";
-}
+  }
 
 $search = '';
 if (isset($_POST['search'])) {
@@ -15,7 +15,7 @@ if (isset($_POST['search'])) {
     $where = "products.name like '%$search%'";
 }
 
-$sql = "SELECT products.*, category_child.name as category_name FROM products
+  $sql = "SELECT products.*, category_child.name as category_name FROM products
   join category_child on category_child.id = products.category_child_id
   where $where
   order by category_child_id ASC, products.id desc";

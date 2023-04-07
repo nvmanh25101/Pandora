@@ -1,21 +1,25 @@
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<div class="row about-introduce" style="background: #f5f5f5;">
-            <div class="col-md">
-                <div class="list-social m-5">
-                    <a href=""><i class="bi bi-facebook me-3"></i></a>
-                    <a href=""><i class="bi bi-youtube me-3"></i></a>
-                    <a href=""><i class="bi bi-twitter me-3"></i></a>
-                    <a href=""><i class="bi bi-instagram"></i></a>
-                    
-                </div>
+
+<div class=" about-introduce" style="background: #f5f5f5;">
+    <div class="row">
+        <div class="col-md">
+            <div class="list-social m-5">
+                <a href=""><i class="bi bi-facebook me-3"></i></a>
+                <a href=""><i class="bi bi-youtube me-3"></i></a>
+                <a href=""><i class="bi bi-twitter me-3"></i></a>
+                <a href=""><i class="bi bi-instagram"></i></a>
+                
             </div>
-            <div class="col-md">
-                <h5 style="margin-top: 15px; font-style: bold;">Nhận tin mới từ Pandora </h5>
-                <p>Đăng kí ngay để nhận thông tin mới nhất về khuyến mãi, sự kiện, offer... từ Pandora.</p>
-                <input type="email" class="form-email" style="border: #000 solid 1px; width: 80%" id="exampleFormControlInput1" placeholder="Nhập email của bạn">
-                <button class="bg-dark" style="width:50px; height:40px"><i class="bi bi-chevron-right text-light" ></i></button>
-            </div>
+        </div>
+        <div class="col-md">
+            <h5 style="margin-top: 15px; font-style: bold;">Nhận tin mới từ Pandora </h5>
+            <p>Đăng kí ngay để nhận thông tin mới nhất về khuyến mãi, sự kiện, offer... từ Pandora.</p>
+            <input type="email" class="form-email" style="border: #000 solid 1px; width: 80%" id="exampleFormControlInput1" placeholder="Nhập email của bạn">
+            <button class="bg-dark" style="width:50px; height:40px"><i class="bi bi-chevron-right text-light" ></i></button>
+        </div>
+
     </div>
+</div>
 
 <footer class="pt-5" style="background: #f5f5f5;width: 100%;">
 	<div class="container pt-3">
@@ -70,8 +74,9 @@
         </div>
     </div>
 </footer>
-    <div class="row" style="background: #f5f5f5;">
-        <div class=" list-footer me-5 mb-3 mt-3">
+    
+    <div class="" style="background: #f5f5f5;">
+        <div class=" list-footer me-5 ">
             <div class="ft-last col-md-6">
                 <p style="margin-top: 15px; margin-left: 130px; font-size: 15px;">© Pandora Jewelry, LLC. All rights reserved. </p>
             </div>
