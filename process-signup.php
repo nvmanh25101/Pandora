@@ -1,10 +1,10 @@
 <?php
         $name = $_POST['name'];
         $gender = $_POST['gender'];
-        $birthday = $_POST['birthday'];
+        $birthday = $_POST['birth_date'];
         $email= $_POST['email'];
         $pass = $_POST['password'];
-        $phone = $_POST['phonenumber'];
+        $phone = $_POST['phone'];
         require './database/connect.php';
 
         
