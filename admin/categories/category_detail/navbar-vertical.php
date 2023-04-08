@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../../assets/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../../assets/css/admin.css">
@@ -83,10 +84,22 @@
                     </div>
                 </li>
                 <li class="nav-item navbar__item">
-                    <a class="nav-link d-flex align-items-center navbar__link <?= $page == 'accounts'?'active':'' ?>" href="../employees">
+                    <a class="nav-link d-flex align-items-center navbar__link <?= $page === 'accounts' ? 'active' : '' ?>"
+                       href="../../accounts">
                         <i class="navbar__link-icon bi bi-person"></i>
-                        <span>Nhân viên</span> 
+                        <span>Tài khoản</span>
                     </a>
+                    <div class="sub-navbar">
+                        <ul class="list-group">
+                            <li class="sub-navbar__item">
+                                <a class="sub-navbar__link list-group-item-action" href="../../accounts">Nhân viên</a>
+                            </li>
+                            <li class="sub-navbar__item">
+                                <a class="sub-navbar__link list-group-item-action" href="../../accounts/users">Khách
+                                    hàng</a>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="nav-item navbar__item">
                     <a class="nav-link d-flex align-items-center navbar__link" href="../../signout.php">
