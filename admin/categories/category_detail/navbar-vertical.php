@@ -51,12 +51,12 @@
                 <li class="nav-item navbar__item">
                     <a class="nav-link d-flex align-items-center navbar__link <?= $page == 'products'?'active':'' ?>" href="../../products">
                         <i class="navbar__link-icon bi bi-vinyl"></i>
-                        <span>Sản phẩm</span> 
+                        <span>Trang sức</span> 
                     </a>
                     <div class="sub-navbar">
                         <ul class="list-group">
                             <li class="sub-navbar__item">
-                                <a class="sub-navbar__link list-group-item-action text-decoration-none" href="../../products/form_insert.php">Thêm sản phẩm</a>
+                                <a class="sub-navbar__link list-group-item-action text-decoration-none" href="../../products/form_insert.php">Thêm Trang sức</a>
                             </li>
                             <li class="sub-navbar__item">
                                 <a class="sub-navbar__link list-group-item-action text-decoration-none" href="../../products?search_status=1">Đang bán</a>
@@ -150,12 +150,12 @@
             <li class="nav-item navbar__item">
                 <a class="nav-link d-flex align-items-center navbar__link <?= $page == 'products'?'active':'' ?>" href="../../products">
                     <i class="navbar__link-icon bi bi-vinyl"></i>
-                    <span>Sản phẩm</span> 
+                    <span>Trang sức</span> 
                 </a>
                 <div class="sub-navbar">
                     <ul class="list-group">
                         <li class="sub-navbar__item">
-                            <a class="sub-navbar__link list-group-item-action text-decoration-none" href="../../products/form_insert.php">Thêm sản phẩm</a>
+                            <a class="sub-navbar__link list-group-item-action text-decoration-none" href="../../products/form_insert.php">Thêm Trang sức</a>
                         </li>
                         <li class="sub-navbar__item">
                             <a class="sub-navbar__link list-group-item-action text-decoration-none" href="../../products?search_status=1">Đang bán</a>
@@ -183,11 +183,23 @@
                 </div>
             </li>
             <li class="nav-item navbar__item">
-                <a class="nav-link d-flex align-items-center navbar__link <?= $page == 'accounts'?'active':'' ?>" href="../employees">
-                    <i class="navbar__link-icon bi bi-person"></i>
-                    <span>Nhân viên</span> 
-                </a>
-            </li>
+                    <a class="nav-link d-flex align-items-center navbar__link <?= $page === 'accounts' ? 'active' : '' ?>"
+                       href="../../accounts">
+                        <i class="navbar__link-icon bi bi-person"></i>
+                        <span>Tài khoản</span>
+                    </a>
+                    <div class="sub-navbar">
+                        <ul class="list-group">
+                            <li class="sub-navbar__item">
+                                <a class="sub-navbar__link list-group-item-action" href="../../accounts">Nhân viên</a>
+                            </li>
+                            <li class="sub-navbar__item">
+                                <a class="sub-navbar__link list-group-item-action" href="../../accounts/users">Khách
+                                    hàng</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
             <li class="nav-item navbar__item">
                 <a class="nav-link d-flex align-items-center navbar__link" href="../../signout.php">
                     <i class="navbar__link-icon bi bi-box-arrow-in-right"></i>

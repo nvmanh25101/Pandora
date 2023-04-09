@@ -15,17 +15,17 @@ if(empty($_POST['name'])) {
 }
 
 $name = $_POST['name'];
-$unit = $_POST['unit'];
+$description = $_POST['description'];
 
 require_once '../../database/connect.php';
 
 $sql = "update sizes
-set name = ?, unit = ?
+set name = ?, description = ?
 where id = '$id'";
 
 $stmt = mysqli_prepare($connect, $sql);
 if($stmt) {
-    mysqli_stmt_bind_param($stmt, 'ss', $name, $unit);
+    mysqli_stmt_bind_param($stmt, 'ss', $name, $description);
     mysqli_stmt_execute($stmt);
 
     $_SESSION['success'] = 'Đã sửa thành công';

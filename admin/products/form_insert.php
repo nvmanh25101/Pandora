@@ -1,8 +1,8 @@
 <?php
 require_once '../check_admin_signin.php';
+$page = 'products';
 
 $admin_id = $_SESSION['id'];
-$page = 'products-insert';
 require_once '../navbar-vertical.php';
 
 require_once '../../database/connect.php';
@@ -11,12 +11,12 @@ $sql = "select * from categories";
 $result = mysqli_query($connect, $sql);
 ?>
 <div class="main__form">
-    <div class="main-container-text d-flex align-items-center">
+    <div class="main-container-text d-flex align-items-center justify-content-center">
         <a class="header__name text-decoration-none" href="#">
             Thêm sản phẩm
         </a>
     </div>
-    <div class=" container-fluid px-4">
+    <div class="container-fluid px-4">
         <?php include '../error_success.php' ?>
 
         <div class="row gx-5">
@@ -30,21 +30,30 @@ $result = mysqli_query($connect, $sql);
 
                     <div class="mb-4 fs-4">
                         <label class="form-label fs-4" for="image" role="button">
-                            Ảnh bánh
+                            Ảnh trang sức
                             <img id="product__img" class="ms-4" src="../../assets/images/products/no-image.jpg"
-                                 alt="Ảnh bánh" width="200" height="200"/>
+                                 alt="Ảnh trang sức" width="200" height="200"/>
                         </label>
                         <input type="file" hidden name="image" id="image" accept=".jpg, .png"
                                class="form__input form-control"/>
                     </div>
-                    <div class="mb-4 fs-4">
-                        <label class="form-label" for="size">Kích thước(cm)</label>
-                        <input type="text" name="size" id="size" class="form__input form-control"/>
+                    <div class="row mb-1 fs-4" id="size_quantity">
+                        <div class="col-6 d-flex flex-row">
+                            <div class="">
+                                <label class="form-label" for="size">Kích thước(cm)</label>
+                                <input type="text" name="size[]" id="size" class="form__input form-control"/>
+                            </div>
+
+                            <div class="ms-1">
+                                <label class="form-label" for="quantity">Số lượng</label>
+                                <input type="number" name="quantity[]" id="quantity" min="1"
+                                       class="form__input form-control"/>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="mb-3 fs-4">
-                        <label class="form-label" for="quantity">Số lượng</label>
-                        <input type="number" name="quantity" id="quantity" class="form__input form-control"/>
+                    <div class="mb-5 fs-4" id="add_size">
+                        <i class="bi bi-plus-circle"></i>
                     </div>
 
                     <div class="mb-4 fs-4">
@@ -57,7 +66,7 @@ $result = mysqli_query($connect, $sql);
                     </div>
                     <div class="mb-4 fs-4">
                         <label class="form-label" for="image">Giá(vnđ)</label>
-                        <input type="number" name="price" id="price" class="form__input form-control"/>
+                        <input type="number" name="price" id="price" min="1" class="form__input form-control"/>
                     </div>
 
                     <div class="mb-4 fs-4">
@@ -66,7 +75,7 @@ $result = mysqli_query($connect, $sql);
                     </div>
 
                     <div class="mb-4 fs-4">
-                        <label class="form-label">Loại bánh</label>
+                        <label class="form-label">Loại trang sức</label>
                         <select class="form__select form-select" id="category">
                             <option value="" selected disabled hidden>Chọn</option>
                             <?php foreach ($result as $each) { ?>
@@ -104,7 +113,9 @@ $result = mysqli_query($connect, $sql);
                 url: './get_category_child.php',
                 type: 'POST',
                 dataType: 'json',
-                data: {category_id}
+                data: {
+                    category_id
+                }
             })
 
                 .done(function (res) {
@@ -112,6 +123,7 @@ $result = mysqli_query($connect, $sql);
                     const arrName = Object.values(res);
 
                     $('#category_detail').removeClass('d-none');
+                    $('#category_detail').html('');
                     for (let i = 0; i < arrId.length; i++) {
                         $('#category_detail').append(`
                         <option value="${arrId[i]}">${arrName[i]}</option>
@@ -119,6 +131,28 @@ $result = mysqli_query($connect, $sql);
                     }
                 })
         });
+
+        $('#add_size').click(function () {
+            $('#size_quantity').append(`
+                <div class="col-6 d-flex flex-row">
+                    <div class="">
+                        <label class="form-label" for="size">Kích thước(cm)</label>
+                        <input type="text" name="size[]" id="size" class="form__input form-control" />
+                    </div>
+
+                    <div class="ms-1">
+                        <label class="form-label" for="quantity">Số lượng</label>
+                        <input type="number" name="quantity[]" id="quantity" class="form__input form-control" />
+                    </div>
+                    <button type="button" class="delete-size">
+                        <i class="bi bi-x-circle"></i>
+                    </button>
+                </div>
+            `);
+            $('.delete-size').click(function() {
+                $(this).parent().remove();
+            });
+        })
 
         $('#image').change(function (e) {
             $('#product__img').attr('src', URL.createObjectURL(e.target.files[0]));

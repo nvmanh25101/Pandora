@@ -35,6 +35,9 @@
 ?>
 
         <div class="main__container">
+        <div class="main-container-text d-flex align-items-center justify-content-center">
+            <a class="header__name text-decoration-none" href="#">Kích thước</a>
+        </div>
             <div class="container-fluid px-4">
                 <form action="process_insert.php" method="post" enctype="multipart/form-data" class="col-4">
                     <h2 class="text-center">Thêm kích thước</h2>
@@ -44,8 +47,8 @@
                         <span id="error" class="error_input"></span>
                     </div>
                     <div class="mb-4 fs-4">
-                        <label class="form-label" for="image">Đơn vị</label>
-                        <input type="text" name="unit" id="unit" class="form__input form-control" autocomplete="off"/>
+                        <label class="form-label" for="image">Mô tả</label>
+                        <input type="text" name="description" id="description" class="form__input form-control" autocomplete="off"/>
                         <span id="error" class="error_input"></span>
                     </div>
                     <button type="submit" class="form__btn btn btn-dark mb-4">Thêm</button>
@@ -60,7 +63,7 @@
                                 <tr>
                                 <th scope="col">Mã</th>
                                 <th scope="col">Kích thước</th>
-                                <th scope="col">Đơn vị</th>
+                                <th scope="col">Mô tả</th>
                                 <th scope="col">Sửa</th>
                                 <th scope="col">Xóa</th>
                                 </tr>
@@ -70,12 +73,10 @@
                                 <tr>
                                     <th scope="row"><?= $each['id'] ?></th>
                                     <td>
-                                        <a href="./show.php?id=<?= $each['id'] ?>" class="text-decoration-none">
                                         <?= $each['name'] ?>
-                                    </a>
                                     </td>
                                     <td>
-                                        <?= $each['unit'] ?>
+                                        <?= $each['description'] ?>
                                     </td>
                                     <td>
                                         <a href="form_update.php?id=<?= $each['id'] ?>">

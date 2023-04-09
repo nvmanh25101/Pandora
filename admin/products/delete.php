@@ -7,7 +7,7 @@ if(empty($_GET['id'])) {
     exit();
 }
   
-if($_GET['admin_id'] != $_SESSION['id'] || $_SESSION['level'] != 1) {
+if($_GET['admin_id'] != $_SESSION['id'] || $_SESSION['level'] != 2) {
     $_SESSION['error'] = 'Bạn không có quyền để xóa bánh này';
     header('location:index.php');
     exit();
@@ -17,14 +17,7 @@ $id = $_GET['id'];
 $admin_id = $_GET['admin_id'];
 require_once '../../database/connect.php';
 
-$sql_num_product = "select * from products where id = '$id'";
-$result_num_product = mysqli_query($connect, $sql);
-if(mysqli_num_rows($result_num_product) == 0) {
-    $sql = "delete from products where id = '$id' and user_id = '$admin_id'";
-}
-else {
-    $sql = "update products set status = 0 where id = '$id' and user_id = '$admin_id'";
-}
+$sql = "update products set status = 0 where id = '$id' and user_id = '$admin_id'";
 
 mysqli_query($connect, $sql);
 $error = mysqli_errno($connect);

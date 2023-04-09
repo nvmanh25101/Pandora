@@ -1,6 +1,6 @@
 <?php 
     require_once '../check_super_admin_signin.php';
-    $page = 'categories';
+    $page = 'sizes';
     require_once '../navbar-vertical.php';
 
     if(empty($_GET['id'])) {
@@ -28,8 +28,8 @@
                             <span id="error" class="error_input"></span>
                         </div>
                         <div class="mb-4 fs-4">
-                            <label class="form-label" for="unit">Đơn vị</label>
-                            <input type="text" name="unit" id="unit" value="<?= $each['unit'] ?>" class="form__input form-control" autocomplete="off"/>
+                            <label class="form-label" for="description">Mô tả</label>
+                            <input type="text" name="description" id="description" value="<?= $each['description'] ?>" class="form__input form-control" autocomplete="off"/>
                             <span id="error" class="error_input"></span>
                         </div>
                         <button type="submit" class="form__btn btn btn-dark mb-4">Cập nhật</button>

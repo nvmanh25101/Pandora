@@ -40,6 +40,9 @@
 ?>
 
         <div class="main__container">
+        <div class="main-container-text d-flex align-items-center justify-content-center">
+            <a class="header__name text-decoration-none" href="#">Loại phụ</a>
+        </div>
             <div class="container-fluid px-4">
                 <form action="process_insert.php" method="post" enctype="multipart/form-data" class="col-4">
                     <h2 class="text-center">Thêm loại phụ</h2>

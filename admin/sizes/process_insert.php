@@ -8,16 +8,16 @@ if(empty($_POST['name'])) {
 }
 
 $name = $_POST['name'];
-$unit = $_POST['unit'];
+$description = $_POST['description'];
 
 require_once '../../database/connect.php';
 
-$sql = "insert into sizes(name, unit)
+$sql = "insert into sizes(name, description)
 values(?, ?)";
 
 $stmt = mysqli_prepare($connect, $sql);
 if($stmt) {
-    mysqli_stmt_bind_param($stmt, 'ss', $name, $unit);
+    mysqli_stmt_bind_param($stmt, 'ss', $name, $description);
     mysqli_stmt_execute($stmt);
 
     $_SESSION['success'] = 'Đã thêm thành công';

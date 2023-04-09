@@ -70,13 +70,28 @@ mysqli_stmt_close($stmt);
 
 $product_id = mysqli_insert_id($connect);
 
-$sql = "insert into sizes(name) values ('$size')";
-mysqli_query($connect, $sql);
-$size_id = mysqli_insert_id($connect);
+$size_quan=array_combine($size,$quantity);
 
-$sql = "insert into product_size(product_id, size_id, quantity)
-values('$product_id', '$size_id', '$quantity')";
-mysqli_query($connect, $sql);
+foreach ($size_quan  as $size => $quantity) {
+        $sql = "select * from sizes where name like '$size'";
+        $result = mysqli_query($connect, $sql);
+        if (mysqli_num_rows($result) > 0) {
+            $size_id = mysqli_fetch_assoc($result)['id'];
+            $sql = "insert into product_size(product_id, size_id, quantity)
+            values('$product_id', '$size_id', '$quantity')";
+            mysqli_query($connect, $sql);
+            continue;
+        }
+
+        $sql = "insert into sizes(name) values ('$size')";
+        mysqli_query($connect, $sql);
+        $size_id = mysqli_insert_id($connect);
+
+        $sql = "insert into product_size(product_id, size_id, quantity)
+        values('$product_id', '$size_id', '$quantity')";
+        mysqli_query($connect, $sql);
+
+}
 
 mysqli_close($connect);
 

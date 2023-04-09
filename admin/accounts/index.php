@@ -36,6 +36,9 @@
 ?>
 
         <div class="main__container">
+        <div class="main-container-text d-flex align-items-center justify-content-center">
+            <a class="header__name text-decoration-none" href="#">Nhân viên</a>
+        </div>
             <div class="container-fluid px-4">
                 <a href="form_insert.php" class="btn btn-dark btn-lg fs-3">Thêm</a>
                 <?php require_once '../error_success.php' ?>
