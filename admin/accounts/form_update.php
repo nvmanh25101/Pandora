@@ -30,19 +30,16 @@
                         </div>
 
                         <div class="mb-4 fs-4">
-                            <label class="form-label">Ảnh cũ</label>
-                            <img src="../../assets/images/admin/<?= $each['avatar']?>" class="img-thumbnail" alt="">
+                            <label class="form-label label-img" for="avatar">Ảnh
+                                <img src="../../assets/images/admin/<?= $each['avatar']?>" class="img-thumbnail avatar-img" alt="">
+                            </label>
                             <input type="hidden" name="image_old" value="<?= $each['avatar'] ?>" />
-                        </div>
-
-                        <div class="mb-4 fs-4">
-                            <label class="form-label">Đổi ảnh mới</label>
-                            <input type="file" name="image_new" accept="image/*" class="form__input form-control"/>
+                            <input type="file" name="image_new" hidden accept="image/*" id="avatar" class="form__input form-control"/>
                         </div>
 
                         <div class="mb-4 fs-4">
                             <label class="form-label" for="gender">Giới tính</label>
-                            <input type="text" name="gender" id="gender" value="<?= $each['gender'] === 1?"Nam":"Nữ" ?>" class="form__input form-control" autocomplete="off"/>
+                            <input type="text" name="gender" id="gender" value="<?= $each['gender'] === '1' ? "Nam":"Nữ" ?>" class="form__input form-control" autocomplete="off"/>
                             <span id="error" class="error_input"></span>
                         </div>
 
@@ -64,6 +61,12 @@
                             <span id="error" class="error_input"></span>
                         </div>
 
+                        <div class="mb-4 fs-4">
+                            <label class="form-label" for="phone">Chức vụ</label>
+                            <input type="text" disabled name="role" id="role" value="<?= $each['role'] === '1' ? 'Nhân viên' : 'Quản lý' ?>" class="form__input form-control" autocomplete="off"/>
+                            <span id="error" class="error_input"></span>
+                        </div>
+
                         <button type="submit" class="form__btn btn btn-dark mb-4">Sửa</button>
                     </form>
                 </div>
@@ -73,7 +76,15 @@
     </div>
    
 </div>
-    
+<script src="../../assets/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/js/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#avatar').change(function(e) {
+                $('.avatar-img').attr('src', URL.createObjectURL(e.target.files[0]));
+            });
+        });
+    </script>
 </body>
 
 </html>

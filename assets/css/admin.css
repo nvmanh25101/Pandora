@@ -40,6 +40,8 @@ li.sub-navbar__item:hover{
     --navbar-vertical-width : 240px;
     --header-height: 70px;
     --header-color: #ffcad4;
+    --btn-background-color: #000000;
+    --btn-color: #ffffff;
     /*FF91A4*/
 }
 
@@ -242,8 +244,9 @@ body {
 .header__signout {
     position: absolute;
     top: calc(100% + 8px);
+    right: -24px;
     margin-bottom: 15px;
-    width: 112px;
+    width: 160px;
     background-color: var(--navbar-color);
     z-index: 1;
     padding: 6px 0;
@@ -419,12 +422,13 @@ body {
     width: 100%;
     padding: 8px;
     font-size: 1.8rem;
-    background-color: var(--navbar-color);
+    background-color: var(--btn-background-color);
+    color: var(--btn-color);
 }
 
 .form__btn:hover {
-    color: #fff;
-    background-color: #EE9595;
+    color: #000000;
+    background-color: #cccccc;
 }
 
 .form-label {
@@ -449,6 +453,14 @@ body {
     border-radius: 5px;
 }
 
+.avatar-img {
+    width: 200px;
+    border-radius: 4px;
+}
+
+.label-img:hover {
+    cursor: pointer;
+}
 .product__name,
 .playlist__name,
 .category__name {
@@ -534,8 +546,8 @@ input[type=number] {
 }
 
 .btn-insert {
-    background-color: var(--navbar-color);
-    color: #ffffff;
+    background-color: var(--btn-background-color);
+    color: var(--btn-color);
     font-size: 1.6rem;
     font-weight: 500;
     margin-bottom: 20px;
@@ -544,8 +556,8 @@ input[type=number] {
 }
 
 .btn-insert:hover {
-    background-color: #c0c906;
-    color: #dee4eb;
+    background-color: #cccccc;
+    color: #000000;
 }
 
 .table-sm>:not(caption)>*>* {
@@ -619,7 +631,21 @@ input[type=number] {
     margin: 30px 0;
     height: 0;
 }
+.product-actions #AddToCart,
+.product-actions #buy-now {
+    background: var(--navbar-color);
+    color: rgb(0, 0, 0);
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.4rem;
+    text-decoration: none;
+}
 
+.product-actions #AddToCart:hover,
+.product-actions #buy-now:hover {
+    background: #c0c906;
+}
 .line-price {
     font-size: 1.6rem;
 }
@@ -771,14 +797,63 @@ vertical-align: middle; }
 /* Style the tab content */
 .tabcontent {
     margin-top: 15px;
-    padding: 10px;
     display: none;
     padding: 6px 12px;
     background:white;
 }
-/*reponsive show*/
+
+.user__profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    background-color: var(--background-color);
+    height: 100%;
+
+}
+
+.user__avatar {
+    position: relative;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.user__avatar-img img{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color:#000000;
+    margin: 10px auto 5px;
+    line-height: 1.2;
+}
+
+.user__profile {
+    font-size: 1.8rem;
+}
+
+.btn-update-info {
+    background-color: var(--btn-background-color);
+    color: var(--btn-color);
+    font-size: 2rem;
+    padding: 4px 12px 4px 12px;
+    border-radius: 4px;
+    width: 50%;
+}
+
+.btn-update-info:hover {
+    background-color: #cccccc;
+}
 
 
+/* RESPONSIVE */
 @media (max-width: 700px) {
 
    .product-content{

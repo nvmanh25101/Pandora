@@ -61,8 +61,12 @@
                             <tbody>
                             <?php foreach ($result as $each) { ?>
                                 <tr>
-                                    <th scope="row"><?= $each['id'] ?></th>
-                                    <td><?= $each['name'] ?></td>
+                                    <th scope="row"><a href="./detail.php?id=<?= $each['id'] ?>" class="text-decoration-none">
+                                            <?= $each['id'] ?>
+                                        </a></th>
+                                    <td><a href="./detail.php?id=<?= $each['id'] ?>" class="text-decoration-none">
+                                            <?= $each['name'] ?>
+                                        </a></td>
                                     <td>
                                         <img class="account__img" src="../../assets/images/admin/<?= $each['avatar'] ?>" alt="Avatar">
                                     </td>

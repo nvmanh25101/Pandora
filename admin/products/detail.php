@@ -108,19 +108,20 @@ $result = mysqli_query($connect, $sql);
 
 
     </div>
+    <script src="../../assets/js/jquery-3.6.4.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
             integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
             crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="text/javascript"
-            src="https://cdn.rawgit.com/igorlino/elevatezoom-plus/1.1.6/src/jquery.ez-plus.js"></script>
+    <script type="text/javascript" src="../../assets/js/jquery.zoom.min.js"></script>
     <script>
-        $(".image-img").ezPlus({
-            zoomWindowFadeIn: 500,
-            zoomWindowFadeOut: 500,
-            lensFadeIn: 500,
-            lensFadeOut: 500,
-            zoomWindowWidth: 200,
-            zoomWindowHeight: 200
+        $(document).ready(function(){
+            $('.image-img')
+                .wrap('<span style="display:inline-block"></span>')
+                .css('display', 'block')
+                .parent()
+                .zoom({
+                    magnify: 1.5
+                });
         });
 
         $('.btn-menu').click(function () {
@@ -128,27 +129,28 @@ $result = mysqli_query($connect, $sql);
             $('.header__navbar-overlay').toggle("fast");
         });
 
-    $('.data-one').click(function() {
-        let product_id = <?= $id ?>;
-        let size_id = $(this).children('.input-opt').val();
-        $.ajax({
-            url: './get_quantity.php',
-            type: 'POST',
-            dataType: 'json',
-            data: {
-                size_id: size_id,
-                product_id: product_id
-            }
-        })
-
-            .done(function(res) {
-               $('#quantity').text(res);
+        $('.data-one').click(function() {
+            let product_id = <?= $id ?>;
+            let size_id = $(this).children('.input-opt').val();
+            $.ajax({
+                url: './get_quantity.php',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    size_id: size_id,
+                    product_id: product_id
+                }
             })
+
+                .done(function(res) {
+                   $('#quantity').text(res);
+                })
+            });
+
+        $('.sd').click(function() {
+            $('.sd').removeClass('active');
+            $(this).addClass('active');
         });
-    $('.sd').click(function() {
-        $('.sd').removeClass('active');
-        $(this).addClass('active');
-    });
 
     </script>
     </body>

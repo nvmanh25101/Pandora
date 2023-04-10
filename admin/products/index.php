@@ -55,7 +55,7 @@ require_once '../navbar-vertical.php';
             <a class="header__name text-decoration-none" href="#">Trang sức</a>
         </div>
         <div class="container-fluid px-4 mt-2">
-            <a href="form_insert.php" class="btn-insert btn btn-light btn-lg">Thêm</a>
+            <a href="form_insert.php" class="btn-insert btn btn-dark btn-lg">Thêm</a>
             <div class="row gx-5">
                 <div class="col-12">
                     <div class="table-responsive-sm">

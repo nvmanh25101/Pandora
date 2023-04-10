@@ -12,12 +12,13 @@
             $id = $row['id'];
             $name = $row['name'];
             $role = $row['role'];
+            $avatar = $row['avatar'];
             $pass_hash = $row['password'];
             if(password_verify($pass,$pass_hash)){
                 $_SESSION['id'] = $id;
                 $_SESSION['name'] = $name;
                 $_SESSION['role'] = $role;
-                $_SESSION['image'] = 'adminvjppro.jpg';
+                $_SESSION['image'] = $avatar;
                 header("location:./products/index.php");
             }else{
                 $_SESSION['error'] = "Sai tài khoản hoặc mật khẩu";
