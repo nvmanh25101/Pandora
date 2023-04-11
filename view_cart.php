@@ -12,8 +12,6 @@ $each = mysqli_fetch_array($result);
 $action =(isset($_GET['action'])) ? $_GET['action'] : 'add';
 
 
-
-
 $quantity = (isset($_GET['quantity'])) ? $_GET['quantity'] : 1;
 //session_destroy();
 //die();
@@ -23,6 +21,7 @@ if($quantity <= 0){
 
 $item = [
   'id' =>$each['id'],
+  'user_id' =>$each['user_id'],
   'name' => $each['name'],
   'image' => $each['image'],
   'size' => $each['size'],
@@ -47,6 +46,13 @@ unset($_SESSION['cart'][$id]);
 if($action == 'update'){
 $_SESSION['cart'][$id]['quantity'] = $quantity;
 }
+
+
+//Add to dbCart
+$id = $_SESSION['id'];
+$sqlInsert = "Insert Into carts (user_id)
+        Values ('$id')";
+    $ketqua = mysqli_query($connect,$sqlInsert);
 
 header('location:cart.php');
 echo "<pre>";

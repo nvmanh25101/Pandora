@@ -26,6 +26,7 @@ body, html {
  /* MAIN */
  .main-container-header{
      width: 100%;
+     margin-bottom: 150px;
  }
  .confirm-box{
      margin: 50px 160px 10px 160px;
@@ -39,7 +40,6 @@ body, html {
     font-family: Playfair Display;
     font-size: 24px;
     text-align: center;    
-    color: #FF1493;
     text-transform: uppercase;
     font-weight: 700;
 }
@@ -87,11 +87,11 @@ body, html {
 .btnConfirm{
 	background-color: white;
     height: 45px;
-    width: 163px;
+    width: 180px;
     border-radius: 5px;
     border: 1px solid #FF1493;
     font-family: Playfair Display;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
     color: #FF1493;
     margin-top: 45px;
@@ -143,4 +143,24 @@ body, html {
 label{
     margin-bottom: 10px;
     
+}
+
+
+.pay{
+    border: #FFBFBF solid 1px;
+    margin: 0px 50px;
+}
+
+.bybank, .shipcod{
+    border-bottom: #FFBFBF solid 1px;
+}
+.pay .gender, label{
+    font-size: 20px;
+}
+.infbank{
+    text-align: center;
+    background: #dfcccc;
+}
+.infbank p{
+    padding: 10px 0 ;
 }
