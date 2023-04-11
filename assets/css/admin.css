@@ -51,25 +51,24 @@ body {
 
 
 ::-webkit-scrollbar {
-    width: 6px;
-    height: 10px;
+    /*width: 12px;*/
+    /*height: 8px;*/
 }
 
   /* Track   */
 ::-webkit-scrollbar-track {
-    background-color: #ffa2a2;
+    background-color: #FFFFFF;
   }
    
   /* Handle   */
 ::-webkit-scrollbar-thumb {
-    background: transparent;
     border-radius: 10px;
-    background: #d68989;
+    background: #a4a4a4;
   }
   
   /* Handle on hover   */
 ::-webkit-scrollbar-thumb:hover {
-    background: #da8383;
+    background: #787878;
 }
 
 .navbar-vertical {
@@ -273,8 +272,8 @@ body {
 }
 
 .header__signout a:hover {
-    background-color: #ffbe68;
-    color: #000000;
+    background-color: #ff9fad;
+    color: #FFFFFF;
 }
 
 .header__signout::before {
@@ -303,7 +302,7 @@ body {
 }
 .container-fluid{
     box-shadow: 1px 1px 2px 0px #00000040;
-    background-color: white;
+    background-color: #F6F6F6;
     border-radius: 10px;
     padding: 15px;
     margin-top: 8px;
@@ -478,7 +477,7 @@ body {
 .pagination-item__link {
     display: inline-block;
     padding: 8px 16px;
-    border: 1px solid #ffbfbf;
+    border: 1px solid var(--btn-background-color);
     border-radius: 50%;
     font-size: 1.6rem;
     color: var(--text-color);
@@ -487,8 +486,8 @@ body {
 }
 
 .pagination-item__link:hover {
-    color: var(--text-color);
-    background-color: #ffbfbf;
+    color: #FFFFFF;
+    background-color: #747474;
 }
 
 .pagination-item--active .pagination-item__link {
@@ -563,7 +562,7 @@ input[type=number] {
 .table-sm>:not(caption)>*>* {
      padding: 8px;
      font-family: 'PT Serif', serif;
-     background-color: #d3afaf40;
+     background-color: #FFFFFF;
 }
 
 .bi-pencil-fill,

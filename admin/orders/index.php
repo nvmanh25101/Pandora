@@ -18,7 +18,7 @@ $num_order_per_page = 10;
 
 $num_page = ceil($num_order / $num_order_per_page);
 $skip_page = $num_order_per_page * ($page_current - 1);
-$sql = "SELECT orders.id, name_receiver, address_receiver, phone_receiver, DATE_FORMAT(created_at, '%d/%m/%Y %T') as created_at, status, users.name 
+$sql = "SELECT orders.id, name_receiver, address_receiver, phone_receiver, DATE_FORMAT(orders.created_at, '%d/%m/%Y %T') as created_at, orders.status, users.name 
     from orders
     join users on orders.user_id = users.id
     limit $num_order_per_page offset $skip_page";

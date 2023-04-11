@@ -28,7 +28,7 @@
                     <div class="col-md-3 mt-5">
                         <a class="card d-flex flex-column" href="../orders">
                             <div class="card__icon d-flex flex-fill">
-                                <i class="bi bi-vinyl-fill"></i>
+                                <i class="bi bi-cart-dash-fill"></i>
                             </div>
                             <div class="card__content d-flex justify-content-center">
                                 <h2 class="card__name">Đơn hàng</h2>
@@ -46,19 +46,9 @@
                         </a>
                     </div>
                     <div class="col-md-3 mt-5">
-                        <a class="card d-flex flex-column" href="../accounts">
-                            <div class="card__icon d-flex flex-fill">
-                                <i class="bi bi-vinyl-fill"></i>
-                            </div>
-                            <div class="card__content d-flex justify-content-center">
-                                <h2 class="card__name">Tài khoản</h2>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-3 mt-5">
                         <a class="card d-flex flex-column" href="../categories">
                             <div class="card__icon d-flex flex-fill">
-                                <i class="bi bi-vinyl-fill"></i>
+                                <i class="bi bi-list-ul"></i>
                             </div>
                             <div class="card__content d-flex justify-content-center">
                                 <h2 class="card__name">Loại trang sức</h2>
@@ -66,9 +56,19 @@
                         </a>
                     </div>
                     <div class="col-md-3 mt-5">
+                        <a class="card d-flex flex-column" href="../accounts">
+                            <div class="card__icon d-flex flex-fill">
+                                <i class="bi bi-people-fill"></i>
+                            </div>
+                            <div class="card__content d-flex justify-content-center">
+                                <h2 class="card__name">Tài khoản</h2>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-3 mt-5">
                         <a class="card d-flex flex-column" href="../sizes">
                             <div class="card__icon d-flex flex-fill">
-                                <i class="bi bi-vinyl-fill"></i>
+                                <i class="bi bi-border-width"></i>
                             </div>
                             <div class="card__content d-flex justify-content-center">
                                 <h2 class="card__name">Kích thước</h2>

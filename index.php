@@ -1,5 +1,9 @@
 <?php
     session_start();
+
+    if (isset($_SESSION['id']) && ($_SESSION['role'] === '1' || $_SESSION['role'] === '2')) {
+        unset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar']);
+    }
     require './database/connect.php';
 
     $where = 1;
