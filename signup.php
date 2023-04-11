@@ -29,9 +29,9 @@ require './database/connect.php';
 						</div>
 						<div class="form-outline mb-4" style="float: left;">
 							<input type="radio" class="gender me-1" name="gender" value="nam" id="nam" autocomplete="off">
-              <label for="nam">Nam</label>
+              					<label for="nam">Nam</label>
 							<input type="radio" class="gender me-1" name="gender" value="nu" id="nu" autocomplete="off">
-              <label for="nu">Nữ</label>
+              					<label for="nu">Nữ</label>
 						</div>
 						<div class="form-outline mb-4">
 							<input type="text" name="birthday" class="form-control" id="floatingInput" placeholder="Ngày sinh:năm/tháng/ngày" required>

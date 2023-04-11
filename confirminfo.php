@@ -17,7 +17,7 @@ $each = mysqli_fetch_array($result);
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CONFIRM-GNBAKERY</title>
+  <title>CONFIRM-PANDORA</title>
   <link rel="shortcut icon" type="image" href="img/logo.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <!-- CSS only -->
@@ -42,7 +42,7 @@ $each = mysqli_fetch_array($result);
     <div class="confirm-container">
       <div class="confirm-box">
         <div class="confirm-text">
-          <p>Thông tin người nhận</p>
+          <p>Thông tin giao hàng</p>
         </div>
         <hr>
       </div>
@@ -50,6 +50,15 @@ $each = mysqli_fetch_array($result);
     <form class="form-page" action="./process_checkout.php" method="post">
       <div class="page_container">
         <div class="main_content">
+          <div class="row user_infor">
+          
+            <div class="col-md-3"><img class="image-img" style="width:50%;" src="./img/<?= $each['avatar'] ?>" /></div>
+            <div class="col-md-3">
+              <div class="name"><?= $each['name'] ?></div>
+              <div class="email mb-2"><?= $each['email'] ?></div>
+              <a href="signout.php"><i class="bi bi-box-arrow-right" aria-hidden="true"></i>Đăng Xuất</a>
+            </div>
+          </div>
           <div class="form_name">
             <label for="">Họ và tên</label>
             <input type="text" name="name_receiver" class="form-control" value="<?= $each['name'] ?>" required>
@@ -62,136 +71,41 @@ $each = mysqli_fetch_array($result);
             <label for="">Số điện thoại</label>
             <input type="" name="phone_receiver" class="form-control" value="<?= $each['phone'] ?>" required>
           </div>
-          <div class="btnup">
-            <a class="btnReturn" href="./cart.php">Quay lại</a>
-            <button class="btnConfirm">Xác nhận</button>
-          </div>
+          
         </div>
       </div>
+      <h1 style="margin: 60px 50px 10px 50px; font-size: 25px; font-weight: bold;">Phương thức thanh toán</h1>
+      <div class="pay ">
+        <div class="bybank mt-2"><input type="radio" class="payment me-1 ms-3" name="payment" value="bank" id="bank" autocomplete="off">
+                <label for="bank"><i class="bi bi-credit-card me-2"></i>Chuyển khoản qua ngân hàng</label>
+              <div class="infbank ">
+                <p>Quý khách vui lòng chuyển khoản theo thông tin sau:</p>
+                <p> - CONG TY TNHH THUONG MAI NCA (VN) </p>
+                <p> - NGÂN HÀNG TMCP KỸ THƯƠNG VIỆT NAM - TECHCOMBANK </p>
+                <p> - Số tài khoản: 19030734309076 (VND)</p>
+                <p> - Nội dung chuyển khoản: Thanh toán cho mã đơn hàng [Mã đơn hàng của bạn] Mã đơn hàng của bạn sẽ hiển thị khi bấm Hoàn tất đơn hàng</p>
+              </div>
+        </div>  
+        <div class="shipcod mt-2"><input type="radio" class="payment me-1 ms-3" name="payment" value="shipcod" id="shipcod" autocomplete="off">
+              <label for="shipcod"><i class="bi bi-cash-coin me-2"></i>Thanh toán khi giao hàng</label></div>
+                          
+          <div class="momo mt-2"><input type="radio" class="payment me-1 ms-3" name="payment" value="momo" id="momo" autocomplete="off">
+              <label for="momo"><i class="bi bi-bank"></i>Ví Momo</label></div>		
+      </div>
+      <h1 style="margin: 60px 50px 10px 50px; font-size: 20px;">Nhập ghi chú quà tặng hoặc hướng dẫn giao hàng đặc biệt dưới đây (nếu có):</h1>
+      <div class="note">
+          <input type="text" class="note ms-5" id="note" placeholder="Ghi chú"  style="height: 100px; width: 90%">
+      </div>
+      <div class="btnup">
+            <a class="btnReturn" href="./cart.php">Giỏ hàng</a>
+            <button class="btnConfirm">Hoàn tất đơn hàng</button>
+          </div>
     </form>
 
   </div>
-  <footer>
-    <div class="footer-top">
-      <div class="footer-top-overlay"></div>
-      <div class="wrapper">
-        <div class="inner">
-          <div class="grid-item">
-            <div class="contact-item ">
-              <div class="ft-contact">
-
-                <div class="ft-contact-logo ">
-                  <a href="/"><img style="width: 50%;height:50%;" src="img/logo.png" alt="GN BAKERY - Bánh ngọt Pháp"></a>
-                </div>
-
-                <div class="ft-contact-address">
-                  <i class="fa fa-home" aria-hidden="true"></i> 90 Nguyễn Tuân TP. Hà Nội
-                </div>
-                <div class="ft-contact-tel">
-                  <i class="fa fa-mobile" aria-hidden="true"></i> <a style="color: white; font-weight: bolder;" href="tel:0333135698">0333135698</a>
-                </div>
-                <div class="ft-contact-email">
-                  <i class="fa fa-envelope" aria-hidden="true"></i> <a style="color: white;font-weight: bolder;" href="mailto:info@gnbakery.vn">info@gnbakery.vn</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="menu ">
-              <div class="ft-menu">
-                <h4>Chính sách</h4>
-                <ul class="list">
-
-
-                  <li><a style="text-decoration: none;" href="">Chính sách và quy định chung</a></li>
-
-                  <li><a style="text-decoration: none;" href="">Chính sách giao dịch, thanh toán</a></li>
-
-                  <li><a style="text-decoration: none;" href="">Chính sách đổi trả</a></li>
-
-                  <li><a style="text-decoration: none;" href="">Chính sách bảo mật</a></li>
-
-                  <li><a style="text-decoration: none;" href="">Chính sách vận chuyển</a></li>
-
-                </ul>
-              </div>
-            </div>
-
-            <div class="subscribe ">
-              <div class="ft-subscribe-wrapper">
-                <h4>GN Bakery</h4>
-                <div class="ft-subscribe">
-                  <p>Tên đơn vị: Công ty Cổ phần Bánh ngọt GN
-                    Số giấy chứng nhận đăng ký kinh doanh: 0104802706
-                    Ngày cấp: 21/07/2010
-                    Nơi cấp: Sở Kế hoạch và Đầu tư Tp. Hà Nội
-
-                  </p>
-
-                  <form accept-charset="UTF-8" action="/account/contact" class="contact-form" method="post" name="myForm" onsubmit="validateForm()">
-                    <input name="form_type" type="hidden" value="customer">
-                    <input name="utf8" type="hidden" value="✓">
-
-
-
-                    <div class="input-group-intro">
-
-                      <input type="hidden" name="contact[tags]" value="newsletter">
-
-                    </div>
-
-                  </form>
-
-
-
-                </div>
-              </div>
-
-            </div>
-
-            <div class="connect">
-              <h4>Mỗi tháng chúng tôi đều có những đợt giảm giá dịch vụ và sản phẩm nhằm tri ân khách hàng. Để có thể cập nhật kịp thời những đợt giảm giá này, vui lòng nhập địa chỉ email của bạn vào ô dưới đây</h4>
-              <div id="owl-home-main-banners-slider-ft" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
-                <div class="owl-wrapper-outer">
-                  <div class="owl-wrapper" style="width: 424px; left: 0px; display: block; transition: all 1000ms ease 0s; transform: translate3d(0px, 0px, 0px);">
-                    <div class="owl-item" style="width: 212px;">
-                      <div class="item">
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="owl-controls clickable" style="display: none;">
-                  <div class="owl-pagination">
-                    <div class="owl-page active"><span class=""></span></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="wrapper">
-        <div class="inner">
-          <div class="grid">
-            <div class="grid__item ">
-              <div class="ft-copyright-menu text-right">
-                <ul class="no-bullets">
-                </ul>
-              </div>
-            </div>
-            <div class="grid__item ">
-              <div class="ft-copyright">
-                Copyrights © 2018 by <a style="text-decoration:none;" target="_blank" href="">GN Bakery</a>.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </footer>
+  
+  <?php require './footer.php'; ?>
+  
   <div id="hotline">
     <a href="tel:0333135698" id="yBtn">
       <i class="bi bi-telephone-fill"></i>

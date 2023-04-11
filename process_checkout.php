@@ -28,8 +28,8 @@ $status = 0;
 
 require './database/connect.php';
 
-$sql = "insert into orders(user_id, name_receiver, address_receiver, phone_receiver, status, total_price) 
-values('$id', '$name_receiver', '$address_receiver', '$phone_receiver', '$status', '$total_price')";
+$sql = "insert into orders(name_receiver, phone_receiver, address_receiver,  status, total_price, payment_id, note, user_id, user_admin_id, cart_id) 
+values('$name_receiver', '$phone_receiver', '$address_receiver',  '$status', '$total_price', '1', 'abc' '$id', '2', '17' )";
 
 mysqli_query($connect, $sql);
 $last_order_id = mysqli_insert_id($connect);
