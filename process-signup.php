@@ -1,10 +1,11 @@
 <?php
         $name = $_POST['name'];
         $gender = $_POST['gender'];
-        $birthday = $_POST['birth_date'];
+        $birthday = $_POST['birthday'];
         $email= $_POST['email'];
         $pass = $_POST['password'];
-        $phone = $_POST['phone'];
+        $phone = $_POST['phonenumber'];
+        $address = $_POST['address'];
         require './database/connect.php';
 
         
@@ -22,8 +23,8 @@
                 header("location:signup.php?errorpass=$errorpass");
             }else{
                 $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
-                $sqlInsert="INSERT INTO users(name,gender, birth_date, email, password, phone, role_id) 
-                    VALUES('$name', $genderId, '$birthday', '$email', '$pass_hash', '$phone',1)";
+                $sqlInsert="INSERT INTO users(name,gender, birth_date, email, password, phone, address, role, status) 
+                    VALUES('$name', $genderId, '$birthday', '$email', '$pass_hash', '$phone', '$address', 1, 1)";
         
                 $resultInsert = mysqli_query($connect,$sqlInsert);
                 if(isset($resultInsert) > 0){
