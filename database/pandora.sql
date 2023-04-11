@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 08, 2023 lúc 06:06 PM
+-- Thời gian đã tạo: Th4 11, 2023 lúc 12:07 PM
 -- Phiên bản máy phục vụ: 10.4.20-MariaDB
 -- Phiên bản PHP: 8.0.9
 
@@ -33,6 +33,14 @@ CREATE TABLE `carts` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'thời gian tạo ',
   `updated_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'thời gian cập nhật'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Đang đổ dữ liệu cho bảng `carts`
+--
+
+INSERT INTO `carts` (`id`, `user_id`, `created_at`, `updated_at`) VALUES
+(20, 2, '2023-04-11 10:02:51', '2023-04-11 17:02:51'),
+(21, 2, '2023-04-11 10:02:59', '2023-04-11 17:02:59');
 
 -- --------------------------------------------------------
 
@@ -245,7 +253,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `avatar`, `gender`, `birth_date`, `email`, `password`, `phone`, `address`, `role`, `token_verification`, `status`, `created_at`, `deleted_at`) VALUES
-(2, 'admin', NULL, 1, '2001-10-25', 'admin@gmail.com', '$2y$10$pKltmUrDd1NpPUNjuh/JP.qUO4ZHNQ2csQtEQF5vj7fg172pvo27a', '0986971670', 'Phú Xuyên - Hà Nội', 2, '642da28e9b3a31680712334', 1, '2023-04-05 16:32:14', NULL),
+(2, 'admin', 'myLogo.png', 1, '2001-10-25', 'admin@gmail.com', '$2y$10$pKltmUrDd1NpPUNjuh/JP.qUO4ZHNQ2csQtEQF5vj7fg172pvo27a', '0986971670', 'Phú Xuyên - Hà Nội', 2, '642da28e9b3a31680712334', 1, '2023-04-05 16:32:14', NULL),
 (3, 'Đỗ Thị Thanh Phương', 'admin_1680854146.jpg', 0, '2001-03-15', 'dothithanhphuong@gmail.com', 'dttp123', '0986971202', 'Bắc Giang', 1, '642fcaa6614e51680853670', 1, '2023-04-07 07:47:50', NULL);
 
 -- --------------------------------------------------------
@@ -356,7 +364,7 @@ ALTER TABLE `votes`
 -- AUTO_INCREMENT cho bảng `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'mã của giỏ hàng';
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'mã của giỏ hàng', AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT cho bảng `categories`
@@ -374,7 +382,7 @@ ALTER TABLE `category_child`
 -- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'mã đơn hàng';
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'mã đơn hàng', AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT cho bảng `products`
@@ -392,7 +400,7 @@ ALTER TABLE `sizes`
 -- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'mã người dùng', AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'mã người dùng', AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT cho bảng `votes`
