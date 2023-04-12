@@ -226,7 +226,7 @@ b {
 
 #main-menu ul.sub-menu {	
 	position: absolute;
-	background: #484105;
+	background: #e9bce9;
 	list-style: none;
 	width: 250px;
 	display: none;
@@ -518,7 +518,7 @@ ul.products li .product-info .product-price-action .product-price {
 	padding: 0px 15px;
 	height: 40px;
 	line-height: 40px;
-	background: #c0c906;
+	background: linear-gradient(to right, rgb(176, 145, 192), rgb(198, 183, 207));
 	color: #fff;
 
 	border-top-right-radius: 10px;
@@ -590,7 +590,6 @@ ul.products li .product-info .product-price-action .product-action button {
 
 .latest-wrap .title-notice h3 {
 	font-size: 38px;
-	color: #c0c906;
 	margin-bottom: 0;
 	font-weight: 700;
 
@@ -1269,7 +1268,6 @@ li {
 		padding-right: 38px;
 	}
 }
-
 
 
 

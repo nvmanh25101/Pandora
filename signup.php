@@ -45,6 +45,9 @@ require './database/connect.php';
 						<div class="form-outline mb-4">
 							<input type="phone" id="floatingInput" name="phonenumber" class="form-control form-control-lg" placeholder="Số điện thoại"  required >
 						</div>
+						<div class="form-outline mb-4">
+							<input type="text" id="floatingInput" name="address" class="form-control form-control-lg" placeholder="Địa chỉ"  required >
+						</div>
 						<small style="color:red;">
 						<?php
 						if (isset($_GET['error'])) {

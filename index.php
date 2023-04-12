@@ -36,7 +36,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="viewport" content="width=device-width">
   <title>Pandora Việt Nam</title>
-  <link rel="icon"  href="img/myLogo.png">
+  <link rel="shortcut" type="image"  href="img/myLogo.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -47,6 +47,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="js/app.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  
 
 </head>
 
@@ -218,6 +219,54 @@
         $result = mysqli_query($connect, $sql);
         $category_child_id = mysqli_fetch_assoc($result)['id'];
         $sql_pandora = "SELECT * FROM products WHERE category_child_id='$category_child_id' order by id desc";
+        $result_pandora = mysqli_query($connect, $sql_pandora);
+    ?>
+
+    <ul class="products">
+      <?php foreach($result_pandora as $each) { ?>
+      <li>
+        <div class="product-item">
+          <div class="product-top">
+            <a href="./product.php?id=<?= $each['id'] ?>" class="product-thumb">
+              <img src="./assets/images/products/<?= $each['image'] ?>" alt="">
+
+            </a>
+          </div>
+          <div class="product-info">
+            <a href="./product.php?id=<?= $each['id'] ?>" class="product-cat">
+              <?= $each['name'] ?>
+            </a>
+            <p class="product-name">PDR
+              <?= $each['id'] ?>
+            </p>
+            <div class="product-price-action">
+              <p class="product-price">
+                <?= number_format($each['price'], 0, '.', ',') ?>
+              </p>
+              <div class="product-action">
+                <form action="view_cart.php?id=<?= $each['id'] ?>" method="POST">
+                  <button type="submit" name="addcart" class="btn-action"><i class="bi bi-cart-fill"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+      <?php } ?>
+  </div>
+
+  <div style="align-item: center">
+    <hr style="width: 80%">
+  </div>
+
+  <div id="intro">
+    <div class="headline-last m-5">
+      <h3 style="font-weight: bold">Sản phẩm bán chạy</h3>
+    </div>
+
+    <?php
+        $sql_pandora = "SELECT * FROM products WHERE category_child_id='18' order by id desc";
         $result_pandora = mysqli_query($connect, $sql_pandora);
     ?>
 

@@ -5,10 +5,14 @@
     $pass = $_POST['password'];
     $address = $_POST['address'];
     $phone = $_POST['phone'];
+    $gender = $_POST['gender'];
     require './database/connect.php';
 
+    if($gender == 'nam')  { $genderId = 1;}
+        else {$genderId = 0;}
+
     if($pass==""){
-        $sql = "UPDATE users SET address = '$address',phone = '$phone' WHERE id = '$id'";
+        $sql = "UPDATE users SET name = '$name' , address = '$address', gender = '$genderId', phone = '$phone' WHERE id = '$id'";
         $result = mysqli_query($connect,$sql);
         $error = "Update successful !";
         header("location: update.php?error=$error");
@@ -18,7 +22,7 @@
             header("location:update.php?errorpass=$errorpass");
         }else{
             $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
-            $sql = "UPDATE users SET address = '$address',phone = '$phone',password = '$pass_hash' WHERE id = '$id'";
+            $sql = "UPDATE users SET name = '$name' , address = '$address',phone = '$phone', gender = '$genderId', password = '$pass_hash' WHERE id = '$id'";
     
             $result = mysqli_query($connect,$sql);
             if(isset($result) > 0){

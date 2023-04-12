@@ -59,17 +59,23 @@ $result_size = mysqli_query($connect, $sql);
     <?php require './header.php'; ?>
     <!--product-->
 
-    <div class="hero-image">
-        <div>
+  <div class="content-top mt-5">
+    <p class="mt-1">Miễn phí vận chuyển toàn bộ đơn hàng</p>
+  </div>
 
-            <p class="hero-text"><?= $each['name'] ?></p>
+  <nav aria-label="breadcrumb ">
+    <ol class="breadcrumb m-2">
+      <li class="breadcrumb-item"><a href="index.php">Trang chủ</a></li>
+      <li class="breadcrumb-item"><a href="#">Tất cả sản phẩm</a></li>
+      <li class="breadcrumb-item active" aria-current="page"><?= $each['name'] ?></li>
+    </ol>
+  </nav>
 
-        </div>
-    </div>
-    <div class="product">
-        <div class="product-content">
-
-            <div class="product-content-left">
+  <form action="view_cart.php" method="GET">
+  <div class="product">
+    <div class="product-content">
+    
+       <div class="product-content-left">
                 <img class="image-img" style="width:100%;" src="./assets/images/products/<?= $each['image'] ?>" data-zoom-image="./assets/images/products/<?= $each['image'] ?>" />
             </div>
 
@@ -169,16 +175,41 @@ $result_size = mysqli_query($connect, $sql);
         <div class="tab mt-3">
             <button class="tablinkss">Thông tin sản phẩm</button>
 
-
-        </div>
-        <div class="content-product-tab">
-            <div id="Content" class="tablinks">
-                <?= nl2br($each['description']) ?>
-            </div>
-
-
-        </div>
     </div>
+    <div class="content-product-tab">
+      <div id="Content" class="tablinks">
+        <?= nl2br($each['description']) ?>
+      </div>
+      <div class="content-detail mt-2">
+          <div class="">Bộ sưu tập: Pandora Moments</div>
+          <div class="">Mã sản phẩm: <?= $each['id'] ?></div>
+          <div class="">Chất liệu: <?= $each['material'] ?></div>
+          <div class="">Màu sắc: <?= $each['color'] ?></div>
+      </div>  
+    </div>
+
+    <div class=" policy-last"  style="display: flex">
+            <div class="col-md-2">
+                <h4>Chính sách đổi hàng</h1>
+                <p style="width: 100%">Chính sách đổi hàng chỉ áp dụng cho các sản phẩm bị lỗi kĩ thuật và là hàng nguyên giá hoặc giảm giá dưới 20%. Chính sách áp dụng một đổi một trong vòng 15 ngày kể từ ngày nhận hàng và chỉ đổi duy nhất 01 lần.</p>
+            </div>
+            <div class="col-md-2">
+                <h4>Tặng quà</h1>
+                <p style="width: 100%">Bạn muốn gửi tặng trang sức Pandora đến người đặc biệt? Chỉ cần chọn sản phẩm bạn muốn tặng, nhân viên CSKH của chúng tôi sẽ tự tay gói quà và viết thông điệp bạn muốn gửi đến người nhận quà. Chỉ cần ghi chú lên đơn hàng khi đặt hàng bạn nhé! Pandora sẽ liên hệ bạn ngay!</p>
+            </div>
+            <div class="col-md-2">
+                <h4>Tặng quà</h1>
+                <p style="width: 100%">Bạn muốn gửi tặng trang sức Pandora đến người đặc biệt? Chỉ cần chọn sản phẩm bạn muốn tặng, nhân viên CSKH của chúng tôi sẽ tự tay gói quà và viết thông điệp bạn muốn gửi đến người nhận quà. Chỉ cần ghi chú lên đơn hàng khi đặt hàng bạn nhé! Pandora sẽ liên hệ bạn ngay!</p>
+            </div>
+            <div class="col-md-2">
+                <h4>Tặng quà</h1>
+                <p style="width: 100%">Bạn muốn gửi tặng trang sức Pandora đến người đặc biệt? Chỉ cần chọn sản phẩm bạn muốn tặng, nhân viên CSKH của chúng tôi sẽ tự tay gói quà và viết thông điệp bạn muốn gửi đến người nhận quà. Chỉ cần ghi chú lên đơn hàng khi đặt hàng bạn nhé! Pandora sẽ liên hệ bạn ngay!</p>
+            </div>
+        </div>
+        </div>
+  </div>
+
+  </div>
 
     <div id="Home-notice">
         <div class="latest-wrap">
@@ -186,6 +217,34 @@ $result_size = mysqli_query($connect, $sql);
                 <h3>CÓ THỂ BẠN THÍCH</h3>
                 <h2>SẢN PHẨM CÙNG LOẠI</h2>
 
+            </div>
+
+            <?php
+            $sql_pandora = " SELECT * FROM products WHERE category_child_id='$category_id'and not exists(SELECT * FROM products WHERE id = $id)";
+            $result_pandora = mysqli_query($connect, $sql_pandora);
+            ?>
+
+            <ul class="productss">
+                <?php foreach ($result_pandora as $category_product) { ?>
+                    <li>
+                        <div class="product-item">
+                            <div class="product-top">
+                                <a href="" class="product-thumb">
+                                    <img src="./assets/images/products/<?= $category_product['image'] ?>" alt="">
+
+              </a>
+            </div>
+            <div class="product-info">
+              <a href="" class="product-cat"><?= $category_product['name'] ?></a>
+              <div class="product-price-action">
+                <p class="product-price"><?= number_format($category_product['price'], 0, '.', ',') ?></p>
+                <div class="product-action">
+                <form action="view_cart.php?id=<?= $each['id'] ?>" method="POST">
+                  <button type="submit" name="addcart" class="btn-action"><i class="bi bi-cart-fill"></i>
+                  </button>
+        </form>
+                </div>
+              </div>
             </div>
 
             <?php

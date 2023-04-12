@@ -7,27 +7,19 @@ body, html {
     font-size: 17px;
   }
   
-  .hero-image {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../assets/images/products/charm.webp");
-    height: 50%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
 
+.content-top{
+    text-align: center;
+    background: #ffcad4;
+    padding: 10px 0;
     
-  }
-  
-  .hero-text {
-    font-size: 30px;
-    font-weight: bolder;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    
-  }
-  
+}
+
+.content-top>p{
+    margin-top: 5px;
+    font-weight: bold;
+}
+
 .product{
     
     width: 100%;
@@ -95,6 +87,7 @@ body, html {
 }
 .product-select-swatch{
     margin-top: 50px;
+    
 }
 .product-select-swatch-text p{
     margin: 0;
@@ -235,6 +228,7 @@ body, html {
 }
 .product-actions {
     margin-top: 50px;
+    text-align: center;
 }
 
 
@@ -244,6 +238,7 @@ body, html {
     padding: 10px 15px;
     border-radius: 10px;
     border: none;
+    width: 80%;
 }
 .product-actions #AddToCart:hover {
     background: #c0c906; }
@@ -290,12 +285,19 @@ body, html {
 
 .content-product-tab{
     margin: 0;
-    background: #fff;
     padding: 15px;
     border-radius: 10px;
     border: 1px solid #ccc ;
 }
 
+.content-detail>p{
+    font-weight: bold;
+}
+
+.policy-last{
+    text-align: center;
+    justify-content: center;
+}
 /* Create an active/current tablink class */
 
 
@@ -365,7 +367,7 @@ ul.productss li:hover img{
     font-size: 17px;
 }
 ul.productss li:hover .product-info a{
-	color: #c0c906;
+	color: #d394d1;
 }
 .product-item{
 	background: white;
@@ -396,7 +398,7 @@ ul.productss li .product-info .product-name{
     padding: 0px 15px;
     height: 40px;
     line-height: 40px;
-    background: #c0c906;
+    background: #dea4da;
     color: #fff;
    
     border-top-right-radius: 10px;
