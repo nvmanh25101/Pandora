@@ -12,7 +12,7 @@ if(empty($_SESSION['cart'])) {
 }
 
 if(empty($_POST['name_receiver']) || empty($_POST['phone_receiver']) || empty($_POST['address_receiver'])) {
-    header('location:confirminfo.php');
+    header('location:checkout.php');
     exit;
 }
 

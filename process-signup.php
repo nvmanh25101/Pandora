@@ -6,6 +6,7 @@
         $pass = $_POST['password'];
         $phone = $_POST['phonenumber'];
         $address = $_POST['address'];
+        $token_verification = 'wqejqy3i123';
         require './database/connect.php';
 
         
@@ -23,8 +24,8 @@
                 header("location:signup.php?errorpass=$errorpass");
             }else{
                 $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
-                $sqlInsert="INSERT INTO users(name,gender, birth_date, email, password, phone, address, role, status) 
-                    VALUES('$name', $genderId, '$birthday', '$email', '$pass_hash', '$phone', '$address', 0, 1)";
+                $sqlInsert="INSERT INTO users(name,gender, birth_date, email, password, phone, address, role,token_verification, status) 
+                    VALUES('$name', $genderId, '$birthday', '$email', '$pass_hash', '$phone', '$address',0,'$token_verification',  1)";
         
                 $resultInsert = mysqli_query($connect,$sqlInsert);
                 if(isset($resultInsert) > 0){

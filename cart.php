@@ -1,7 +1,24 @@
-<?php 
-    session_start();
-
-require 'check_user_cart.php'; ?>
+<?php
+require 'check_user_cart.php';
+require_once './database/connect.php';
+$user_id = $_SESSION['id'];
+$sql = "select * from carts where user_id = $user_id;";
+$result = mysqli_query($connect, $sql);
+$cart = mysqli_fetch_array($result);
+$cart_id = $cart['id'];
+$sql = "select cart_item.*, products.name, products.image, products.price from cart_item 
+        join products
+        on products.id = cart_item.product_id
+        where cart_id = $cart_id";
+$cart_item = mysqli_query($connect, $sql);
+$cart_item_count = mysqli_num_rows($cart_item);
+$sql = "select sum(quantity * price) as sum_price from cart_item 
+        join products
+        on products.id = cart_item.product_id
+        WHERE cart_item.cart_id = $cart_id;";
+$result = mysqli_query($connect, $sql);
+$sum = mysqli_fetch_array($result)['sum_price'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,150 +45,145 @@ require 'check_user_cart.php'; ?>
 </head>
 
 <body>
-<?php 
-    require './header.php';
-    require_once './database/connect.php';
-    $user_id = $_SESSION['id'];
-    $sql = "select * from carts where user_id = $user_id;";
-    $result = mysqli_query($connect, $result);
-    $cart = mysqli_fetch_array($result);
-?>
-<div class="hero-image">
-    <div>
-        <p class="hero-text">Giỏ Hàng của bạn</p><br>
-    </div>
-</div>
-<div class="Pagecart mb-4 ">
-    <div class="cart-content">
-        <h1>Giỏ Hàng </h1>
-
-        <div class="Empty_cart" <?php
-        if (empty($cart)) {
-            echo 'style = "display:block;"';
-        } else {
-            echo 'style = "display:none;"';
-        }
-        ?>>
-            <span class="cart-txt">Giỏ hàng đang trống</span><br><br>
-            <button class="bg-dark p-3"><a class="cart-txt-he" href="index.php"><i class="bi bi-cart me-2"></i>Tiếp tục
-                    mua sắm </a></button>
+    <?php require './header.php'; ?>
+    <div class="hero-image">
+        <div>
+            <p class="hero-text">Giỏ Hàng của bạn</p><br>
         </div>
-        <!--  -->
-        <form action="" method="post" novalidate="" class="cart table-wrap"
-            <?php
-            if (empty($cart)) {
-                echo 'style = "display:none;"';
-            } else {
-                echo 'style = "display:block;"';
-            }
+    </div>
+    <div class="Pagecart mb-4 ">
+        <div class="cart-content">
+            <h1>Giỏ Hàng</h1>
+            <div class="Empty_cart" <?php
+                if (empty($cart_item_count)) {
+                    echo 'style = "display:block;"';
+                } else {
+                    echo 'style = "display:none;"';
+                }
             ?>>
-            <table class="cart-table full ">
+                <span class="cart-txt">Giỏ hàng đang trống</span>
+                <br><br>
+                <button class="bg-dark p-3">
+                    <a class="cart-txt-he" href="./index.php">
+                        <i class="bi bi-cart me-2"></i> Tiếp tục mua sắm
+                    </a>
+                </button>
+            </div>
+            <!--  -->
+            <div <?php
+                if (empty($cart_item_count)) {
+                    echo 'style = "display:none;"';
+                } else {
+                    echo 'style = "display:block;"';
+                }
+            ?>>
+                <table class="cart-table full">
                 <thead class="cart__row">
                 <tr>
                     <th class="item-img"></th>
                     <th class="item-content-text">Thông tin chi tiết sản phẩm</th>
                     <th class="item-content-price">Đơn giá</th>
                     <th class="item-amount">Số lượng</th>
+                    <th class="item-amount">Tổng giá</th>
                 </tr>
                 </thead>
                 <tbody>
+                <form action="" method="post" novalidate="" class="cart table-wrap">
+                    <?php foreach ($cart_item as $key => $value) : ?>
+                        <tr class="cart__row table__section">
+                            <td class="item-img" data-label="Sản phẩm">
+                                <a href="./product.php?id=<?= $value['product_id'] ?>" class="cart__image">
 
-                <?php foreach ($cart as $key => $value) : ?>
-                    <tr class="cart__row table__section">
-
-                        <td class="item-img" data-label="Sản phẩm">
-                            <a href="./product.php?id=<?= $value['id'] ?>" class="cart__image">
-
-                                <img src="./assets/images/products/<?php echo $value['image'] ?>">
-                            </a>
-                        </td>
-                        <td class="item-content-text">
-                            <div class="">PDR<?php echo $value['id'] ?></div>
-                            <a href="./product.php?id=<?= $value['id'] ?>" class="item-text">
-                                <?php echo $value['name'] ?>
-                            </a>
-                            <div class=""><small><?php echo $value['size'] ?></small><br></div>
-
-                            <div class="cart__remove">
-                                <a class="btn-text" href="view_cart.php?id=<?php echo $value['id'] ?>&action=delete">
-                                    xoá
-
+                                    <img src="./assets/images/products/<?php echo $value['image'] ?>">
                                 </a>
-                            </div>
-                        </td>
-                        <td class="item-content-price" data-label="Đơn giá">
-                  <span class="item-price">
-                    <?php echo number_format($value['price']) ?>&#8363
-                  </span>
-                        </td>
-                        <td class="item-amount" data-label="Số lượng">
-                            <div class="product-quantitys">
-                                <div class="buttons_added">
-                                    <a class="minus is-form"
-                                       href="update_quantity_in_cart.php?id=<?= $key ?>&type=decre">
-                                        -
-                                    </a>
-                                    <a class="input-qty"><?php echo $value['quantity'] ?> </a>
-                                    <a class="plus is-form"
-                                       href="update_quantity_in_cart.php?id=<?= $key ?>&type=incre">
-                                        +
+                            </td>
+                            <td class="item-content-text">
+                                <div class="">PDR<?php echo $value['product_id'] ?></div>
+                                <a href="./product.php?id=<?= $value['product_id'] ?>" class="item-text">
+                                    <?php echo $value['name'] ?>
+                                </a>
+                                <div class=""><small><?php echo $value['size'] ?></small><br></div>
+
+                                <div class="cart__remove">
+                                    <a class="btn-text"
+                                       href="delete_from_cart.php?cart_id=<?= $value['cart_id'] ?>&product_id=<?= $value['product_id'] ?>&action=delete">
+                                        xoá
                                     </a>
                                 </div>
-                            </div>
-                        </td>
-                        <td class="item-total-price" data-label="Tổng giá">
-
-                  <span class="item-price">
-                    <?php
-                    // echo number_format($value['price'] * $value['quantity']) 
-                    ?>
-                  </span>
-                        </td>
-                    </tr>
-                <?php endforeach ?>
-
+                            </td>
+                            <td class="item-content-price" data-label="Đơn giá">
+                          <span class="item-price">
+                            <?php echo number_format($value['price']) ?>&#8363
+                          </span>
+                            </td>
+                            <td class="item-amount" data-label="Số lượng">
+                                <div class="product-quantitys">
+                                    <div class="buttons_added">
+                                        <a class="minus is-form"
+                                           href="update_quantity_in_cart.php?cart_id=<?= $value['cart_id'] ?>&product_id=<?= $value['product_id'] ?>&type=decre">
+                                            -
+                                        </a>
+                                        <a class="input-qty"><?php echo $value['quantity'] ?> </a>
+                                        <a class="plus is-form"
+                                           href="update_quantity_in_cart.php?cart_id=<?= $value['cart_id'] ?>&product_id=<?= $value['product_id'] ?>&type=incre">
+                                            +
+                                        </a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="item-total-price" data-label="Tổng giá">
+                              <span class="item-price">
+                                <?= number_format($value['price'] * $value['quantity']) ?>
+                              </span>
+                            </td>
+                        </tr>
+                    <?php endforeach ?>
+                    <input name="sum_price" hidden value="<?= $sum ?>"></input>
+                    <input name="cart_id" hidden value="<?= $cart_id ?>"></input>
+                </form>
                 </tbody>
             </table>
 
+                <div class="row-total">
+                    <div class="cart-price p-4">
+                        <p>
+                            <span class="cartt__subtotal-title me-4">Tạm tính</span>
+                            <span class="cartt__subtotal me-5"><?= number_format($sum) ?>&#8363</span>
+                        </p>
+                        <p>
+                            <span class="cartt__subtotal-title me-4">Phí vận chuyển</span>
+                            <span class="cartt__subtotal me-5">Miễn phí</span>
+                            <hr class="subtotal">
+                        </p>
+                        <p>
+                            <span class="cartt__subtotal-title me-4">Tổng tiền</span>
+                            <span class="cartt__total me-5"><?= number_format($sum) ?>&#8363</span>
+                        </p>
+                    </div>
+                </div>
 
-        </form>
-    </div>
-    <div class="row-total">
-        <div class="cart-price p-4">
-            <p>
-                <span class="cartt__subtotal-title me-4">Tạm tính</span>
-                <span class="cartt__subtotal me-5"><?php echo number_format(total_price($cart)) ?>&#8363</span>
-            </p>
-            <p>
-                <span class="cartt__subtotal-title me-4">Phí vận chuyển</span>
-                <span class="cartt__subtotal me-5">Miễn phí</span>
-            <hr class="subtotal">
-            </p>
-            <p>
-                <span class="cartt__subtotal-title me-4">Tổng tiền</span>
-                <span class="cartt__total me-5"><?php echo number_format(total_price($cart)) ?>&#8363</span>
-            </p>
+                <a class="btn-payment-text ms-5 mb-5" href="./checkout.php">
+                    Thanh toán
+                </a>
+            </div>
         </div>
     </div>
-</div>
-<a class="btn-payment-text ms-5 mb-5" href="./confirminfo.php">
-    Đặt hàng
-</a>
 
-<div id="hotline">
-    <a href="tel:0333135698" id="yBtn">
-        <i class="bi bi-telephone-fill"></i>
-    </a>
-    <div class="text-quotes">
-        <a href="tel:0333135698">0333135698</a>
+
+    <div id="hotline">
+        <a href="tel:0333135698" id="yBtn">
+            <i class="bi bi-telephone-fill"></i>
+        </a>
+        <div class="text-quotes">
+            <a href="tel:0333135698">0333135698</a>
+        </div>
     </div>
 
-</div>
-<div id="backtop">
-    <i class="bi bi-chevron-compact-up"></i>
-</div>
+    <div id="backtop">
+        <i class="bi bi-chevron-compact-up"></i>
+    </div>
 
-<?php require './footer.php'; ?>
+    <?php require './footer.php'; ?>
 
 
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>

@@ -108,7 +108,7 @@ require './database/connect.php';
                
               0</span>
               <?php } else { ?>
-                <span id="CartCount"><?php echo total_item($cart) ?></span>
+                <span id="CartCount"><?php  ?></span>
                 <?php } ?>
             </div>
           </a>

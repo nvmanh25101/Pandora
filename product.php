@@ -71,7 +71,6 @@ $result_size = mysqli_query($connect, $sql);
     </ol>
   </nav>
 
-  <form action="view_cart.php" method="GET">
   <div class="product">
     <div class="product-content">
     
@@ -217,34 +216,6 @@ $result_size = mysqli_query($connect, $sql);
                 <h3>CÓ THỂ BẠN THÍCH</h3>
                 <h2>SẢN PHẨM CÙNG LOẠI</h2>
 
-            </div>
-
-            <?php
-            $sql_pandora = " SELECT * FROM products WHERE category_child_id='$category_id'and not exists(SELECT * FROM products WHERE id = $id)";
-            $result_pandora = mysqli_query($connect, $sql_pandora);
-            ?>
-
-            <ul class="productss">
-                <?php foreach ($result_pandora as $category_product) { ?>
-                    <li>
-                        <div class="product-item">
-                            <div class="product-top">
-                                <a href="" class="product-thumb">
-                                    <img src="./assets/images/products/<?= $category_product['image'] ?>" alt="">
-
-              </a>
-            </div>
-            <div class="product-info">
-              <a href="" class="product-cat"><?= $category_product['name'] ?></a>
-              <div class="product-price-action">
-                <p class="product-price"><?= number_format($category_product['price'], 0, '.', ',') ?></p>
-                <div class="product-action">
-                <form action="view_cart.php?id=<?= $each['id'] ?>" method="POST">
-                  <button type="submit" name="addcart" class="btn-action"><i class="bi bi-cart-fill"></i>
-                  </button>
-        </form>
-                </div>
-              </div>
             </div>
 
             <?php
