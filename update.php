@@ -42,7 +42,7 @@
         <div class="page_container mb-3">
                 <div class="main_content">
                         
-                            <h2>Thông tin</h2>
+                            <h2>THÔNG TIN TÀI KHOẢN</h2>
                             Email:<span name = "email"> <?php echo $row['email'] ?></span>
                             <input type="text" name="id" style="display:none;" value = "<?php echo $row['id']?>">
                             <small style="color:green;">
@@ -63,11 +63,17 @@
                                         }
                                     ?>
                     	        </small>
-                            <div class="form_name">
+                            <div class="form_name ">
                                 <label for="">Họ và tên</label>
-                                <input type="text" name = "name" class="form-control" placeholder = "Nhập họ tên" value ="<?php echo $row['name']?>" required>
+                                <input type="text" name = "name" class="form-control m-1" placeholder = "Nhập họ tên" value ="<?php echo $row['name']?>" required>
                               </div>
-                            <div class="form_name">
+                              <div class="form-gender m-3" >
+                                  <input type="radio" class="gender me-1" name="gender" value="nam" id="nam" autocomplete="off">
+                                            <label for="nam">Nam</label>
+                                  <input type="radio" class="gender me-1" name="gender" value="nu" id="nu" autocomplete="off">
+                                            <label for="nu">Nữ</label>
+                              </div>
+                              <div class="form_name">
                                 <label for="">Password</label>
                                 <input type="password" name = "password" class="form-control" placeholder="Nhập mật khẩu mới">
                                 <small style="color:red;">

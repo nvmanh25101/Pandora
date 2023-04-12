@@ -50,13 +50,18 @@ $result_category = mysqli_query($connect, $sql);
 <?php require './header.php'; ?>
   <!--product-->
 
-  <div class="hero-image">
-    <div>
-
-      <p class="hero-text"><?= $each['name'] ?></p>
-
-    </div>
+  <div class="content-top mt-5">
+    <p class="mt-1">Miễn phí vận chuyển toàn bộ đơn hàng</p>
   </div>
+
+  <nav aria-label="breadcrumb ">
+    <ol class="breadcrumb m-2">
+      <li class="breadcrumb-item"><a href="index.php">Trang chủ</a></li>
+      <li class="breadcrumb-item"><a href="#">Tất cả sản phẩm</a></li>
+      <li class="breadcrumb-item active" aria-current="page"><?= $each['name'] ?></li>
+    </ol>
+  </nav>
+
   <form action="view_cart.php" method="GET">
   <div class="product">
     <div class="product-content">
@@ -126,31 +131,15 @@ $result_category = mysqli_query($connect, $sql);
                       <input type="radio" name="option1" value="<?= $each['material'] ?>" class="input-opt">
                       <label for="swatch-19" class="">
                         <?= $each['material'] ?> 
-                        <!-- <img class="crossed-out" src="img/pro1.jpg">
-                        <img class="img-check" src="img/pro2.jpg"> -->
                       </label>
                     </div>
                   </div>
                 </div>
-                
-              <div class="product-quantity">
-                <div class="text">
-                  <p>Số lượng:</p>
-                </div>
-                <div class="buttons_added">
-                <input type = "number" name="quantity" value = "1" max="30" min="1">
-                <input type="hidden" name="id" value="<?php echo $each['id'] ?>" >
-                </div>
-                
-              </div>
-
+                <hr>
               <div class="product-actions">
                 
-              
                 <button type="submit" name="add" id="AddToCart" class="btnAddtocart">Thêm vào giỏ hàng</button>
               
-
-
               </div>
             </div>
   
@@ -180,10 +169,35 @@ $result_category = mysqli_query($connect, $sql);
       <div id="Content" class="tablinks">
         <?= nl2br($each['description']) ?>
       </div>
-
-
-  
+      <div class="content-detail mt-2">
+          <div class="">Bộ sưu tập: Pandora Moments</div>
+          <div class="">Mã sản phẩm: <?= $each['id'] ?></div>
+          <div class="">Chất liệu: <?= $each['material'] ?></div>
+          <div class="">Màu sắc: <?= $each['color'] ?></div>
+      </div>  
     </div>
+
+    <div class=" policy-last"  style="display: flex">
+            <div class="col-md-2">
+                <h4>Chính sách đổi hàng</h1>
+                <p style="width: 100%">Chính sách đổi hàng chỉ áp dụng cho các sản phẩm bị lỗi kĩ thuật và là hàng nguyên giá hoặc giảm giá dưới 20%. Chính sách áp dụng một đổi một trong vòng 15 ngày kể từ ngày nhận hàng và chỉ đổi duy nhất 01 lần.</p>
+            </div>
+            <div class="col-md-2">
+                <h4>Tặng quà</h1>
+                <p style="width: 100%">Bạn muốn gửi tặng trang sức Pandora đến người đặc biệt? Chỉ cần chọn sản phẩm bạn muốn tặng, nhân viên CSKH của chúng tôi sẽ tự tay gói quà và viết thông điệp bạn muốn gửi đến người nhận quà. Chỉ cần ghi chú lên đơn hàng khi đặt hàng bạn nhé! Pandora sẽ liên hệ bạn ngay!</p>
+            </div>
+            <div class="col-md-2">
+                <h4>Tặng quà</h1>
+                <p style="width: 100%">Bạn muốn gửi tặng trang sức Pandora đến người đặc biệt? Chỉ cần chọn sản phẩm bạn muốn tặng, nhân viên CSKH của chúng tôi sẽ tự tay gói quà và viết thông điệp bạn muốn gửi đến người nhận quà. Chỉ cần ghi chú lên đơn hàng khi đặt hàng bạn nhé! Pandora sẽ liên hệ bạn ngay!</p>
+            </div>
+            <div class="col-md-2">
+                <h4>Tặng quà</h1>
+                <p style="width: 100%">Bạn muốn gửi tặng trang sức Pandora đến người đặc biệt? Chỉ cần chọn sản phẩm bạn muốn tặng, nhân viên CSKH của chúng tôi sẽ tự tay gói quà và viết thông điệp bạn muốn gửi đến người nhận quà. Chỉ cần ghi chú lên đơn hàng khi đặt hàng bạn nhé! Pandora sẽ liên hệ bạn ngay!</p>
+            </div>
+        </div>
+        </div>
+  </div>
+
   </div>
 
   <div id="Home-notice">

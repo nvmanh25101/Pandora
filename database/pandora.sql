@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 11, 2023 lúc 01:45 PM
+-- Thời gian đã tạo: Th4 11, 2023 lúc 05:50 PM
 -- Phiên bản máy phục vụ: 10.4.20-MariaDB
 -- Phiên bản PHP: 8.0.9
 
@@ -232,7 +232,9 @@ INSERT INTO `product_size` (`product_id`, `size_id`, `quantity`) VALUES
 (15, 4, 20),
 (15, 5, 20),
 (15, 6, 20),
-(15, 7, 20);
+(15, 7, 20),
+(16, 8, 20),
+(16, 9, 20);
 
 -- --------------------------------------------------------
 
@@ -290,7 +292,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `avatar`, `gender`, `birth_date`, `email`, `password`, `phone`, `address`, `role`, `token_verification`, `status`, `created_at`, `deleted_at`) VALUES
 (2, 'admin', 'myLogo.png', 1, '2001-10-25', 'admin@gmail.com', '$2y$10$pKltmUrDd1NpPUNjuh/JP.qUO4ZHNQ2csQtEQF5vj7fg172pvo27a', '0986971670', 'Phú Xuyên - Hà Nội', 2, '642da28e9b3a31680712334', 1, '2023-04-05 16:32:14', NULL),
 (3, 'Đỗ Thị Thanh Phương', 'admin_1680854146.jpg', 0, '2001-03-15', 'dothithanhphuong@gmail.com', 'dttp123', '0986971202', 'Bắc Giang', 1, '642fcaa6614e51680853670', 1, '2023-04-07 07:47:50', NULL),
-(7, 'Phạm Văn Phú', NULL, 1, '2001-05-21', 'phuanh2105@gmail.com', '$2y$10$59o5AkTyJDuiI/CUWSXDsOkGeVxNQQ7zOTKSrgC.1oI24gESnzFWa', '0366035523', 'Hải Dương', 1, '', 1, '2023-04-11 11:36:16', NULL);
+(7, 'Phạm Văn Phú', NULL, 1, '2001-05-21', 'phuanh2105@gmail.com', '$2y$10$59o5AkTyJDuiI/CUWSXDsOkGeVxNQQ7zOTKSrgC.1oI24gESnzFWa', '0366035523', 'Hà Nội', 0, '', 1, '2023-04-11 11:36:16', NULL);
 
 -- --------------------------------------------------------
 

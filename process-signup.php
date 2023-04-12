@@ -24,7 +24,7 @@
             }else{
                 $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
                 $sqlInsert="INSERT INTO users(name,gender, birth_date, email, password, phone, address, role, status) 
-                    VALUES('$name', $genderId, '$birthday', '$email', '$pass_hash', '$phone', '$address', 1, 1)";
+                    VALUES('$name', $genderId, '$birthday', '$email', '$pass_hash', '$phone', '$address', 0, 1)";
         
                 $resultInsert = mysqli_query($connect,$sqlInsert);
                 if(isset($resultInsert) > 0){
