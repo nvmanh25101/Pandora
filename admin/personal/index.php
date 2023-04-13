@@ -62,7 +62,7 @@ $user = mysqli_fetch_array($users);
             </div>
 
             <div class="user__profile-action mt-5 d-flex justify-content-center">
-                <a href="../accounts/form_update.php?id=<?= $user['id'] ?>" class="btn btn-update-info">Chỉnh sửa</a>
+                <a href="./form_update.php" class="btn btn-update-info">Chỉnh sửa</a>
             </div>
         </div>
     </div>

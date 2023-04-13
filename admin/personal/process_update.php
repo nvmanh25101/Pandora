@@ -9,7 +9,7 @@ if(empty($_POST['id'])) {
 }
 
 $id = $_POST['id'];
-if(empty($_POST['name']) || !isset($_POST['gender']) || empty($_POST['phone'])) {
+if(empty($_POST['name']) || empty($_POST['gender']) || empty($_POST['phone'])) {
     $_SESSION['error'] = 'Phải điền đầy đủ thông tin!';
     header("location:form_update.php?id=$id");
     exit();

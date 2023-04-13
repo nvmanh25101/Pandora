@@ -19,9 +19,9 @@
                 $_SESSION['name'] = $name;
                 $_SESSION['role'] = $role;
                 $_SESSION['image'] = $avatar;
-                header("location:./products/index.php");
+                header("location:./root");
             }else{
-                $_SESSION['error'] = "Sai tài khoản hoặc mật khẩu";
+                $_SESSION['error'] = "Sai tài khoản hoặc mật khẩu!";
                 header("location:index.php");
             }
         }

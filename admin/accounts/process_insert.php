@@ -1,7 +1,6 @@
 <?php
 require_once '../check_super_admin_signin.php';
 
-
 if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['birth_date']) || empty($_POST['address']) || !isset($_POST['gender']) || empty($_POST['phone']) || $_FILES['image']['size'] == 0) {
     $_SESSION['error'] = 'Phải điền đầy đủ thông tin';
     header('location:form_insert.php');
@@ -50,7 +49,7 @@ values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
 $stmt = mysqli_prepare($connect, $sql);
 if ($stmt) {
-    mysqli_stmt_bind_param($stmt, 'ssisssssisi', $name, $file_name, $gender, $birth_date, $email, $password, $phone,
+    mysqli_stmt_bind_param($stmt, 'ssisssssisi', $name, $file_name, $gender, $birth_date, $email, $password_hash, $phone,
         $address, $role, $token_verification, $status);
     mysqli_stmt_execute($stmt);
 
