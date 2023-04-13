@@ -1,6 +1,5 @@
 <?php 
 
-require 'cart_function.php';
 require './database/connect.php';
 
     

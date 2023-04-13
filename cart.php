@@ -12,6 +12,7 @@ $sql = "select cart_item.*, products.name, products.image, products.price from c
         where cart_id = $cart_id";
 $cart_item = mysqli_query($connect, $sql);
 $cart_item_count = mysqli_num_rows($cart_item);
+
 $sql = "select sum(quantity * price) as sum_price from cart_item 
         join products
         on products.id = cart_item.product_id
@@ -88,7 +89,6 @@ $sum = mysqli_fetch_array($result)['sum_price'];
                 </tr>
                 </thead>
                 <tbody>
-                <form action="" method="post" novalidate="" class="cart table-wrap">
                     <?php foreach ($cart_item as $key => $value) : ?>
                         <tr class="cart__row table__section">
                             <td class="item-img" data-label="Sản phẩm">
@@ -140,7 +140,6 @@ $sum = mysqli_fetch_array($result)['sum_price'];
                     <?php endforeach ?>
                     <input name="sum_price" hidden value="<?= $sum ?>"></input>
                     <input name="cart_id" hidden value="<?= $cart_id ?>"></input>
-                </form>
                 </tbody>
             </table>
 
@@ -162,7 +161,7 @@ $sum = mysqli_fetch_array($result)['sum_price'];
                     </div>
                 </div>
 
-                <a class="btn-payment-text ms-5 mb-5" href="./checkout.php">
+                <a class="btn-payment-text ms-5 mb-5" href="./checkout.php?cart_id=<?= $cart_id ?>">
                     Thanh toán
                 </a>
             </div>
