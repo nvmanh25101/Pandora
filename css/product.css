@@ -285,7 +285,13 @@ body, html {
 
 .policy-last{
     text-align: center;
-    justify-content: center;
+    
+    align-items: center;
+}
+
+.policy-last h4{
+    font-size: 24px;
+    font-weight: bold;
 }
 /* Create an active/current tablink class */
 
