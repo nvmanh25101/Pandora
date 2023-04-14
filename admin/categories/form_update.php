@@ -28,9 +28,12 @@
                             <span id="error" class="error_input"></span>
                         </div>
                         <div class="mb-4 fs-4">
-                            <label class="form-label" for="image">Ảnh</label>
-                            <input type="file" name="image" id="image" accept="image/*" class="form__input form-control"/>
-                            <span id="error" class="error_input"></span>
+                            <label class="form-label fs-4" for="image" role="button">
+                                Ảnh
+                                <img id="product__img" class="ms-4" src="../../assets/images/categories/<?= $each['image'] ?>" alt="Ảnh loại trang sức" width="200" height="200"/>
+                            </label>
+                            <input type="hidden" name="image_old" value="<?= $each['image'] ?>" />
+                            <input type="file" hidden name="image_new" id="image" accept=".jpg, .png" class="form__input form-control"/>
                         </div>
                         <button type="submit" class="form__btn btn btn-dark mb-4">Cập nhật</button>
                     </form>

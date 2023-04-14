@@ -9,7 +9,8 @@ if(empty($_GET['id'])) {
 $id = $_GET['id'];
 
 require_once '../../database/connect.php';
-$sql = "delete from admin where id = '$id'";
+$sql = "update users set deleted_at = now() 
+             where id = '$id'";
 
 mysqli_query($connect, $sql);
 

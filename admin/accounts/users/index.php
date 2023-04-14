@@ -48,36 +48,29 @@
                             <thead>
                                 <tr>
                                 <th scope="col">Mã</th>
-                                <th scope="col">Tên nhân viên</th>
+                                <th scope="col">Tên khách hàng</th>
                                 <th scope="col">Ảnh đại diện</th>
                                 <th scope="col">Email</th>
                                 <th scope="col">Giới tính</th>
                                 <th scope="col">Số điện thoại</th>
-                                <th scope="col">Sửa</th>
-                                <th scope="col">Xóa</th>
                                 </tr>
                             </thead>
                             <tbody>
                             <?php foreach ($result as $each) { ?>
                                 <tr>
-                                    <th scope="row"><?= $each['id'] ?></th>
+                                    <th scope="row">
+                                        <a href="./detail.php?id=<?= $each['id'] ?>" class="text-decoration-none">
+                                            <?= $each['id'] ?>
+                                        </a>
+                                    </th>
                                     <td><?= $each['name'] ?></td>
                                     <td>
-                                        <img class="account__img" src="../../assets/images/admin/<?= $each['avatar'] ?>" alt="Avatar">
+                                        <img class="account__img" src="../../assets/images/user/<?= $each['avatar'] ?>" alt="Avatar">
                                     </td>
                                     <td><?= $each['email'] ?></td>
                                     <td><?= $each['gender'] === 1?'Nam':'Nữ' ?></td>
                                     <td><?= $each['phone'] ?></td>
-                                    <td>
-                                        <a href="form_update.php?id=<?= $each['id'] ?>">
-                                            <i class="bi bi-pencil-fill"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="delete.php?id=<?= $each['id'] ?>">
-                                        <i class="bi bi-trash-fill"></i>
-                                        </a>
-                                    </td>
+
                                 </tr>
                                 <?php } ?>
                                
