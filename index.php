@@ -122,7 +122,10 @@
     </div>
 
     <?php
-        $sql_pandora = "SELECT * FROM products WHERE category_child_id='12' order by id desc";
+        $sql = "select id from category_child where name = 'Charm treo'";
+        $result = mysqli_query($connect, $sql);
+        $category_child_id = mysqli_fetch_assoc($result)['id'];
+        $sql_pandora = "SELECT * FROM products WHERE category_child_id='$category_child_id' order by id desc";
         $result_pandora = mysqli_query($connect, $sql_pandora);
     ?>
 
@@ -167,8 +170,11 @@
     </div>
 
     <?php
-        $sql_pandora = "SELECT * FROM products WHERE category_child_id='16' order by id desc";
-        $result_pandora = mysqli_query($connect, $sql_pandora);
+         $sql = "select id from category_child where name = 'Vòng mềm'";
+         $result = mysqli_query($connect, $sql);
+         $category_child_id = mysqli_fetch_assoc($result)['id'];
+         $sql_pandora = "SELECT * FROM products WHERE category_child_id='$category_child_id' order by id desc";
+         $result_pandora = mysqli_query($connect, $sql_pandora);
     ?>
 
     <ul class="products">
