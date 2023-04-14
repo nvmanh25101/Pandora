@@ -30,7 +30,7 @@
                             <input type="file" name="image" id="image" accept="image/*" class="form__input form-control"/>
                         </div>
                         
-                        <div class="mb-4 fs-4">
+                        <div class="mb-4 fs-4 text-dark">
                             <label class="form-label me-3" for="gender">Giới tính</label>
                             <input type="radio" id="gender" class="form__input" name="gender" value="1"/>Nam
                             <input type="radio" id="gender" class="form__input ms-3" name="gender" value="0"/>Nữ

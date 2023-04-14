@@ -73,7 +73,7 @@ $result = mysqli_query($connect, $sql);
                         <div class="select-swap">
                             <div class="data-one">
                                 <label for="swatch"  id="quantity">
-                                    <?= $each['quantity'] ?>
+                                    0
                                 </label>
                             </div>
                         </div>
@@ -122,34 +122,34 @@ $result = mysqli_query($connect, $sql);
                 .zoom({
                     magnify: 1.5
                 });
-        });
 
-        $('.btn-menu').click(function () {
-            $('.navbar-vertical-mobile').toggle("fast");
-            $('.header__navbar-overlay').toggle("fast");
-        });
-
-        $('.data-one').click(function() {
-            let product_id = <?= $id ?>;
-            let size_id = $(this).children('.input-opt').val();
-            $.ajax({
-                url: './get_quantity.php',
-                type: 'POST',
-                dataType: 'json',
-                data: {
-                    size_id: size_id,
-                    product_id: product_id
-                }
-            })
-
-                .done(function(res) {
-                   $('#quantity').text(res);
-                })
+            $('.btn-menu').click(function () {
+                $('.navbar-vertical-mobile').toggle("fast");
+                $('.header__navbar-overlay').toggle("fast");
             });
 
-        $('.sd').click(function() {
-            $('.sd').removeClass('active');
-            $(this).addClass('active');
+            $('.data-one').click(function() {
+                let product_id = <?= $id ?>;
+                let size_id = $(this).children('.input-opt').val();
+                $.ajax({
+                    url: './get_quantity.php',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        size_id: size_id,
+                        product_id: product_id
+                    }
+                })
+
+                    .done(function(res) {
+                       $('#quantity').text(res);
+                    })
+                });
+
+            $('.sd').click(function() {
+                $('.sd').removeClass('active');
+                $(this).addClass('active');
+            });
         });
 
     </script>

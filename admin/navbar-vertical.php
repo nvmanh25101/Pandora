@@ -125,7 +125,7 @@
                 <li class="nav-item navbar__item">
                     <a class="nav-link d-flex align-items-center navbar__link <?= $page === 'sizes' ? 'active' : '' ?>"
                        href="../sizes">
-                        <i class="navbar__link-icon bi bi-cart-dash-fill"></i>
+                        <i class="navbar__link-icon bi bi-border-width"></i>
                         <span>Kích thước</span>
                     </a>
                 </li>
@@ -214,7 +214,7 @@
             <li class="nav-item navbar__item">
                 <a class="nav-link d-flex align-items-center navbar__link <?= $page == 'categories' ? 'active' : '' ?>"
                    href="../categories">
-                    <i class="navbar__link-icon bi bi-slack"></i>
+                    <i class="navbar__link-icon bi bi-list-ul"></i>
                     <span>Loại trang sức</span>
                 </a>
                 <div class="sub-navbar">
@@ -232,7 +232,7 @@
             <li class="nav-item navbar__item">
                 <a class="nav-link d-flex align-items-center navbar__link <?= $page === 'accounts' ? 'active' : '' ?>"
                    href="../accounts">
-                    <i class="navbar__link-icon bi bi-person"></i>
+                    <i class="navbar__link-icon bi bi-people-fill"></i>
                     <span>Tài khoản</span>
                 </a>
                 <div class="sub-navbar">
@@ -245,6 +245,20 @@
                         </li>
                     </ul>
                 </div>
+            </li>
+            <li class="nav-item navbar__item">
+                <a class="nav-link d-flex align-items-center navbar__link <?= $page === 'sizes' ? 'active' : '' ?>"
+                   href="../sizes">
+                    <i class="navbar__link-icon bi bi-border-width"></i>
+                    <span>Kích thước</span>
+                </a>
+            </li>
+            <li class="nav-item navbar__item">
+                <a class="nav-link d-flex align-items-center navbar__link <?= $page === 'personal' ? 'active' : '' ?>"
+                   href="../personal">
+                    <i class="navbar__link-icon bi bi-person-fill"></i>
+                    <span>Tài khoản cá nhân</span>
+                </a>
             </li>
             <li class="nav-item navbar__item">
                 <a class="nav-link d-flex align-items-center navbar__link" href="../signout.php">

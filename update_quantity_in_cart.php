@@ -1,17 +1,30 @@
 <?php
 
-session_start();
-$id = $_GET['id'];
+require_once './database/connect.php';
+
+$cart_id = $_GET['cart_id'];
+$product_id = $_GET['product_id'];
 $type = $_GET['type'];
 
+$sql = "select quantity from cart_item where cart_id = $cart_id and product_id = $product_id";
+$result = mysqli_query($connect, $sql);
+$quantity = mysqli_fetch_assoc($result)['quantity'];
 if($type === 'decre') {
-    if($_SESSION['cart'][$id]['quantity'] > 1) {
-        $_SESSION['cart'][$id]['quantity']--;
+    if($quantity > 1) {
+        $sql = "update cart_item
+        set quantity = quantity - 1
+        where cart_id = '$cart_id' and product_id = '$product_id'";
+        mysqli_query($connect, $sql);
     } else {
-        unset($_SESSION['cart'][$id]);
+        $sql = "delete from cart_item
+        where cart_id = $cart_id and product_id = $product_id";
+        mysqli_query($connect, $sql);
     }
 } else {
-    $_SESSION['cart'][$id]['quantity']++;
+    $sql = "update cart_item
+    set quantity = quantity + 1
+    where cart_id = $cart_id and product_id = $product_id";
+    mysqli_query($connect, $sql);
 }
 
 header('location:cart.php');

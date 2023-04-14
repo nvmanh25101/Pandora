@@ -1,15 +1,10 @@
 <?php 
-    require_once '../check_super_admin_signin.php';
-    $page = 'accounts';
+    require_once '../check_admin_signin.php';
+    $page = 'personal';
     require_once '../navbar-vertical.php';
 
-    if(empty($_GET['id'])) {
-        $_SESSION['error'] = 'Phải chọn để sửa!';
-        header('location:index.php');
-        exit();
-    }
+    $id = $_SESSION['id'];
 
-    $id = $_GET['id'];
     require_once '../../database/connect.php';
     $sql = "select * from users where id = '$id'";
     $result = mysqli_query($connect, $sql);
@@ -43,11 +38,6 @@
                             <input type="radio" id="gender" class="form__input ms-3" <?= $each['gender'] === '0' ? "checked":"" ?> name="gender" value="0"/>Nữ
                         </div>
 
-                        <div class="mb-4 fs-4 text-dark">
-                            <label class="form-label me-3" for="gender">Giới tính</label>
-                            <input type="radio" id="gender" class="form__input" <?= $each['gender'] === '1' ? "checked":"" ?> name="gender" value="1"/>Nam
-                            <input type="radio" id="gender" class="form__input ms-3" <?= $each['gender'] === '0' ? "checked":"" ?> name="gender" value="0"/>Nữ
-                        </div>
                         <div class="mb-4 fs-4">
                             <label class="form-label" for="phone">Ngày sinh</label>
                             <input type="date" name="birth_date" id="birth_date" value="<?= $each['birth_date'] ?>" class="form__input" autocomplete="off"/>

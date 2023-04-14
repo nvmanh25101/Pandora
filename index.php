@@ -1,5 +1,9 @@
 <?php
     session_start();
+
+//    if ($_SESSION['role'] === '1' || $_SESSION['role'] === '2') {
+//        unset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'], $_SESSION['role']);
+//    }
     require './database/connect.php';
 
     $where = 1;
@@ -18,9 +22,6 @@
     $result = mysqli_query($connect, $sql);
     if(mysqli_num_rows($result) == 0) {
     $error = 'Không có sản phẩm nào';
-    }
-    else {
-    $category_name = mysqli_fetch_array($result)['category_name'];
     }
 
 ?>
@@ -211,7 +212,10 @@
     </div>
 
     <?php
-        $sql_pandora = "SELECT * FROM products WHERE category_child_id='18' order by id desc";
+        $sql = "select id from category_child where name = 'Nhẫn bạc'";
+        $result = mysqli_query($connect, $sql);
+        $category_child_id = mysqli_fetch_assoc($result)['id'];
+        $sql_pandora = "SELECT * FROM products WHERE category_child_id='$category_child_id' order by id desc";
         $result_pandora = mysqli_query($connect, $sql_pandora);
     ?>
 

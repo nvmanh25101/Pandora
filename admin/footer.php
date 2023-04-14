@@ -1,5 +1,5 @@
 <footer>
-            <ul class="pagination table__pagination justify-content-center">
+            <ul class="pagination footer__pagination justify-content-center mt-5">
                 <?php
                 if (isset($num_page)) {
                     for($i = 1; $i <= $num_page; $i++) { ?>

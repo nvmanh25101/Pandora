@@ -1,13 +1,11 @@
 <?php 
 
-require 'cart_function.php';
 require './database/connect.php';
 
     
     $sql = "select * from categories";
     $categories = mysqli_query($connect, $sql);
 
-$cart = (isset($_SESSION['cart']))? $_SESSION['cart'] : [];
 ?>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="shortcut icon" type="image" href="img/myLogo.png">
@@ -27,7 +25,7 @@ $cart = (isset($_SESSION['cart']))? $_SESSION['cart'] : [];
             <button class="dropdown-btn"><?= $category['name'] ?><i class="fa fa-caret-down"></i></button>
             <div class="dropdown-container">
               <?php  
-                  $sql = "select * from category_detail where category_id = '$category[id]'";
+                  $sql = "select * from category_child where category_id = '$category[id]'";
                   $result_sub = mysqli_query($connect,$sql);
                   foreach($result_sub as $each_sub) {
               ?>
@@ -109,7 +107,7 @@ $cart = (isset($_SESSION['cart']))? $_SESSION['cart'] : [];
                
               0</span>
               <?php } else { ?>
-                <span id="CartCount"><?php echo total_item($cart) ?></span>
+                <span id="CartCount"><?php  ?></span>
                 <?php } ?>
             </div>
           </a>

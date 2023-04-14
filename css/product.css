@@ -116,7 +116,6 @@ body, html {
     display: none;
 }
 .data-one label{
-    background: #000;
     color: #ccc;
     border-radius: 10px;
     float: left;
@@ -149,8 +148,20 @@ body, html {
 }
 
 .data-one label.sd {
-  border: 1px solid #e4393c; }
+    border: 1px solid #cccccc;
+    user-select: none;
+}
 
+.data-one label.sd.active {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.select-color,
+.select-material {
+    background-color: #000000;
+    color: #ffffff;
+}
 
 .data-one label span {
   color: #3d1a1a;
