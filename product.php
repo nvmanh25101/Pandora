@@ -186,26 +186,26 @@ $result_size = mysqli_query($connect, $sql);
           <div class="">Màu sắc: <?= $each['color'] ?></div>
       </div>  
     </div>
-
-    <div class=" policy-last"  style="display: flex">
-            <div class="col-md-2">
-                <h4>Chính sách đổi hàng</h1>
-                <p style="width: 100%">Chính sách đổi hàng chỉ áp dụng cho các sản phẩm bị lỗi kĩ thuật và là hàng nguyên giá hoặc giảm giá dưới 20%. Chính sách áp dụng một đổi một trong vòng 15 ngày kể từ ngày nhận hàng và chỉ đổi duy nhất 01 lần.</p>
-            </div>
-            <div class="col-md-2">
-                <h4>Tặng quà</h1>
-                <p style="width: 100%">Bạn muốn gửi tặng trang sức Pandora đến người đặc biệt? Chỉ cần chọn sản phẩm bạn muốn tặng, nhân viên CSKH của chúng tôi sẽ tự tay gói quà và viết thông điệp bạn muốn gửi đến người nhận quà. Chỉ cần ghi chú lên đơn hàng khi đặt hàng bạn nhé! Pandora sẽ liên hệ bạn ngay!</p>
-            </div>
-            <div class="col-md-2">
-                <h4>Tặng quà</h1>
-                <p style="width: 100%">Bạn muốn gửi tặng trang sức Pandora đến người đặc biệt? Chỉ cần chọn sản phẩm bạn muốn tặng, nhân viên CSKH của chúng tôi sẽ tự tay gói quà và viết thông điệp bạn muốn gửi đến người nhận quà. Chỉ cần ghi chú lên đơn hàng khi đặt hàng bạn nhé! Pandora sẽ liên hệ bạn ngay!</p>
-            </div>
-            <div class="col-md-2">
-                <h4>Tặng quà</h1>
-                <p style="width: 100%">Bạn muốn gửi tặng trang sức Pandora đến người đặc biệt? Chỉ cần chọn sản phẩm bạn muốn tặng, nhân viên CSKH của chúng tôi sẽ tự tay gói quà và viết thông điệp bạn muốn gửi đến người nhận quà. Chỉ cần ghi chú lên đơn hàng khi đặt hàng bạn nhé! Pandora sẽ liên hệ bạn ngay!</p>
-            </div>
-        </div>
-        </div>
+    
+    <div class=" policy-last"  >
+      <ul class="list-policy" style="display: flex" >
+        <li class="">
+            <h4>Chính sách đổi hàng</h4>
+            <p>Chính sách đổi hàng chỉ áp dụng cho các sản phẩm bị lỗi kĩ thuật và là hàng nguyên giá hoặc giảm giá dưới 20%. Chính sách áp dụng một đổi một trong vòng 15 ngày kể từ ngày nhận hàng và chỉ đổi duy nhất 01 lần.</p>
+        </li>
+        <li class="">
+            <h4>Tặng quà</h4>
+            <p>Bạn muốn gửi tặng trang sức Pandora đến người đặc biệt? Chỉ cần chọn sản phẩm bạn muốn tặng, nhân viên CSKH của chúng tôi sẽ tự tay gói quà và viết thông điệp bạn muốn gửi đến người nhận quà. Chỉ cần ghi chú lên đơn hàng khi đặt hàng bạn nhé! Pandora sẽ liên hệ bạn ngay!</p>
+        </li>
+        <li class="">
+            <h4>Miễn phí vận chuyển</h4>
+            <p>Pandora miễn phí giao hàng trên toàn quốc với mọi giá trị đơn hàng.</p>
+        </li>
+        <li class="">
+            <h4>Cách thức bảo quản</h4>
+            <p>Nên vệ sinh sản phẩm bằng bộ vệ sinh sản phẩm chuyên dụng của Pandora và sau khi sử dụng vui lòng vệ sinh, bảo quản trong hộp kín để tránh tiếp xúc với không khí và tránh bị oxi hóa.</p>
+        </li>
+      </ul>
   </div>
 
   </div>
