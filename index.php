@@ -1,9 +1,9 @@
 <?php
     session_start();
 
-    if (isset($_SESSION['id']) && ($_SESSION['role'] === '1' || $_SESSION['role'] === '2')) {
-        unset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'], $_SESSION['role']);
-    }
+//    if ($_SESSION['role'] === '1' || $_SESSION['role'] === '2') {
+//        unset($_SESSION['id'], $_SESSION['name'], $_SESSION['avatar'], $_SESSION['role']);
+//    }
     require './database/connect.php';
 
     $where = 1;
@@ -22,9 +22,6 @@
     $result = mysqli_query($connect, $sql);
     if(mysqli_num_rows($result) == 0) {
     $error = 'Không có sản phẩm nào';
-    }
-    else {
-    $category_name = mysqli_fetch_array($result)['category_name'];
     }
 
 ?>

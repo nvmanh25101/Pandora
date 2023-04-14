@@ -405,6 +405,14 @@ body {
     color: rgb(0, 0, 0);
 }
 
+.select-statistics {
+    background-color: #ffffff;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    font-size: 1.2rem;
+    margin-left: 20px;
+}
+
 .form__input:focus {
     background-color: #ffffff;
     border: 2px solid #dee4eb;

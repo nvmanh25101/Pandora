@@ -55,6 +55,8 @@ if($stmt) {
     mysqli_stmt_bind_param($stmt, 'ssisss', $name, $file_name, $gender, $birth_date, $phone, $address);
     mysqli_stmt_execute($stmt);
 
+    $_SESSION['name'] = $name;
+    $_SESSION['image'] = $file_name;
     $_SESSION['success'] = 'Đã sửa thành công';
 
 }
