@@ -150,15 +150,6 @@ CREATE TABLE `orders` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Đang đổ dữ liệu cho bảng `orders`
---
-
-INSERT INTO `orders` (`id`, `name_receiver`, `phone_receiver`, `address_receiver`, `status`, `total_price`, `payment_id`, `created_at`, `updated_at`, `note`, `user_id`, `user_admin_id`, `cart_id`) VALUES
-(3, 'Nguyen Manh', '0986971670', '90 Nguyễn Tuân, Phường Thanh Xuân Trung, Quận Thanh Xuân, Thành phố Hà Nội', 3, 2690000, 0, '2023-04-13 16:21:55', '2023-04-13 16:21:55', '', 6, 2, 24),
-(4, 'Nguyen Manh', '0986971670', '90 Nguyễn Tuân, Phường Thanh Xuân Trung, Quận Thanh Xuân, Thành phố Hà Nội', 3, 2390000, 0, '2023-04-14 06:16:10', '2023-04-14 06:16:10', '', 6, 2, 24),
-(5, 'admin', '0986971670', 'so nha 123, Xã Thống Nhất, Huyện Gia Lộc, Tỉnh Hải Dương', 0, 2390000, 1, '2023-04-14 10:11:43', '2023-04-14 10:11:43', 'giao nhanh ', 2, NULL, 26),
-(6, 'Phạm Văn Phú', '0366035523', 'Hải Dương, Xã Thống Nhất, Huyện Gia Lộc, Tỉnh Hải Dương', 0, 5380000, 2, '2023-04-14 10:23:38', '2023-04-14 10:23:38', '', 10, NULL, 27);
-
 -- --------------------------------------------------------
 
 --
@@ -175,18 +166,6 @@ CREATE TABLE `order_detail` (
   `quantity` int(11) NOT NULL COMMENT 'số lượng',
   `price` float NOT NULL COMMENT 'giá'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Đang đổ dữ liệu cho bảng `order_detail`
---
-
-INSERT INTO `order_detail` (`order_id`, `product_id`, `name`, `size`, `color`, `material`, `quantity`, `price`) VALUES
-(3, 14, 'Nhẫn bạc có họa tiết Marvel Baby Groot đính đá cubic zirconia và tráng men đen', '50', 'Đen', 'Bạc', 1, 2690000),
-(4, 13, 'Charm bạc mạ vàng hồng 14k Pandora Moments vương miện nữ hoàng', 'One size', 'Hồng', 'Bạc cao cấp và mạ vàng hồng 14k', 1, 2390000),
-(5, 13, 'Charm bạc mạ vàng hồng 14k Pandora Moments vương miện nữ hoàng', 'One size', 'Hồng', 'Bạc cao cấp và mạ vàng hồng 14k', 1, 2390000),
-(6, 14, 'Nhẫn bạc có họa tiết Marvel Baby Groot đính đá cubic zirconia và tráng men đen', '52', 'Đen', 'Bạc', 2, 2690000);
-
--- --------------------------------------------------------
 
 --
 -- Cấu trúc bảng cho bảng `products`
