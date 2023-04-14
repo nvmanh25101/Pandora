@@ -9,7 +9,7 @@ if(empty($_POST['id'])) {
 }
 
 $id = $_POST['id'];
-if(empty($_POST['name']) || !isset($_POST['gender']) || empty($_POST['phone'])) {
+if(empty($_POST['name']) || !isset($_POST['gender']) || empty($_POST['phone']) || empty($_POST['email']) || empty($_POST['birth_date']) || empty($_POST['address'])) {
     $_SESSION['error'] = 'Phải điền đầy đủ thông tin!';
     header("location:form_update.php?id=$id");
     exit();
@@ -46,13 +46,14 @@ set name = ?,
 avatar = ?,
 gender = ?,
 birth_date = ?,
+email = ?,
 phone = ?,
 address = ?
 where id = '$id'";
 
 $stmt = mysqli_prepare($connect, $sql);
 if($stmt) {
-    mysqli_stmt_bind_param($stmt, 'ssisss', $name, $file_name, $gender, $birth_date, $phone, $address);
+    mysqli_stmt_bind_param($stmt, 'ssissss', $name, $file_name, $gender, $birth_date, $email, $phone, $address);
     mysqli_stmt_execute($stmt);
 
     $_SESSION['success'] = 'Đã sửa thành công';

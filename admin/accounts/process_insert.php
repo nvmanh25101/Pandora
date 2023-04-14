@@ -1,7 +1,7 @@
 <?php
 require_once '../check_super_admin_signin.php';
 
-if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['birth_date']) || empty($_POST['address']) || !isset($_POST['gender']) || empty($_POST['phone']) || $_FILES['image']['size'] == 0) {
+if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['birth_date']) || empty($_POST['address']) || !isset($_POST['gender']) || empty($_POST['phone']) || $_FILES['image']['size'] == 0 || empty($_POST['role'])) {
     $_SESSION['error'] = 'Phải điền đầy đủ thông tin';
     header('location:form_insert.php');
     exit();
@@ -24,7 +24,7 @@ $path = $image['name'];
 $file_extension = pathinfo($path, PATHINFO_EXTENSION);
 $file_type = array("jpg", "jpeg", "png");
 
-if (!in_array("$file_extension", $file_type)) {
+if (!in_array((string) $file_extension, $file_type)) {
     $_SESSION['error'] = 'Chỉ cho phép file dạng .JPG, .PNG, .JPEG';
     header('location:form_insert.php');
     exit();

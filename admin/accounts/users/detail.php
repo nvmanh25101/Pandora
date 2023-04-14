@@ -1,12 +1,14 @@
 <?php
 
-require_once '../check_super_admin_signin.php';
+require_once '../../check_admin_signin.php';
 $page = "accounts";
-require_once '../navbar-vertical.php';
+require_once './navbar-vertical.php';
 
-require_once '../../database/connect.php';
+require_once '../../../database/connect.php';
+
 if (empty($_GET['id'])) {
-    header('location:../root.php');
+    $_SESSION['error'] = 'Phải chọn để sửa!';
+    header('location:./index.php');
     exit();
 }
 
@@ -26,7 +28,7 @@ $user = mysqli_fetch_array($users);
             <div class="user__profile-container">
                 <div class="user__avatar">
                     <figure class="user__avatar-img">
-                        <img src="../../assets/images/admin/<?= $user['avatar'] ?>" alt="">
+                        <img src="../../assets/images/user/<?= $user['avatar'] ?>" alt="">
                     </figure>
                 </div>
                 <h3 class="title"><?= $user['name'] ?></h3>
@@ -45,8 +47,6 @@ $user = mysqli_fetch_array($users);
                 <br>
                 <span class=" d-block"><strong>Địa chỉ:</strong> <?= $user['address'] ?></span>
                 <br>
-                <span class=" d-block"><strong>Chức vụ:</strong> <?= $user['role'] === '2' ? 'Quản lý' : 'Nhân viên' ?></span>
-                <br>
                 <span class=" d-block"><strong>Thời gian tạo tài khoản:</strong> <?php
                     $date1 = date_create($user['created_at']);
                     $date2 = new DateTime("now");
@@ -58,13 +58,10 @@ $user = mysqli_fetch_array($users);
                     ?>
                 </span>
                 <br>
-                <span class=" d-block"><strong>Trạng thái:</strong> <?= $user['deleted_at'] ?? 'Đi làm' ?></span>
+                <span class=" d-block"><strong>Trạng thái:</strong> <?= $user['status'] == '1' ? 'Đã kích hoạt' : 'Chưa kích hoạt' ?></span>
             </div>
 
-            <div class="user__profile-action mt-5 d-flex justify-content-center">
-                <a href="../accounts/form_update.php?id=<?= $user['id'] ?>" class="btn btn-update-info">Chỉnh sửa</a>
-            </div>
         </div>
     </div>
 
-<?php require '../footer.php' ?>
+<?php require '../../footer.php' ?>

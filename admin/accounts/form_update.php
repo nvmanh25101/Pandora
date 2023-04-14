@@ -38,16 +38,16 @@
                         </div>
 
                         <div class="mb-4 fs-4 text-dark">
-                            <label class="form-label me-3" for="gender">Giới tính</label>
-                            <input type="radio" id="gender" class="form__input" <?= $each['gender'] === '1' ? "checked":"" ?> name="gender" value="1"/>Nam
-                            <input type="radio" id="gender" class="form__input ms-3" <?= $each['gender'] === '0' ? "checked":"" ?> name="gender" value="0"/>Nữ
+                            <label class="form-label me-3" for="">Email</label>
+                            <input type="text" id="email" class="form__input form-control" name="email" value="<?= $each['email']?> "/>
                         </div>
 
                         <div class="mb-4 fs-4 text-dark">
                             <label class="form-label me-3" for="gender">Giới tính</label>
-                            <input type="radio" id="gender" class="form__input" <?= $each['gender'] === '1' ? "checked":"" ?> name="gender" value="1"/>Nam
-                            <input type="radio" id="gender" class="form__input ms-3" <?= $each['gender'] === '0' ? "checked":"" ?> name="gender" value="0"/>Nữ
+                            <input type="radio" id="gender" class="form__input form-check-input me-2" <?= $each['gender'] === '1' ? "checked":"" ?> name="gender" value="1"/>Nam
+                            <input type="radio" id="gender" class="form__input form-check-input ms-3 me-2" <?= $each['gender'] === '0' ? "checked":"" ?> name="gender" value="0"/>Nữ
                         </div>
+
                         <div class="mb-4 fs-4">
                             <label class="form-label" for="phone">Ngày sinh</label>
                             <input type="date" name="birth_date" id="birth_date" value="<?= $each['birth_date'] ?>" class="form__input" autocomplete="off"/>

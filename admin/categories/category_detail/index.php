@@ -15,7 +15,7 @@
         $search = $_GET['search'];
     }
 
-    $sql_num_category = "select count(*) from categories 
+    $sql_num_category = "select count(*) from category_child
                     where name like '%$search%'";
     $arr_num_category = mysqli_query($connect, $sql_num_category);
     $result_num_category = mysqli_fetch_array($arr_num_category);
@@ -26,11 +26,11 @@
     $num_page = ceil($num_category / $num_category_per_page);
     $skip_page = $num_category_per_page * ($page_current - 1);
 
-    $sql = "select category_child.id, category_child.name, categories.name as category_name from category_child
+    $sql = "select category_child.id, category_child.name, categories.name as category_name, categories.status from category_child
     join categories 
     on category_child.category_id = categories.id
     where category_child.name like '%$search%'
-    order by category_child.id desc
+    order by categories.status desc, category_child.id desc
     limit $num_category_per_page offset $skip_page
     ";
     $result = mysqli_query($connect, $sql);
@@ -91,16 +91,25 @@
                                         </a>
                                     </td>
                                     <td> <?= $each['category_name'] ?></td>
-                                    <td>
-                                        <a href="form_update.php?id=<?= $each['id'] ?>">
-                                            <i class="bi bi-pencil-fill"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="delete.php?id=<?= $each['id'] ?>">
-                                        <i class="bi bi-trash-fill"></i>
-                                        </a>
-                                    </td>
+                                    <?php  if (($each['status']) == '1') { ?>
+                                        <td>
+                                            <a href="form_update.php?id=<?= $each['id'] ?>">
+                                                <i class="bi bi-pencil-fill"></i>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a onclick="return confirm('Bạn chắc chắn muốn xóa?')" href="delete.php?id=<?= $each['id'] ?>">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </a>
+                                        </td>
+                                    <?php } else { ?>
+                                        <td colspan="2">
+                                            <a href="../index.php" class="text-decoration-none text-center">
+                                                Loại chính đã ngừng hoạt động
+                                            </a>
+                                        </td>
+                                    <?php } ?>
+
                                 </tr>
                                 <?php } ?>
                             </tbody>

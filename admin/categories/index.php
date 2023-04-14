@@ -28,7 +28,7 @@ $skip_page = $num_category_per_page * ($page_current - 1);
 
 $sql = "select * from categories
     where name like '%$search%'
-    order by id desc
+    order by status desc, id desc
     limit $num_category_per_page offset $skip_page
     ";
 $result = mysqli_query($connect, $sql);
@@ -80,18 +80,27 @@ $result = mysqli_query($connect, $sql);
                                     <img class="products__img" src="../../assets/images/categories/<?= $each['image'] ?>" alt="">
                                 </td>
                                 <td>
-                                    <?= $each['status'] === 1 ? 'Hoạt động' : 'Ngừng hoạt động' ?>
+                                    <?= $each['status'] === '1' ? 'Hoạt động' : 'Ngừng hoạt động' ?>
                                 </td>
-                                <td>
-                                    <a href="form_update.php?id=<?= $each['id'] ?>">
-                                        <i class="bi bi-pencil-fill"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a onclick="return confirm('Bạn chắc chắn muốn xóa?')" href="delete.php?id=<?= $each['id'] ?>">
-                                        <i class="bi bi-trash-fill"></i>
-                                    </a>
-                                </td>
+                                <?php  if (($each['status']) == '1') { ?>
+                                    <td>
+                                        <a href="form_update.php?id=<?= $each['id'] ?>">
+                                            <i class="bi bi-pencil-fill"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a onclick="return confirm('Bạn chắc chắn muốn xóa?')" href="delete.php?id=<?= $each['id'] ?>">
+                                            <i class="bi bi-trash-fill"></i>
+                                        </a>
+                                    </td>
+                                <?php } else { ?>
+                                    <td colspan="2">
+                                        <a href="restore.php?id=<?= $each['id'] ?>" class="text-decoration-none text-center">
+                                            Mở lại <i class="ms-2 bi bi-arrow-clockwise"></i>
+                                        </a>
+                                    </td>
+                                <?php } ?>
+
                             </tr>
                         <?php } ?>
                     </tbody>

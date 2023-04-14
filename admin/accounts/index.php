@@ -29,7 +29,7 @@
     $sql = "select * from users 
             where 
             name like '%$search%' and role = '1'
-            order by id desc
+            order by deleted_at, id  desc
             limit $num_employee_per_page offset $skip_page
             ";
     $result = mysqli_query($connect, $sql);
@@ -61,28 +61,43 @@
                             <tbody>
                             <?php foreach ($result as $each) { ?>
                                 <tr>
-                                    <th scope="row"><a href="./detail.php?id=<?= $each['id'] ?>" class="text-decoration-none">
+                                    <th scope="row">
+                                        <a href="./detail.php?id=<?= $each['id'] ?>" class="text-decoration-none">
                                             <?= $each['id'] ?>
-                                        </a></th>
-                                    <td><a href="./detail.php?id=<?= $each['id'] ?>" class="text-decoration-none">
+                                        </a>
+                                    </th>
+                                    <td>
+                                        <a href="./detail.php?id=<?= $each['id'] ?>" class="text-decoration-none">
                                             <?= $each['name'] ?>
-                                        </a></td>
+                                        </a>
+                                    </td>
                                     <td>
                                         <img class="account__img" src="../../assets/images/admin/<?= $each['avatar'] ?>" alt="Avatar">
                                     </td>
                                     <td><?= $each['email'] ?></td>
                                     <td><?= $each['gender'] === 1?'Nam':'Nữ' ?></td>
                                     <td><?= $each['phone'] ?></td>
-                                    <td>
-                                        <a href="form_update.php?id=<?= $each['id'] ?>">
-                                            <i class="bi bi-pencil-fill"></i>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="delete.php?id=<?= $each['id'] ?>">
-                                        <i class="bi bi-trash-fill"></i>
-                                        </a>
-                                    </td>
+                                    <?php  if (empty($each['deleted_at'])) { ?>
+                                        <td>
+                                            <a href="form_update.php?id=<?= $each['id'] ?>">
+                                                <i class="bi bi-pencil-fill"></i>
+                                            </a>
+
+                                        </td>
+                                        <td>
+                                            <a href="delete.php?id=<?= $each['id'] ?>">
+                                                <i class="bi bi-trash-fill"></i>
+                                            </a>
+                                        </td>
+                                    <?php } else { ?>
+                                        <td colspan="2">
+                                            Nghỉ việc,
+                                            <a href="restore.php?id=<?= $each['id'] ?>" class="text-decoration-none text-center">
+                                                Mở lại <i class="bi bi-arrow-clockwise"></i>
+                                            </a>
+                                        </td>
+                                    <?php } ?>
+
                                 </tr>
                                 <?php } ?>
                                
