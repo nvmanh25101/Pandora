@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Apr 14, 2023 at 10:04 AM
--- Server version: 8.0.30
--- PHP Version: 8.1.10
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th4 14, 2023 lúc 12:58 PM
+-- Phiên bản máy phục vụ: 10.4.20-MariaDB
+-- Phiên bản PHP: 8.0.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,69 +18,75 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pandora`
+-- Cơ sở dữ liệu: `pandora`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `carts`
+-- Cấu trúc bảng cho bảng `carts`
 --
 
 CREATE TABLE `carts` (
-  `id` int NOT NULL COMMENT 'mã của giỏ hàng',
-  `user_id` int NOT NULL COMMENT 'mã của khách hàng',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'thời gian tạo ',
-  `updated_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'thời gian cập nhật'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` int(11) NOT NULL COMMENT 'mã của giỏ hàng',
+  `user_id` int(11) NOT NULL COMMENT 'mã của khách hàng',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'thời gian tạo ',
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp() COMMENT 'thời gian cập nhật'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `carts`
+-- Đang đổ dữ liệu cho bảng `carts`
 --
 
 INSERT INTO `carts` (`id`, `user_id`, `created_at`, `updated_at`) VALUES
 (23, 5, '2023-04-12 06:51:08', '2023-04-12 13:51:08'),
-(24, 6, '2023-04-12 07:32:15', '2023-04-12 14:32:15');
+(24, 6, '2023-04-12 07:32:15', '2023-04-12 14:32:15'),
+(26, 2, '2023-04-14 10:10:19', '2023-04-14 17:10:19'),
+(27, 10, '2023-04-14 10:23:09', '2023-04-14 17:23:09');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart_item`
+-- Cấu trúc bảng cho bảng `cart_item`
 --
 
 CREATE TABLE `cart_item` (
-  `cart_id` int NOT NULL COMMENT 'mã của giỏ hàng',
-  `product_id` int NOT NULL COMMENT 'mã của sản phẩm',
-  `size` varchar(50) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'kích thước sản phẩm thêm vào giỏ',
-  `color` varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'màu sắc của sản phẩm',
-  `material` varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'chất liệu',
-  `quantity` int NOT NULL COMMENT 'số lượng sản phẩm',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'thời gian thêm sản phẩm vào giỏ'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `cart_id` int(11) NOT NULL COMMENT 'mã của giỏ hàng',
+  `product_id` int(11) NOT NULL COMMENT 'mã của sản phẩm',
+  `size` varchar(50) NOT NULL COMMENT 'kích thước sản phẩm thêm vào giỏ',
+  `color` varchar(255) NOT NULL COMMENT 'màu sắc của sản phẩm',
+  `material` varchar(255) NOT NULL COMMENT 'chất liệu',
+  `quantity` int(11) NOT NULL COMMENT 'số lượng sản phẩm',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'thời gian thêm sản phẩm vào giỏ'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `cart_item`
+-- Đang đổ dữ liệu cho bảng `cart_item`
 --
 
 INSERT INTO `cart_item` (`cart_id`, `product_id`, `size`, `color`, `material`, `quantity`, `created_at`) VALUES
 (23, 14, '50', 'Đen', 'Bạc', 1, '2023-04-12 06:55:58'),
-(24, 13, 'One size', 'Hồng', 'Bạc cao cấp và mạ vàng hồng 14k', 1, '2023-04-14 06:15:39');
+(24, 13, 'One size', 'Hồng', 'Bạc cao cấp và mạ vàng hồng 14k', 1, '2023-04-14 06:15:39'),
+(26, 13, 'One size', 'Hồng', 'Bạc cao cấp và mạ vàng hồng 14k', 1, '2023-04-14 10:10:19'),
+(27, 7, 'One size', 'Trong suốt', 'Bạc 92,5', 1, '2023-04-14 10:54:27'),
+(27, 14, '52', 'Đen', 'Bạc', 2, '2023-04-14 10:23:09'),
+(27, 17, 'One size', 'Trong suốt', 'Mạ vàng 14k và bạc 92,5', 1, '2023-04-14 10:53:58');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `categories`
+-- Cấu trúc bảng cho bảng `categories`
 --
 
 CREATE TABLE `categories` (
-  `id` int NOT NULL COMMENT 'mã loại chính',
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'tên loại chính',
-  `image` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'hình ảnh\r\n',
-  `status` int NOT NULL DEFAULT '1' COMMENT 'trạng thái(1: hoạt động; 0: ngừng hoạt động)'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` int(11) NOT NULL COMMENT 'mã loại chính',
+  `name` varchar(255) NOT NULL COMMENT 'tên loại chính',
+  `image` varchar(255) DEFAULT NULL COMMENT 'hình ảnh\r\n',
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT 'trạng thái(1: hoạt động; 0: ngừng hoạt động)'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `categories`
+-- Đang đổ dữ liệu cho bảng `categories`
 --
 
 INSERT INTO `categories` (`id`, `name`, `image`, `status`) VALUES
@@ -93,17 +99,17 @@ INSERT INTO `categories` (`id`, `name`, `image`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `category_child`
+-- Cấu trúc bảng cho bảng `category_child`
 --
 
 CREATE TABLE `category_child` (
-  `id` int NOT NULL COMMENT 'mã loại phụ',
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'tên loại phụ',
-  `category_id` int NOT NULL COMMENT 'mã loại chính'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` int(11) NOT NULL COMMENT 'mã loại phụ',
+  `name` varchar(255) NOT NULL COMMENT 'tên loại phụ',
+  `category_id` int(11) NOT NULL COMMENT 'mã loại chính'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `category_child`
+-- Đang đổ dữ liệu cho bảng `category_child`
 --
 
 INSERT INTO `category_child` (`id`, `name`, `category_id`) VALUES
@@ -116,128 +122,173 @@ INSERT INTO `category_child` (`id`, `name`, `category_id`) VALUES
 (15, 'Charm đặc biệt', 1),
 (16, 'Vòng mềm', 7),
 (17, 'Vòng dây da', 7),
-(18, 'Nhẫn bạc', 9);
+(18, 'Nhẫn bạc', 9),
+(19, 'Hoa tai kiểu tròn', 8),
+(20, 'Bông tai nụ', 8),
+(21, 'Hoa tai kiểu rơi', 8);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `orders`
+-- Cấu trúc bảng cho bảng `orders`
 --
 
 CREATE TABLE `orders` (
-  `id` int NOT NULL COMMENT 'mã đơn hàng',
-  `name_receiver` varchar(50) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'tên người nhận',
-  `phone_receiver` varchar(50) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'số điện thoại người nhận',
-  `address_receiver` varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'địa chỉ người nhận',
-  `status` int NOT NULL COMMENT 'trạng thái',
+  `id` int(11) NOT NULL COMMENT 'mã đơn hàng',
+  `name_receiver` varchar(50) NOT NULL COMMENT 'tên người nhận',
+  `phone_receiver` varchar(50) NOT NULL COMMENT 'số điện thoại người nhận',
+  `address_receiver` varchar(255) NOT NULL COMMENT 'địa chỉ người nhận',
+  `status` int(11) NOT NULL COMMENT 'trạng thái',
   `total_price` float NOT NULL COMMENT 'tổng tiền',
-  `payment_id` int NOT NULL COMMENT 'mã thanh toán',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'thời gian đặt',
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'thời gian cập nhật',
-  `note` text COLLATE utf8mb4_general_ci COMMENT 'ghi chú',
-  `user_id` int NOT NULL COMMENT 'mã khách hàng',
-  `user_admin_id` int DEFAULT NULL COMMENT 'mã\r\n admin',
-  `cart_id` int NOT NULL COMMENT 'mã giỏ hàng'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `payment_id` int(11) NOT NULL COMMENT 'mã thanh toán',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'thời gian đặt',
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'thời gian cập nhật',
+  `note` text DEFAULT NULL COMMENT 'ghi chú',
+  `user_id` int(11) NOT NULL COMMENT 'mã khách hàng',
+  `user_admin_id` int(11) DEFAULT NULL COMMENT 'mã\r\n admin',
+  `cart_id` int(11) NOT NULL COMMENT 'mã giỏ hàng'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `orders`
+-- Đang đổ dữ liệu cho bảng `orders`
 --
 
 INSERT INTO `orders` (`id`, `name_receiver`, `phone_receiver`, `address_receiver`, `status`, `total_price`, `payment_id`, `created_at`, `updated_at`, `note`, `user_id`, `user_admin_id`, `cart_id`) VALUES
 (3, 'Nguyen Manh', '0986971670', '90 Nguyễn Tuân, Phường Thanh Xuân Trung, Quận Thanh Xuân, Thành phố Hà Nội', 3, 2690000, 0, '2023-04-13 16:21:55', '2023-04-13 16:21:55', '', 6, 2, 24),
-(4, 'Nguyen Manh', '0986971670', '90 Nguyễn Tuân, Phường Thanh Xuân Trung, Quận Thanh Xuân, Thành phố Hà Nội', 3, 2390000, 0, '2023-04-14 06:16:10', '2023-04-14 06:16:10', '', 6, 2, 24);
+(4, 'Nguyen Manh', '0986971670', '90 Nguyễn Tuân, Phường Thanh Xuân Trung, Quận Thanh Xuân, Thành phố Hà Nội', 3, 2390000, 0, '2023-04-14 06:16:10', '2023-04-14 06:16:10', '', 6, 2, 24),
+(5, 'admin', '0986971670', 'so nha 123, Xã Thống Nhất, Huyện Gia Lộc, Tỉnh Hải Dương', 0, 2390000, 1, '2023-04-14 10:11:43', '2023-04-14 10:11:43', 'giao nhanh ', 2, NULL, 26),
+(6, 'Phạm Văn Phú', '0366035523', 'Hải Dương, Xã Thống Nhất, Huyện Gia Lộc, Tỉnh Hải Dương', 0, 5380000, 2, '2023-04-14 10:23:38', '2023-04-14 10:23:38', '', 10, NULL, 27);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_detail`
+-- Cấu trúc bảng cho bảng `order_detail`
 --
 
 CREATE TABLE `order_detail` (
-  `order_id` int NOT NULL COMMENT 'mã đơn hàng',
-  `product_id` int NOT NULL COMMENT 'mã sản phẩm',
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'tên sản phẩm',
-  `size` varchar(15) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'kích thước',
-  `color` varchar(50) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'màu sắc',
-  `material` varchar(50) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'chất liệu',
-  `quantity` int NOT NULL COMMENT 'số lượng',
+  `order_id` int(11) NOT NULL COMMENT 'mã đơn hàng',
+  `product_id` int(11) NOT NULL COMMENT 'mã sản phẩm',
+  `name` varchar(255) NOT NULL COMMENT 'tên sản phẩm',
+  `size` varchar(15) NOT NULL COMMENT 'kích thước',
+  `color` varchar(50) NOT NULL COMMENT 'màu sắc',
+  `material` varchar(50) NOT NULL COMMENT 'chất liệu',
+  `quantity` int(11) NOT NULL COMMENT 'số lượng',
   `price` float NOT NULL COMMENT 'giá'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `order_detail`
+-- Đang đổ dữ liệu cho bảng `order_detail`
 --
 
 INSERT INTO `order_detail` (`order_id`, `product_id`, `name`, `size`, `color`, `material`, `quantity`, `price`) VALUES
 (3, 14, 'Nhẫn bạc có họa tiết Marvel Baby Groot đính đá cubic zirconia và tráng men đen', '50', 'Đen', 'Bạc', 1, 2690000),
-(4, 13, 'Charm bạc mạ vàng hồng 14k Pandora Moments vương miện nữ hoàng', 'One size', 'Hồng', 'Bạc cao cấp và mạ vàng hồng 14k', 1, 2390000);
+(4, 13, 'Charm bạc mạ vàng hồng 14k Pandora Moments vương miện nữ hoàng', 'One size', 'Hồng', 'Bạc cao cấp và mạ vàng hồng 14k', 1, 2390000),
+(5, 13, 'Charm bạc mạ vàng hồng 14k Pandora Moments vương miện nữ hoàng', 'One size', 'Hồng', 'Bạc cao cấp và mạ vàng hồng 14k', 1, 2390000),
+(6, 14, 'Nhẫn bạc có họa tiết Marvel Baby Groot đính đá cubic zirconia và tráng men đen', '52', 'Đen', 'Bạc', 2, 2690000);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
+-- Cấu trúc bảng cho bảng `products`
 --
 
 CREATE TABLE `products` (
-  `id` int NOT NULL COMMENT 'mã sản phẩm',
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'tên sản phẩm',
-  `color` varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'màu sắc',
-  `material` varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'chất liệu',
-  `image` varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'hình ảnh',
+  `id` int(11) NOT NULL COMMENT 'mã sản phẩm',
+  `name` varchar(255) NOT NULL COMMENT 'tên sản phẩm',
+  `color` varchar(255) NOT NULL COMMENT 'màu sắc',
+  `material` varchar(255) NOT NULL COMMENT 'chất liệu',
+  `image` varchar(255) NOT NULL COMMENT 'hình ảnh',
   `price` float NOT NULL COMMENT 'giá',
-  `description` text COLLATE utf8mb4_general_ci NOT NULL COMMENT 'mô tả',
-  `status` int NOT NULL DEFAULT '1' COMMENT 'trạng thái',
-  `category_child_id` int NOT NULL COMMENT 'mã loại',
-  `user_id` int NOT NULL COMMENT 'mã admin'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `description` text NOT NULL COMMENT 'mô tả',
+  `status` int(11) NOT NULL DEFAULT 1 COMMENT 'trạng thái',
+  `category_child_id` int(11) NOT NULL COMMENT 'mã loại',
+  `user_id` int(11) NOT NULL COMMENT 'mã admin'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `products`
+-- Đang đổ dữ liệu cho bảng `products`
 --
 
 INSERT INTO `products` (`id`, `name`, `color`, `material`, `image`, `price`, `description`, `status`, `category_child_id`, `user_id`) VALUES
+(1, 'Charm bạc chú bạch tuộc xanh Murano ', 'Xanh dương', 'Bạc 92,5', 'charmmurano.webp', 2090000, 'Khám phá thế giới tuyệt vời của biển xanh thẳm và thêm chiếc bùa chú bạch tuộc dễ thương này vào đồ trang sức Pandora Moments của bạn. Chiếc charm bạc treo này có thủy tinh Murano hai tông màu xanh lá cây và xanh lam tuyệt đẹp với họa tiết đường lượn sóng ở mặt sau. Các xúc tu màu bạc của đồng bảng Anh cuộn tròn, cho thấy bản chất vui tươi của sinh vật đại dương thân thiện và bí ẩn này. Những viên pha lê nhân tạo có ba màu xanh lam mang lại thêm phần lấp lánh cho chiếc charm và đôi mắt của bạch tuộc.', 1, 12, 2),
+(2, 'Charm bạc Pandora Moments thủy tinh murano hồng', 'Hồng', 'Bạc 92,5', 'charmMuranoHong.webp', 1790000, 'Thêm tông màu hồng vào tiết mục phong cách của bạn với charm thủy tinh Murano này được đặt trên lõi bạc sterling. Mặt kính lấp lánh bắt sáng từ mọi góc độ, giúp chiếc vòng tay của bạn bừng sáng với tông màu hồng tinh tế. Hãy đeo nó với những chiếc vòng tay Pandora Moments yêu thích của bạn hoặc tặng nó cho người yêu màu hồng trong cuộc đời bạn.', 1, 12, 2),
+(3, 'Charm bạc Disney hình chiếc giày Lọ Lem nhiều màu', 'Nhiều màu', 'Bạc 92,5', 'charmDisney.webp', 2690000, 'Nâng tầm phong cách của bạn với Charm treo Disney Cinderella Glass Slipper & Mice. Được thiết kế để kỷ niệm 70 năm ngày thành lập Cinderella của Disney, viên charm hình chiếc giày này có hình đôi bạn thân của cô là Gus và Jaq. Được hoàn thiện thủ công bằng bạc sterling, những con chuột nép mình bên trong giày bao gồm một cụm đá xanh hình trái tim trên mũi và đế được đánh bóng. Với vòng treo được đính cườm cùng những viên đá trong suốt lấp lánh, hãy đeo món trang sức này với những viên charm Disney x Pandora yêu thích của bạn để có một vẻ ngoài đầy mê hoặc.', 1, 12, 2),
+(4, 'Nhẫn Pandora Moments đính đá màu xanh', 'Xanh dương', 'Bạc 92,5', 'ringMomentsblue.webp', 3890000, 'Nâng tầm phong cách của bạn với mẫu nhẫn Blue Rectangular Three Stone Sparkling. Được chế tác từ bạc và hoàn thiện hoàn toàn bằng tay với ba tinh thể nhân tạo hình chữ nhật, một hàng đá CZ cắt hình pavé chân thực chạy dọc theo thân nhẫn, mang cho mẫu nhẫn một ánh nhìn tinh tế. Bạn có thể đeo đơn chiếc hoặc phối nó cùng với các mẫu nhẫn trơn để tạo nên vẻ đẹp thanh lịch, quý phái.', 1, 18, 2),
+(5, 'Vòng tay Pandora Moments đính đá Cz', 'Trong suốt', 'Bạc 92,5', 'vongmoments.webp', 2990000, 'Mang vẻ đẹp của thiên nhiên đến gần hơn với vòng đeo tay chuỗi Herbarium lấp lánh của Pandora. Vòng tay dạng chuỗi bạc này có những viên đá và đá hình marquise xung quanh một viên đá zirconias hình khối được cắt tinh xảo, tạo thành một hình dạng hình học lấy cảm hứng từ cánh hoa và lá. Một nét đẹp thanh lịch hơn của các hình ảnh mà chúng ta luôn tìm thấy trong thiên nhiên, chuỗi vòng thật hoàn hảo để mang lại cảm giác tinh tế cho vẻ ngoài hàng ngày của bạn.', 1, 16, 2),
+(6, 'Charm bạc chú bạch tuộc xanh Murano ', 'Xanh dương', 'Bạc 92,5', 'charmmurano.webp', 2090000, 'Khám phá thế giới tuyệt vời của biển xanh thẳm và thêm chiếc bùa chú bạch tuộc dễ thương này vào đồ trang sức Pandora Moments của bạn. Chiếc charm bạc treo này có thủy tinh Murano hai tông màu xanh lá cây và xanh lam tuyệt đẹp với họa tiết đường lượn sóng ở mặt sau. Các xúc tu màu bạc của đồng bảng Anh cuộn tròn, cho thấy bản chất vui tươi của sinh vật đại dương thân thiện và bí ẩn này. Những viên pha lê nhân tạo có ba màu xanh lam mang lại thêm phần lấp lánh cho chiếc charm và đôi mắt của bạch tuộc.', 1, 12, 2),
+(7, 'Vòng tay Pandora Moments đính đá Cz', 'Trong suốt', 'Bạc 92,5', 'vongmoments.webp', 2990000, 'Mang vẻ đẹp của thiên nhiên đến gần hơn với vòng đeo tay chuỗi Herbarium lấp lánh của Pandora. Vòng tay dạng chuỗi bạc này có những viên đá và đá hình marquise xung quanh một viên đá zirconias hình khối được cắt tinh xảo, tạo thành một hình dạng hình học lấy cảm hứng từ cánh hoa và lá. Một nét đẹp thanh lịch hơn của các hình ảnh mà chúng ta luôn tìm thấy trong thiên nhiên, chuỗi vòng thật hoàn hảo để mang lại cảm giác tinh tế cho vẻ ngoài hàng ngày của bạn.', 1, 12, 2),
+(8, 'Charm bạc Disney chú cá Dory phim hoạt hình Pixar', 'Nhiều màu', 'Bạc 92,5', 'charmDory.webp', 2390000, 'Khơi dậy sự lạc quan bên trong bạn với chú cá Dory trong phim hoạt hình của Pixar. Chiếc charm treo bằng bạc này có hình chú cá hay quên rất được yêu thích được làm sống động bằng lớp men tráng thủ công có màu xanh lam, vàng và đen trong suốt, với các chi tiết nổi trên vây và nụ cười tỏa nắng đặc trưng. Chiếc đuôi có khớp nối của cô ấy có thể di chuyển từ bên này sang bên kia giống như cô ấy đang bơi thực sự. Thêm mẫu charm xinh xắn này vào bộ sưu tập của bạn như một lời nhắc nhở hãy tập trung vào mục tiêu của bạn - và đừng bao giờ quên nhìn vào khía cạnh tươi sáng!', 1, 12, 2),
+(9, 'Charm bạc Disney Ohana Lilo tráng men nhiều màu', 'Tráng men', 'Bạc ', 'charmOhano.webp', 2690000, 'Mẫu charm tượng trưng chogia đình, bạn bè Lilo & Stitch của Disney. Chiếc charm Lilo & Stitch bằng bạc hình trái tim này có các nhân vật được yêu thích rất nhiều được làm sống động bằng lớp men tráng bằng tay đầy màu sắc, được thiết kế đính đá Cubic Zirconia bao quanh. Mặt sau của trái tim có dòng chữ \"OHANA có nghĩa là gia đình\", và một trái tim nhỏ được mạ vàng hồng 14k treo bên dưới có khắc \"OHANA\" ở một bên..', 1, 12, 2),
+(10, 'Vòng tay Pandora Moments đính đá Cz', 'Trong suốt', 'Bạc 92,5', 'vongmoments.webp', 2990000, 'Mang vẻ đẹp của thiên nhiên đến gần hơn với vòng đeo tay chuỗi Herbarium lấp lánh của Pandora. Vòng tay dạng chuỗi bạc này có những viên đá và đá hình marquise xung quanh một viên đá zirconias hình khối được cắt tinh xảo, tạo thành một hình dạng hình học lấy cảm hứng từ cánh hoa và lá. Một nét đẹp thanh lịch hơn của các hình ảnh mà chúng ta luôn tìm thấy trong thiên nhiên, chuỗi vòng thật hoàn hảo để mang lại cảm giác tinh tế cho vẻ ngoài hàng ngày của bạn.', 1, 12, 2),
 (13, 'Charm bạc mạ vàng hồng 14k Pandora Moments vương miện nữ hoàng', 'Hồng', 'Bạc cao cấp và mạ vàng hồng 14k', 'jw_1681220346.jpg', 2390000, 'Tại sao lại là nữ hoàng trong một ngày khi bạn có thể là một người trong suốt cuộc đời với chiếc vương miện Pandora Moments bằng bạc được đính kim cương sang trọng này? Được tạo ra từ các kim loại hỗn hợp với chi tiết vương miện vương giả và một tấm bảng tròn có khắc \'Nữ hoàng\', chiếc charm nữ hoàng dạng lủng lẳng đôi cho phép bạn nổi bật như nữ hoàng của thế giới của mình. Nó cũng là một món quà phù hợp cho những nữ hoàng tuyệt vời trong cuộc đời bạn, những người xứng đáng có được chiếc vương miện của riêng họ.', 1, 12, 2),
-(14, 'Nhẫn bạc có họa tiết Marvel Baby Groot đính đá cubic zirconia và tráng men đen', 'Đen', 'Bạc', 'jw_1681220630.jpg', 2690000, 'Hãy khám phá người anh hùng bên trong chính mình với chiếc nhẫn Marvel Guardians of the Galaxy Baby Groot của chúng tôi. Hoàn thiện bằng tay bằng bạc sterling, chiếc nhẫn này có hình ảnh gương mặt tươi cười của Groot ở giữa và lá quanh dải nhẫn. Để tăng độ sâu và lấp lánh, đôi mắt của Groot được trang trí bằng men đen được bôi tay và bốn chiếc lá được đính bằng cubic zirconia trong suốt. \"Tôi LÀ GROOT\" - điều duy nhất mà Groot nói được khắc trên bên trong dải nhẫn. Thêm chiếc nhẫn này vào bộ sưu tập của bạn như một biểu tượng cho khả năng của bạn để mạnh mẽ hơn mỗi ngày.', 1, 18, 2);
+(14, 'Nhẫn bạc có họa tiết Marvel Baby Groot đính đá cubic zirconia và tráng men đen', 'Đen', 'Bạc', 'jw_1681220630.jpg', 2690000, 'Hãy khám phá người anh hùng bên trong chính mình với chiếc nhẫn Marvel Guardians of the Galaxy Baby Groot của chúng tôi. Hoàn thiện bằng tay bằng bạc sterling, chiếc nhẫn này có hình ảnh gương mặt tươi cười của Groot ở giữa và lá quanh dải nhẫn. Để tăng độ sâu và lấp lánh, đôi mắt của Groot được trang trí bằng men đen được bôi tay và bốn chiếc lá được đính bằng cubic zirconia trong suốt. \"Tôi LÀ GROOT\" - điều duy nhất mà Groot nói được khắc trên bên trong dải nhẫn. Thêm chiếc nhẫn này vào bộ sưu tập của bạn như một biểu tượng cho khả năng của bạn để mạnh mẽ hơn mỗi ngày.', 1, 18, 2),
+(15, 'Nhẫn bạc Pandora Signature hình tròn bao quanh', 'Trong suốt', 'Không có chất liệu khác', 'nhanSignature.webp', 4190000, 'Được đưa vào một thế giới kỳ diệu với Disney Beauty and the Beast Rose Ring. Lấy cảm hứng từ bông hồng mê hoặc trong bộ phim, chiếc nhẫn có một bông hồng đá zirconia hình khối màu đỏ ở trung tâm của dải, được bao quanh bởi những chiếc lá và cành cong cùng với ba viên đá đỏ nhỏ hơn. Kỷ niệm tình yêu không hoàn hảo nhưng kỳ diệu giữa Belle và Quái vật của Disney, chiếc nhẫn tạo nên một sự bổ sung trang nhã, kỳ quái cho mọi diện mạo.\r\n', 1, 18, 2),
+(16, 'Vòng tay bạc Pandora ngôi sao đính đá ', 'Bạc', 'Bạc 92,5', 'vongNgoisao.webp', 3290000, 'Hãy để tâm trí bạn chìm đắm trong nguồn cảm hứng từ một thế giới mộng mơ và thần kỳ, cùng với sự huyền ảo của bầu trời đêm và những vì sao lấp lánh trong màn đêm tăm tối. Chiếc vòng tay ngôi sao từ chúng tôi được làm nên từ những vì sao bằng bạc có hình dáng khác biệt, được bao phủ xung quanh với những viên đá cubic zirconia lấp lánh, và được ngăn cách bằng những thanh cắt ngang. Chi tiết này gợi lên cho chúng ta thấy hiện thực của cuộc sống vẫn luôn tồn tại song song, bên cạnh những mộng mơ cuồng nhiệt và hoang dại nhất. Mỗi ngôi sao đại diện cho một mảnh quá khứ hoặc một thành công nào đó ở tương lai. Một lần nữa, hãy để cho chiếc vòng tay tinh xảo này gợi nhắc bạn về những khoảnh khắc kiêu hãnh đã tạo nên chính bản thân mình.', 1, 16, 2),
+(17, 'Charm bạc hình trái tim bạc phối với đá Cubic Zirconia', 'Trong suốt', 'Mạ vàng 14k và bạc 92,5', 'charmCubic.webp', 3290000, 'Sao Chức Nữ (Vega) và sao Ngưu Lang (Altair), dải Ngân Hà và hiện tượng mưa ngâu diễn ra vào đầu tháng Bảy âm lịch ở Việt Nam, hay còn gọi là lễ Thất tịch. Đây cùng là thời điểm để các cặp đôi thể hiện tình yêu của mình hoặc cầu mong sớm có được tình yêu viết nên câu chuyện tình lãng mạn như ông ngâu và bà ngâu trong truyền thuyết. Viên charm như chứng nhân của cuộc gặp gỡ giữ hai tâm hồn đồng điệu. Charm được thiết kế với 2 tone – 2 kim loại hình trái tim, bao bên ngoài là hình ảnh của ngôi sao bang, được gập lại 3 lần tạo nên góc cạnh của trái tim ', 1, 12, 2),
+(18, 'Vòng tay Pandora Moments, phủ vàng 14k đính đá Cz', 'Trong suốt', 'Mạ vàng 14k', 'vongvang14k.webp', 6890000, 'Nâng tầm vẻ ngoài của bạn với vòng tay Sparkling Halo Tennis. Được mạ vàng 14k sang trọng, tác phẩm hoàn thiện bằng tay này được trang trí bằng rất nhiều những viên đá lấp lánh. Phần trung tâm có một viên đá lớn ở giữa được bao quanh bởi một vầng hào quang của các viên đá zirconia hình khối rõ ràng. Vòng tay Sparkling Halo Tennis này bao gồm một móc khóa càng để đóng an toàn. Phối nhiều kiểu với các sản phẩm Pandora Timeless lung linh khác để có một vẻ ngoài cổ điển nhưng không kém phần nổi bật.', 1, 16, 2);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product_size`
+-- Cấu trúc bảng cho bảng `product_size`
 --
 
 CREATE TABLE `product_size` (
-  `product_id` int NOT NULL COMMENT 'mã sản phẩm',
-  `size_id` int NOT NULL COMMENT 'mã kích thước',
-  `quantity` int NOT NULL COMMENT 'số lượng'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `product_id` int(11) NOT NULL COMMENT 'mã sản phẩm',
+  `size_id` int(11) NOT NULL COMMENT 'mã kích thước',
+  `quantity` int(11) NOT NULL COMMENT 'số lượng'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `product_size`
+-- Đang đổ dữ liệu cho bảng `product_size`
 --
 
 INSERT INTO `product_size` (`product_id`, `size_id`, `quantity`) VALUES
+(1, 1, 22),
+(2, 1, 50),
+(3, 1, 50),
+(4, 4, 20),
+(4, 5, 20),
+(4, 6, 20),
+(4, 7, 20),
+(5, 8, 30),
+(5, 9, 30),
+(6, 1, 50),
+(7, 1, 50),
+(8, 1, 50),
+(9, 1, 50),
+(10, 8, 30),
+(10, 9, 30),
 (13, 1, 10),
 (14, 4, 4),
 (14, 5, 3),
 (14, 6, 3),
 (14, 7, 4),
-(14, 8, 0);
+(14, 8, 0),
+(15, 4, 20),
+(15, 5, 20),
+(15, 6, 20),
+(15, 7, 20),
+(16, 8, 30),
+(16, 9, 30),
+(17, 1, 50),
+(18, 9, 50),
+(18, 10, 50);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sizes`
+-- Cấu trúc bảng cho bảng `sizes`
 --
 
 CREATE TABLE `sizes` (
-  `id` int NOT NULL COMMENT 'mã kích thước',
-  `name` varchar(15) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'kích thước',
-  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` int(11) NOT NULL COMMENT 'mã kích thước',
+  `name` varchar(15) NOT NULL COMMENT 'kích thước',
+  `description` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `sizes`
+-- Đang đổ dữ liệu cho bảng `sizes`
 --
 
 INSERT INTO `sizes` (`id`, `name`, `description`) VALUES
@@ -247,33 +298,35 @@ INSERT INTO `sizes` (`id`, `name`, `description`) VALUES
 (5, '50', NULL),
 (6, '52', NULL),
 (7, '54', NULL),
-(8, '56', NULL);
+(8, '56', NULL),
+(9, '18', NULL),
+(10, '16', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Cấu trúc bảng cho bảng `users`
 --
 
 CREATE TABLE `users` (
-  `id` int NOT NULL COMMENT 'mã người dùng',
-  `name` varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'tên ',
-  `avatar` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL COMMENT 'ảnh',
+  `id` int(11) NOT NULL COMMENT 'mã người dùng',
+  `name` varchar(255) NOT NULL COMMENT 'tên ',
+  `avatar` varchar(255) DEFAULT NULL COMMENT 'ảnh',
   `gender` tinyint(1) NOT NULL COMMENT 'giới tính',
   `birth_date` date NOT NULL COMMENT 'ngày sinh',
-  `email` varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'email',
-  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'mật khẩu',
-  `phone` varchar(15) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'số điện thoại',
-  `address` varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'địa chỉ',
-  `role` int NOT NULL DEFAULT '0' COMMENT 'mã chức vụ (0: khách hàng; 1: nhân viên; 2: quản lý)',
-  `token_verification` varchar(255) COLLATE utf8mb4_general_ci NOT NULL COMMENT 'token đăng kí',
-  `status` tinyint(1) NOT NULL DEFAULT '0' COMMENT 'trạng thái kích hoạt(1:kích hoạt, 0:chưa kích hoạt)',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'thời gian tạo',
+  `email` varchar(255) NOT NULL COMMENT 'email',
+  `password` varchar(255) NOT NULL COMMENT 'mật khẩu',
+  `phone` varchar(15) NOT NULL COMMENT 'số điện thoại',
+  `address` varchar(255) NOT NULL COMMENT 'địa chỉ',
+  `role` int(11) NOT NULL DEFAULT 0 COMMENT 'mã chức vụ (0: khách hàng; 1: nhân viên; 2: quản lý)',
+  `token_verification` varchar(255) NOT NULL COMMENT 'token đăng kí',
+  `status` tinyint(1) NOT NULL DEFAULT 0 COMMENT 'trạng thái kích hoạt(1:kích hoạt, 0:chưa kích hoạt)',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'thời gian tạo',
   `deleted_at` timestamp NULL DEFAULT NULL COMMENT 'thời gian xóa'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `users`
+-- Đang đổ dữ liệu cho bảng `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `avatar`, `gender`, `birth_date`, `email`, `password`, `phone`, `address`, `role`, `token_verification`, `status`, `created_at`, `deleted_at`) VALUES
@@ -281,49 +334,50 @@ INSERT INTO `users` (`id`, `name`, `avatar`, `gender`, `birth_date`, `email`, `p
 (5, 'Phus', NULL, 1, '2001-05-02', 'abc@gmail.com', '123456789', '4124124141421', 'LGHJS', 0, '52353r23r32r32r', 0, '2023-04-12 06:49:37', NULL),
 (6, 'Nguyen Manh', NULL, 1, '2001-10-25', 'nvmanh25101@gmail.com', '$2y$10$8uH1NPJURL1m.7IATO4SAO6551zh312Myo52P5XLuWmq3ldj7ZJ86', '0986971670', '175 Tay Son', 0, 'wqejqy3i123', 1, '2023-04-12 07:29:21', NULL),
 (8, 'Đỗ Thị Thanh Phương', 'admin_1681405161.jpg', 0, '2001-03-15', 'dothithanhphuong@gmail.com', '$2y$10$NBzliCa7QnHb7cHtE/SX8eOIjR3hM7zp/BK34LnSpRwPXnUkY.LHG', '0986971202', 'Bắc Giang', 1, '643834e97c9711681405161', 1, '2023-04-13 16:59:21', NULL),
-(9, 'Vũ Nụ', 'admin_1681460182.jpg', 0, '2001-06-20', 'vunu@gmail.com', '$2y$10$DyJfSVWjWdtG1na.mI1xyOTbfgqfCLmzqj5qvTNeVDY9QAcV4ev0u', '0987654321', 'Nam Định', 1, '64390bd6e4d1a1681460182', 1, '2023-04-14 08:16:23', NULL);
+(9, 'Vũ Nụ', 'admin_1681460182.jpg', 0, '2001-06-20', 'vunu@gmail.com', '$2y$10$DyJfSVWjWdtG1na.mI1xyOTbfgqfCLmzqj5qvTNeVDY9QAcV4ev0u', '0987654321', 'Nam Định', 1, '64390bd6e4d1a1681460182', 1, '2023-04-14 08:16:23', NULL),
+(10, 'Phạm Văn Phú', NULL, 1, '2001-05-21', 'phuanh2105@gmail.com', '$2y$10$q.xjThzsQMaRJljwtNgA0ez6vY00M5rmjXg.nx4s1Knzegur5eNUu', '0366035523', 'Hải Dương', 0, 'wqejqy3i123', 1, '2023-04-14 10:22:41', NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `votes`
+-- Cấu trúc bảng cho bảng `votes`
 --
 
 CREATE TABLE `votes` (
-  `id` int NOT NULL COMMENT 'mã đánh giá',
-  `product_id` int NOT NULL COMMENT 'mã sản phẩm',
-  `user_id` int NOT NULL COMMENT 'mã người dùng',
-  `rating` int NOT NULL COMMENT 'điểm đánh giá (1-5)',
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'thời gian tạo'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id` int(11) NOT NULL COMMENT 'mã đánh giá',
+  `product_id` int(11) NOT NULL COMMENT 'mã sản phẩm',
+  `user_id` int(11) NOT NULL COMMENT 'mã người dùng',
+  `rating` int(11) NOT NULL COMMENT 'điểm đánh giá (1-5)',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp() COMMENT 'thời gian tạo'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `carts`
+-- Chỉ mục cho bảng `carts`
 --
 ALTER TABLE `carts`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indexes for table `cart_item`
+-- Chỉ mục cho bảng `cart_item`
 --
 ALTER TABLE `cart_item`
   ADD PRIMARY KEY (`cart_id`,`product_id`),
   ADD KEY `product_id` (`product_id`);
 
 --
--- Indexes for table `categories`
+-- Chỉ mục cho bảng `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
 
 --
--- Indexes for table `category_child`
+-- Chỉ mục cho bảng `category_child`
 --
 ALTER TABLE `category_child`
   ADD PRIMARY KEY (`id`),
@@ -331,7 +385,7 @@ ALTER TABLE `category_child`
   ADD KEY `category_id` (`category_id`);
 
 --
--- Indexes for table `orders`
+-- Chỉ mục cho bảng `orders`
 --
 ALTER TABLE `orders`
   ADD PRIMARY KEY (`id`),
@@ -340,14 +394,14 @@ ALTER TABLE `orders`
   ADD KEY `FK_orders_carts` (`cart_id`);
 
 --
--- Indexes for table `order_detail`
+-- Chỉ mục cho bảng `order_detail`
 --
 ALTER TABLE `order_detail`
   ADD PRIMARY KEY (`order_id`,`product_id`),
   ADD KEY `product_id` (`product_id`);
 
 --
--- Indexes for table `products`
+-- Chỉ mục cho bảng `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
@@ -355,28 +409,28 @@ ALTER TABLE `products`
   ADD KEY `user_id` (`user_id`) USING BTREE;
 
 --
--- Indexes for table `product_size`
+-- Chỉ mục cho bảng `product_size`
 --
 ALTER TABLE `product_size`
   ADD PRIMARY KEY (`product_id`,`size_id`),
   ADD KEY `size_id` (`size_id`);
 
 --
--- Indexes for table `sizes`
+-- Chỉ mục cho bảng `sizes`
 --
 ALTER TABLE `sizes`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `name` (`name`);
 
 --
--- Indexes for table `users`
+-- Chỉ mục cho bảng `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indexes for table `votes`
+-- Chỉ mục cho bảng `votes`
 --
 ALTER TABLE `votes`
   ADD PRIMARY KEY (`id`,`product_id`,`user_id`),
@@ -384,82 +438,82 @@ ALTER TABLE `votes`
   ADD KEY `user_id` (`user_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `carts`
+-- AUTO_INCREMENT cho bảng `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'mã của giỏ hàng', AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'mã của giỏ hàng', AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT for table `categories`
+-- AUTO_INCREMENT cho bảng `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'mã loại chính', AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'mã loại chính', AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `category_child`
+-- AUTO_INCREMENT cho bảng `category_child`
 --
 ALTER TABLE `category_child`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'mã loại phụ', AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'mã loại phụ', AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `orders`
+-- AUTO_INCREMENT cho bảng `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'mã đơn hàng', AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'mã đơn hàng', AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT for table `products`
+-- AUTO_INCREMENT cho bảng `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'mã sản phẩm', AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'mã sản phẩm', AUTO_INCREMENT=19;
 
 --
--- AUTO_INCREMENT for table `sizes`
+-- AUTO_INCREMENT cho bảng `sizes`
 --
 ALTER TABLE `sizes`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'mã kích thước', AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'mã kích thước', AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `users`
+-- AUTO_INCREMENT cho bảng `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'mã người dùng', AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'mã người dùng', AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `votes`
+-- AUTO_INCREMENT cho bảng `votes`
 --
 ALTER TABLE `votes`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT COMMENT 'mã đánh giá';
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'mã đánh giá';
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `carts`
+-- Các ràng buộc cho bảng `carts`
 --
 ALTER TABLE `carts`
   ADD CONSTRAINT `carts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `cart_item`
+-- Các ràng buộc cho bảng `cart_item`
 --
 ALTER TABLE `cart_item`
   ADD CONSTRAINT `cart_item_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`),
   ADD CONSTRAINT `cart_item_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 --
--- Constraints for table `category_child`
+-- Các ràng buộc cho bảng `category_child`
 --
 ALTER TABLE `category_child`
   ADD CONSTRAINT `category_child_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
 
 --
--- Constraints for table `orders`
+-- Các ràng buộc cho bảng `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `FK_orders_carts` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`),
@@ -467,28 +521,28 @@ ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`user_admin_id`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `order_detail`
+-- Các ràng buộc cho bảng `order_detail`
 --
 ALTER TABLE `order_detail`
   ADD CONSTRAINT `order_detail_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
   ADD CONSTRAINT `order_detail_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 --
--- Constraints for table `products`
+-- Các ràng buộc cho bảng `products`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_child_id`) REFERENCES `category_child` (`id`),
   ADD CONSTRAINT `products_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Constraints for table `product_size`
+-- Các ràng buộc cho bảng `product_size`
 --
 ALTER TABLE `product_size`
   ADD CONSTRAINT `product_size_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
   ADD CONSTRAINT `product_size_ibfk_2` FOREIGN KEY (`size_id`) REFERENCES `sizes` (`id`);
 
 --
--- Constraints for table `votes`
+-- Các ràng buộc cho bảng `votes`
 --
 ALTER TABLE `votes`
   ADD CONSTRAINT `votes_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
