@@ -1,8 +1,8 @@
 <?php
 
-require 'assets/PHPMailer/PHPMailer.php';
-require 'assets/PHPMailer/SMTP.php';
-require 'assets/PHPMailer/Exception.php';
+require './PHPMailer/PHPMailer.php';
+require './PHPMailer/SMTP.php';
+require './PHPMailer/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -26,7 +26,7 @@ try {
     $mail->CharSet = 'UTF-8';
 
     //Recipients
-    $mail->setFrom('manhnguyen1104010@gmail.com', 'ZingMP3');
+    $mail->setFrom('manhnguyen1104010@gmail.com', 'Pandora');
     $mail->addAddress($email, $name);     //Add a recipient
     // $mail->addAddress('ellen@example.com');               //Name is optional
     // $mail->addReplyTo('info@example.com', 'Information');
@@ -40,7 +40,7 @@ try {
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'Xác thực tài khoản';
-    $mail->Body    = 'Chào mừng bạn đến ZingMP3, vui lòng bấm vào link để ' . $link;
+    $mail->Body    = 'Chào mừng bạn đến Pandora, vui lòng bấm vào link để ' . $link;
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();

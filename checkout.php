@@ -152,7 +152,6 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
 </div>
 <script src="./assets/js/jquery-3.6.4.min.js"></script>
 <script src="js/app.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
@@ -160,7 +159,7 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
 
 <script>
     $(document).ready(function () {
-        $.getJSON('tinh_tp.json', function (data) {
+        $.getJSON('./assets/hanh_chinh/tinh_tp.json', function (data) {
             $.each(data, function (key, value) {
                 $('#city-select').append('<option value="' + value.code + '">' + value.name + '</option>');
             })
@@ -168,7 +167,7 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
 
         $('#city-select').change(function () {
             var city = $(this).val();
-            $.getJSON('quan_huyen.json', function (data) {
+            $.getJSON('./assets/hanh_chinh/quan_huyen.json', function (data) {
                 $.each(data, function (key, value) {
                     if (value.parent_code == city) {
                         $('#district-select').append('<option value="' + value.code + '">' + value.name + '</option>');
@@ -179,7 +178,7 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
 
         $('#district-select').change(function () {
             var district = $(this).val();
-            $.getJSON('xa_phuong.json', function (data) {
+            $.getJSON('./assets/hanh_chinh/xa_phuong.json', function (data) {
                 $.each(data, function (key, value) {
                     if (value.parent_code == district) {
                         $('#ward-select').append('<option value="' + value.path_with_type + '">' + value.name + '</option>');

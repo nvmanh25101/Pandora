@@ -9,6 +9,9 @@ require_once '../../database/connect.php';
 
 $sql = "select * from categories";
 $result = mysqli_query($connect, $sql);
+
+$sql = "select * from sizes";
+$result_size = mysqli_query($connect, $sql);
 ?>
 <div class="main__form">
     <div class="main-container-text d-flex align-items-center justify-content-center">
@@ -40,7 +43,15 @@ $result = mysqli_query($connect, $sql);
                     <div class="row mb-1 fs-4" id="size_quantity">
                         <div class="col-6 d-flex flex-row">
                             <div class="">
-                                <label class="form-label" for="size">Kích thước(cm)</label>
+                                <label class="form-label me-2" for="size">Kích thước(cm)</label>
+                                <button class="btn btn-outline-secondary dropdown-toggle fs-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">Hiện có</button>
+                                <ul class="dropdown-menu">
+                                    <?php foreach ($result_size as $item_size) { ?>
+                                        <li>
+                                            <span class="dropdown-item fs-5"><?= $item_size['name'] ?></span>
+                                        </li>
+                                    <?php } ?>
+                                </ul>
                                 <input type="text" name="size[]" id="size" class="form__input form-control"/>
                             </div>
 
@@ -102,9 +113,8 @@ $result = mysqli_query($connect, $sql);
 
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="../../assets/js/jquery-3.6.4.min.js"></script>
+<script src="../../assets/js/bootstrap.bundle.min.js"></script>
 <script>
     $(document).ready(function () {
         $('#category').change(function () {

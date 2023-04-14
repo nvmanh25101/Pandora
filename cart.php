@@ -1,5 +1,5 @@
 <?php
-require 'check_user_cart.php';
+require './check_user_cart.php';
 require_once './database/connect.php';
 $user_id = $_SESSION['id'];
 $sql = "select * from carts where user_id = $user_id;";
@@ -138,8 +138,8 @@ $sum = mysqli_fetch_array($result)['sum_price'];
                             </td>
                         </tr>
                     <?php endforeach ?>
-                    <input name="sum_price" hidden value="<?= $sum ?>"></input>
-                    <input name="cart_id" hidden value="<?= $cart_id ?>"></input>
+                    <input name="sum_price" hidden value="<?= $sum ?>">
+                    <input name="cart_id" hidden value="<?= $cart_id ?>">
                 </tbody>
             </table>
 

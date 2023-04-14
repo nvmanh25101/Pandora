@@ -8,7 +8,7 @@ if (empty($_POST['id']) || empty($_POST['admin_id'])) {
     exit();
 }
 
-if (empty($_POST['name']) || empty($_POST['size']) || empty($_POST['price']) || empty($_POST['category']) || empty($_POST['image_old'])) {
+if (empty($_POST['name']) || empty($_POST['size'])|| empty($_POST['quantity']) || empty($_POST['color']) || empty($_POST['material']) || empty($_POST['description']) || empty($_POST['price']) || empty($_POST['category']) || empty($_POST['image_old'])) {
     $_SESSION['error'] = 'Phải điền đầy đủ thông tin';
     header('location:form_update.php?id='.$_POST['id'].'&admin_id='.$_POST['admin_id']);
     exit();
