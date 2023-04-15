@@ -47,123 +47,148 @@ $sum = mysqli_fetch_array($result)['sum_price'];
 
 <body>
     <?php require './header.php'; ?>
-    <div class="hero-image">
-        <div>
-            <p class="hero-text">Giỏ Hàng của bạn</p><br>
-        </div>
+
+    <div class="mt-5">
+        <h4 class="ms-3">Giỏ Hàng của bạn</h4>
     </div>
-    <div class="Pagecart mb-4 ">
-        <div class="cart-content">
-            <h1>Giỏ Hàng</h1>
-            <div class="Empty_cart" <?php
-                if (empty($cart_item_count)) {
-                    echo 'style = "display:block;"';
-                } else {
-                    echo 'style = "display:none;"';
-                }
-            ?>>
-                <span class="cart-txt">Giỏ hàng đang trống</span>
-                <br><br>
-                <button class="bg-dark p-3">
-                    <a class="cart-txt-he" href="./index.php">
-                        <i class="bi bi-cart me-2"></i> Tiếp tục mua sắm
-                    </a>
-                </button>
-            </div>
-            <!--  -->
-            <div <?php
-                if (empty($cart_item_count)) {
-                    echo 'style = "display:none;"';
-                } else {
-                    echo 'style = "display:block;"';
-                }
-            ?>>
-                <table class="cart-table full">
-                <thead class="cart__row">
-                <tr>
-                    <th class="item-img"></th>
-                    <th class="item-content-text">Thông tin chi tiết sản phẩm</th>
-                    <th class="item-content-price">Đơn giá</th>
-                    <th class="item-amount">Số lượng</th>
-                    <th class="item-amount">Tổng giá</th>
-                </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($cart_item as $key => $value) : ?>
-                        <tr class="cart__row table__section">
-                            <td class="item-img" data-label="Sản phẩm">
-                                <a href="./product.php?id=<?= $value['product_id'] ?>" class="cart__image">
-
-                                    <img src="./assets/images/products/<?php echo $value['image'] ?>">
-                                </a>
-                            </td>
-                            <td class="item-content-text">
-                                <div class="">PDR<?php echo $value['product_id'] ?></div>
-                                <a href="./product.php?id=<?= $value['product_id'] ?>" class="item-text">
-                                    <?php echo $value['name'] ?>
-                                </a>
-                                <div class=""><small><?php echo $value['size'] ?></small><br></div>
-
-                                <div class="cart__remove">
-                                    <a class="btn-text"
-                                       href="delete_from_cart.php?cart_id=<?= $value['cart_id'] ?>&product_id=<?= $value['product_id'] ?>&action=delete">
-                                        xoá
+    <div class="Pagecart container mb-4 ">
+        <div class="row">
+            <div class="cart-content col-md-8">
+                <div class="Empty_cart" <?php
+                    if (empty($cart_item_count)) {
+                        echo 'style = "display:block;"';
+                    } else {
+                        echo 'style = "display:none;"';
+                    }
+                ?>>
+                    <span class="cart-txt">Giỏ hàng đang trống</span>
+                    <br><br>
+                    <button class="bg-dark p-3">
+                        <a class="cart-txt-he" href="./index.php">
+                            <i class="bi bi-cart me-2"></i> Tiếp tục mua sắm
+                        </a>
+                    </button>
+                </div>
+                <!--  -->
+                <div <?php
+                    if (empty($cart_item_count)) {
+                        echo 'style = "display:none;"';
+                    } else {
+                        echo 'style = "display:block;"';
+                    }
+                ?>>
+                    <table class="cart-table full">
+                    <tbody>
+                        <?php foreach ($cart_item as $key => $value) : ?>
+                            <tr class="cart__row table__section">
+                                <td class="item-img" data-label="Sản phẩm">
+                                    <a href="./product.php?id=<?= $value['product_id'] ?>" class="cart__image">
+    
+                                        <img src="./assets/images/products/<?php echo $value['image'] ?>">
                                     </a>
-                                </div>
-                            </td>
-                            <td class="item-content-price" data-label="Đơn giá">
-                          <span class="item-price">
-                            <?php echo number_format($value['price']) ?>&#8363
-                          </span>
-                            </td>
-                            <td class="item-amount" data-label="Số lượng">
-                                <div class="product-quantitys">
-                                    <div class="buttons_added">
-                                        <a class="minus is-form"
-                                           href="update_quantity_in_cart.php?cart_id=<?= $value['cart_id'] ?>&product_id=<?= $value['product_id'] ?>&type=decre">
-                                            -
-                                        </a>
-                                        <a class="input-qty"><?php echo $value['quantity'] ?> </a>
-                                        <a class="plus is-form"
-                                           href="update_quantity_in_cart.php?cart_id=<?= $value['cart_id'] ?>&product_id=<?= $value['product_id'] ?>&type=incre">
-                                            +
-                                        </a>
+                                </td>
+                                <td class="item-content-text">
+                                    <a href="./product.php?id=<?= $value['product_id'] ?>" class="item-text">
+                                        <?php echo $value['name'] ?>
+                                    </a>
+                                    <div class="mt-2">
+                                        Giá <?php echo number_format($value['price']) ?>&#8363
                                     </div>
-                                </div>
-                            </td>
-                            <td class="item-total-price" data-label="Tổng giá">
+                                    <div class="mt-2">
+                                        <span style="font-weight: bold;"> Mã SP:</span> PDR<?php echo $value['product_id'] ?> - <?php echo $value['size'] ?>
+                                    </div>
+    
+                                    <div class="cart__remove">
+                                        
+                                    </div>
+                                </td>
+                                <td class="item-content-price" data-label="Đơn giá">
                               <span class="item-price">
-                                <?= number_format($value['price'] * $value['quantity']) ?>
+                                
                               </span>
-                            </td>
-                        </tr>
-                    <?php endforeach ?>
-                    <input name="sum_price" hidden value="<?= $sum ?>"></input>
-                    <input name="cart_id" hidden value="<?= $cart_id ?>"></input>
-                </tbody>
-            </table>
-
-                <div class="row-total">
-                    <div class="cart-price p-4">
-                        <p>
-                            <span class="cartt__subtotal-title me-4">Tạm tính</span>
-                            <span class="cartt__subtotal me-5"><?= number_format($sum) ?>&#8363</span>
-                        </p>
-                        <p>
-                            <span class="cartt__subtotal-title me-4">Phí vận chuyển</span>
-                            <span class="cartt__subtotal me-5">Miễn phí</span>
-                            <hr class="subtotal">
-                        </p>
-                        <p>
-                            <span class="cartt__subtotal-title me-4">Tổng tiền</span>
-                            <span class="cartt__total me-5"><?= number_format($sum) ?>&#8363</span>
-                        </p>
+                                </td>
+                                <td class="item-amount" data-label="Số lượng">
+                                    <div class="product-quantitys">
+                                        <div class="buttons_added">
+                                            <a class="minus is-form"
+                                               href="update_quantity_in_cart.php?cart_id=<?= $value['cart_id'] ?>&product_id=<?= $value['product_id'] ?>&type=decre">
+                                                -
+                                            </a>
+                                            <a class="input-qty"><?php echo $value['quantity'] ?> </a>
+                                            <a class="plus is-form"
+                                               href="update_quantity_in_cart.php?cart_id=<?= $value['cart_id'] ?>&product_id=<?= $value['product_id'] ?>&type=incre">
+                                                +
+                                            </a>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="item-total-price" data-label="Tổng giá">
+                                  <span class="item-price">
+                                    <?= number_format($value['price'] * $value['quantity']) ?>&#8363
+                                  </span>
+                                </td>
+                                <td class="item-total-price" data-label="Tổng giá">
+                                    <a class="btn-text"
+                                        href="delete_from_cart.php?cart_id=<?= $value['cart_id'] ?>&product_id=<?= $value['product_id'] ?>&action=delete">
+                                        <i style="color: #b17f99" class="bi bi-x-circle-fill"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endforeach ?>
+                        <input name="sum_price" hidden value="<?= $sum ?>"></input>
+                        <input name="cart_id" hidden value="<?= $cart_id ?>"></input>
+                    </tbody>
+                </table>
+                <div class="row total">
+                        <div class="col-md pt-4" >
+                            <input class="mycheckbox m-3" type="checkbox" name="" id="" style="font-size: 20px;">Xuất hóa đơn GTGT
+                        </div>
+                        <div class="col-md pt-4">
+                            <p style="font-size: 17px;">Nhập ghi chú quà tặng hoặc hướng dẫn giao hàng đặc
+                                biệt dưới đây (nếu có):</p>
+                            <div class="form-field" >
+                                <textarea class="note" name="note" id="note" cols="30" rows="10"  placeholder="Ghi chú: "></textarea>
+                            </div>
+                        </div>
+                        
                     </div>
                 </div>
+            </div>
+            <div class="col-md-4 mt-2">
+                <div class="ms-4">
+                    <span class="cartt__subtotal-title me-4">Tổng tiền</span>
+                    <span class="cartt__total me-5"><?= number_format($sum) ?>&#8363</span>
+                </div>
+                <div class="ms-4 mt-2" style="display: flex">
+                    <span class="cartt__subtotal-title me-3 mt-3"><input class="mycheckbox" type="checkbox"></span>
+                    <span class="me-5">
+                        <p>Khi bấm nút "Thanh toán" đồng nghĩa Khách hàng đã hiểu và đồng ý các Điều khoản dịch vụ của Pandora Việt Nam.</p>
+                    </span>
+                </div>
+                <button class="btn-payment-text mt-2 ms-4">
+                    <a href="./checkout.php?cart_id=<?= $cart_id ?>">THANH TOÁN</a>
+                </button>
+                
+                <div class="mt-3 ms-5">
+                    <a href="index.php" style="color: #d1b8c5">Tiếp tục mua sắm ></a>
+                </div>
+                <div class="img-pay mt-3" style="display: flex">
+                    <img src="img/trustbadge.webp" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
 
-                <a class="btn-payment-text ms-5 mb-5" href="./checkout.php?cart_id=<?= $cart_id ?>">
-                    Thanh toán
-                </a>
+    <div class="container more_info p-3 mb-3">
+        <div class="row">
+            <div class="col-md ">
+                <i class="bi bi-award"> Hàng chính hãng 100%</i>
+            </div>
+            <div class="col-md ">
+                <i class="bi bi-truck"> Miễn phí giao hàng toàn quốc</i>
+            </div>
+            <div class="col-md ">
+                <i class="bi bi-credit-card"> Mua trước trả sau với lãi suất 0%</i>
             </div>
         </div>
     </div>

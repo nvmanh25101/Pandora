@@ -47,8 +47,20 @@
    </div>
 
    <div class="content-grid">
-     <div class="content-grid-left">
-        <h2 class="h4">Lịch Sử Giao Dịch</h2>
+      <div class="user_inf">
+        <h2>Thông Tin Tài Khoản</h2>
+        <h3>Họ và tên: <?= $each['name'] ?? '' ?></h3>
+        <p>
+          <br>
+          Số điện thoại: <?= $each['phone'] ?? '' ?>
+          <br>
+          Địa chỉ: <?= $each['address'] ?? '' ?>
+
+        </p>
+        <p class="text-address"><a href="update.php">Sửa thông tin</a></p>
+     </div>
+     <div class="his_tran mt-2">
+        <h2>Lịch Sử Mua Hàng</h2>
         <p <?php
             if(mysqli_num_rows($resultOrder)<1){
               echo 'style = "display:block;"';
@@ -56,7 +68,7 @@
               echo 'style = "display:none;"';
             }
           ?>
-          >Bạn chưa có lịch sử giao dịch nào</p>
+          >Bạn chưa đặt mua sản phẩm</p>
         <table class="table table-borderless" <?php
                 if(mysqli_num_rows($resultOrder)<1){
                   echo 'style = "display:none;"';
@@ -70,7 +82,6 @@
               <th scope="col" class="time-shopping">Thời gian đặt</th>
               <th scope="col" class="total-shopping">Tổng tiền</th>
               <th scope="col" class="stt-shopping">Trạng thái</th>
-              <th scope="col" class="sttt-shopping" >Xem chi tiết</th>
             </tr>
           </thead>
           <tbody>
@@ -97,7 +108,7 @@
                                         }
                                         ?></td>
    
-              <td class="sttt-shopping"><a class="detail-txt" href="order_product.php?order_id=<?php echo $rowOrder['id'] ?>&status=<?= $rowOrder['status'] ?>">Chi tiết</a></td>
+              <td class="sttt-shopping"><a class="detail-txt" href="order_product.php?order_id=<?php echo $rowOrder['id'] ?>&status=<?= $rowOrder['status'] ?>">Xem chi tiết</a></td>
             </tr>
             <?php
                 }
@@ -106,18 +117,7 @@
           </tbody>
         </table>
      </div>
-     <div class="content-grid-right">
-       <h4 class="h4">Thông Tin Tài Khoản</h4>
-       <h3 class="h4">Họ và tên: <?= $each['name'] ?? '' ?></h3>
-       <p>
-        <br>
-        Số điện thoại: <?= $each['phone'] ?? '' ?>
-        <br>
-        Địa chỉ: <?= $each['address'] ?? '' ?>
-
-       </p>
-       <p class="text-address"><a href="update.php">Sửa thông tin</a></p>
-     </div>
+    
 
    </div>
  </section>

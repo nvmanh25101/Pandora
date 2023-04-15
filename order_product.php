@@ -23,7 +23,7 @@ $resultBanh = mysqli_query($connect,$sqlBanh);
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="viewport" content="width=device-width">
   <title>DON HANG - PANDORA</title>
-  <link rel="shortcut icon" type="image" href="img/logo.png">
+  <link rel="shortcut icon" type="image" href="img/myLogo.png">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"

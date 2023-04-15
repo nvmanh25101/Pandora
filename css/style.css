@@ -1269,7 +1269,11 @@ li {
 	}
 }
 
-
+.product-suggest{
+	text-align: center;
+	font-size: 14px;
+	font-weight: 600;
+}
 
 /* ################################################## */
 

@@ -76,9 +76,9 @@ $result_size = mysqli_query($connect, $sql);
     
        <div class="product-content-left">
                 <img class="image-img" style="width:100%;" src="./assets/images/products/<?= $each['image'] ?>" data-zoom-image="./assets/images/products/<?= $each['image'] ?>" />
-            </div>
+        </div>
 
-            <div class="product-content-right">
+        <div class="product-content-right">
                 <div class="product-content-right-name">
                     <h1><?= $each['name'] ?></h1>
 
@@ -153,9 +153,8 @@ $result_size = mysqli_query($connect, $sql);
                     </div>
                 </form>
 
-            </div>
-
         </div>
+
     </div>
 
     <div class="col-md-12 policy ms-3 mt-3" style="display: flex">

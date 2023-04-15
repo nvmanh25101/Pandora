@@ -5,10 +5,10 @@
 
 }
 .order-product h2{
+   text-align: center;
     margin-top: 40px;
     margin-bottom: 30px;
     font-size: 24px;
-    color: #FF1493;
     font-size: 30px;
     font-weight: bolder;
     
@@ -49,7 +49,6 @@ h1{
 .item-content-price,
 .item-amount,
 .item-total-price{
-    color: #FF1493;
     font-size: 17px;
 
 }
@@ -69,7 +68,6 @@ small{
     font-size: 17px;
     width: 25%;
     text-align: center;
-    color: #FF1493;
 
 }
 .cart__image img{
@@ -80,7 +78,6 @@ small{
     border-spacing:15px;
 }
 .item-content-text{
-    color: #FF1493;
     width: 40%;
     text-align: center;
     font-size: 17px;
@@ -100,7 +97,6 @@ small{
     font-size: 19px;
 }
 .cart__subtotal-title{
-    color: #FF1493;
     
     margin:15px;
     font-size: 23px;
@@ -162,7 +158,6 @@ footer{
 		width: 100%;
 		display: block;
         margin-top: 18px;
-        color: #FF1493;
 		
 		
 		

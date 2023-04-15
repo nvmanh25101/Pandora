@@ -259,13 +259,9 @@
       <?php } ?>
   </div>
 
-  <div style="align-item: center">
-    <hr style="width: 80%">
-  </div>
-
-  <div id="intro">
-    <div class="headline-last m-5">
-      <h3 style="font-weight: bold">Sản phẩm bán chạy</h3>
+  <div id="intro" >
+    <div class="headline-last m-5" style="border-top: 5px solid #fbcad4">
+      <h3 class="mt-2" style="font-weight: bold">Sản phẩm bán chạy</h3>
     </div>
 
     <?php
@@ -307,6 +303,113 @@
       <?php } ?>
 
   </div>
+
+  <div id="intro" class="container p-2 m-2" >
+    <div class="row " style="border-top: 5px solid #fbcad4">
+    <div class="col-md-8">
+      <ul class="products mt-5">
+        <li>
+          <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="./assets/images/products/charmCubic.webp" alt="">
+              </a>
+            </div>
+            <div class="product-info">
+              <a href="#" class="product-suggest p-2">
+                GỢI Ý QUÀ TẶNG
+                <hr>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="./assets/images/products/daychuyen.webp" alt="">
+              </a>
+            </div>
+            <div class="product-info">
+              <a href="#" class="product-suggest p-2">
+                SINH NHẬT THÁNG 4
+                <hr>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="./assets/images/products/nhanSignature.webp" alt="">
+              </a>
+            </div>
+            <div class="product-info">
+              <a href="#" class="product-suggest p-2">
+                GIA ĐÌNH VÀ BẠN BÈ
+                <hr>
+              </a>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <ul class="products">
+        <li>
+          <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="./assets/images/products/charmMuranoHong.webp" alt="">
+              </a>
+            </div>
+            <div class="product-info">
+              <a href="#" class="product-suggest p-2">
+                TÔN VINH KHOẢNH KHẮC 
+                <hr>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="./assets/images/products/charmDory.webp" alt="">
+              </a>
+            </div>
+            <div class="product-info">
+              <a href="#" class="product-suggest p-2">
+                YÊU THƯƠNG ĐONG ĐẦY
+                <hr>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="./assets/images/products/vongNgoisao.webp" alt="">
+              </a>
+            </div>
+            <div class="product-info">
+              <a href="#" class="product-suggest p-2">
+                BIỂU TƯỢNG MÀU SẮC
+                <hr>
+              </a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+      <div class="headline-last col-md-4 mt-5">
+        <h3 class="mt-5" style="font-weight: 900">HƠN CẢ MỘT MÓN QUÀ</h3>
+        <button style="background: #000; color: #fff">Xem thêm</button>
+      </div>
+
+    </div>
+  </div>  
 
   <!-- image slider start -->
   <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">

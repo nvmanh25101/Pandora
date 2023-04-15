@@ -26,10 +26,9 @@ body, html {
  /* MAIN */
  .main-container-header{
      width: 100%;
-     margin-bottom: 150px;
  }
  .confirm-box{
-     margin: 50px 160px 10px 160px;
+     margin: 10px 0px 20px 90px;
  }
  .form-page {
     height: 100%;
@@ -39,12 +38,8 @@ body, html {
 .confirm-text{
     font-family: Playfair Display;
     font-size: 24px;
-    text-align: center;    
     text-transform: uppercase;
     font-weight: 700;
-}
-.confirm-text p{
-    text-align: center;
 }
 .page_container{
     justify-content: center;
@@ -75,11 +70,9 @@ body, html {
     height: 45px;
     width: 163px;
     border-radius: 5px;
-    border: 1px solid #FF1493;
     font-family: Playfair Display;
     font-size: 24px;
     font-weight: 400;
-    color: #FF1493;
     margin-top: 45px;
     text-align: center;
 	
@@ -89,13 +82,11 @@ body, html {
     height: 45px;
     width: 180px;
     border-radius: 5px;
-    border: 1px solid #FF1493;
     font-family: Playfair Display;
     font-size: 20px;
     font-weight: 400;
-    color: #FF1493;
     margin-top: 45px;
-	margin-left: 380px;
+    margin-left: 35%;
 }
 .btnup a{
     padding-top: 4px;
@@ -140,6 +131,10 @@ body, html {
    
 
 }
+
+.user_infor{
+    margin-top: 40px;
+}
 label{
     margin-bottom: 10px;
     
@@ -151,7 +146,7 @@ label{
     margin: 0px 50px;
 }
 
-.bybank, .shipcod{
+.bybank, .shipcod, .vnpay, .momo{
     border-bottom: #FFBFBF solid 1px;
 }
 .pay .gender, label{
@@ -159,8 +154,23 @@ label{
 }
 .infbank{
     text-align: center;
-    background: #dfcccc;
+    background: #f3e7e7;
 }
 .infbank p{
     padding: 10px 0 ;
+}
+
+.about-order{
+    background-color: #fafafa;
+}
+.item-img {
+    width: 20%;
+}
+.cart__image img {
+    display: block;
+    max-width: 100%;
+}
+
+.inf-product{
+    color: #969696;
 }

@@ -41,7 +41,7 @@ require './database/connect.php';
           <?php } else { ?>
               <a href="./user.php?id=<?= $each['id'] ?>">
               <i class="bi bi-people-fill" aria-hidden="true"></i>
-              Chào , <?= $_SESSION['name'] ?>
+              <?= $_SESSION['name'] ?>
             </a>
             <a href="signout.php">
               <i class="bi bi-box-arrow-right" aria-hidden="true"></i>
