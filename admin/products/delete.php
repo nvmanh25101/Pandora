@@ -7,7 +7,7 @@ if(empty($_GET['id'])) {
     exit();
 }
   
-if($_GET['admin_id'] != $_SESSION['id'] || $_SESSION['level'] != 2) {
+if($_GET['admin_id'] != $_SESSION['id'] || $_SESSION['role'] != 2) {
     $_SESSION['error'] = 'Bạn không có quyền để xóa trang sức này';
     header('location:index.php');
     exit();
