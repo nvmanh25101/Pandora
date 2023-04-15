@@ -103,11 +103,17 @@ require './database/connect.php';
             <div class="cart-total-price">
               <i class="bi bi-bag" aria-hidden="true"></i>
               
-              <?php if(empty($_SESSION['id'])) { ?><span id="CartCount">
-               
-              0</span>
+              <?php if(empty($_SESSION['id'])) { ?>
+                <span id="CartCount">0</span>
               <?php } else { ?>
-                <span id="CartCount"><?php  ?></span>
+                <span id="CartCount"><?php 
+                  $user_id = $_SESSION['id'];
+                    $sql = "select count(*) from carts where user_id = '$user_id'";
+                    $result = mysqli_query($connect, $sql);
+                    $count = mysqli_fetch_array($result)['count(*)'];
+                    echo $count;
+                   ?>
+                </span>
                 <?php } ?>
             </div>
           </a>

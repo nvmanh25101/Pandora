@@ -75,7 +75,7 @@
 
                 <div class="row gx-5">
                     <div class="col-md-3 mt-5">
-                        <a class="card d-flex flex-column" href="../orders">
+                        <a class="card d-flex flex-column text-decoration-none" href="../orders">
                             <div class="card__icon d-flex flex-fill">
                                 <i class="bi bi-cart-dash-fill"></i>
                             </div>
@@ -85,7 +85,7 @@
                         </a>
                     </div>
                     <div class="col-md-3 mt-5">
-                        <a class="card d-flex flex-column" href="../products">
+                        <a class="card d-flex flex-column text-decoration-none" href="../products">
                             <div class="card__icon d-flex flex-fill">
                                 <i class="bi bi-vinyl-fill"></i>
                             </div>
@@ -95,7 +95,7 @@
                         </a>
                     </div>
                     <div class="col-md-3 mt-5">
-                        <a class="card d-flex flex-column" href="../categories">
+                        <a class="card d-flex flex-column text-decoration-none" href="../categories">
                             <div class="card__icon d-flex flex-fill">
                                 <i class="bi bi-list-ul"></i>
                             </div>
@@ -105,7 +105,7 @@
                         </a>
                     </div>
                     <div class="col-md-3 mt-5">
-                        <a class="card d-flex flex-column" href="../accounts">
+                        <a class="card d-flex flex-column text-decoration-none" href="../accounts">
                             <div class="card__icon d-flex flex-fill">
                                 <i class="bi bi-people-fill"></i>
                             </div>
@@ -115,7 +115,7 @@
                         </a>
                     </div>
                     <div class="col-md-3 mt-5">
-                        <a class="card d-flex flex-column" href="../sizes">
+                        <a class="card d-flex flex-column text-decoration-none" href="../sizes">
                             <div class="card__icon d-flex flex-fill">
                                 <i class="bi bi-border-width"></i>
                             </div>
