@@ -18,6 +18,6 @@ mysqli_close($connect);
 if(empty($error)) {
     $_SESSION['success'] = 'Đã xóa thành công';
 } else {
-    $_SESSION['error'] = 'Loại bánh này vẫn còn sản phẩm. Không thể xóa!';
+    $_SESSION['error'] = 'Loại trang sức này vẫn còn sản phẩm. Không thể xóa!';
 }
 header('location:index.php');

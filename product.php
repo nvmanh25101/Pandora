@@ -73,7 +73,7 @@ $result_size = mysqli_query($connect, $sql);
 
   <div class="product">
     <div class="product-content">
-    
+        <?php require './admin/error_success.php'; ?>
        <div class="product-content-left">
                 <img class="image-img" style="width:100%;" src="./assets/images/products/<?= $each['image'] ?>" data-zoom-image="./assets/images/products/<?= $each['image'] ?>" />
         </div>

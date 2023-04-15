@@ -1,5 +1,5 @@
 <?php
-require 'check_user_cart.php';
+require './check_user_cart.php';
 require_once './database/connect.php';
 $user_id = $_SESSION['id'];
 $sql = "select * from carts where user_id = $user_id;";

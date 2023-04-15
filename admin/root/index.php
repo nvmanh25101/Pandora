@@ -5,24 +5,73 @@
 
     require_once '../../database/connect.php';
 
-//    $sql = "select count(*) from users where role = '1'";
-//    $admin = mysqli_query($connect, $sql);
-//    $admin_quantity = mysqli_fetch_array($admin)['count(*)'];
-//    $sql = "select count(*) from users where role = '0'";
-//    $customer = mysqli_query($connect, $sql);
-//    $customer_quantity = mysqli_fetch_array($customer)['count(*)'];
-//    $sql = "select count(*) from categories";
-//    $category = mysqli_query($connect, $sql);
-//    $category_quantity = mysqli_fetch_array($category)['count(*)'];
-//    $sql = "select count(*) from products";
-//    $product = mysqli_query($connect, $sql);
-//    $product_quantity = mysqli_fetch_array($product)['count(*)'];
+    $sql = "select count(*) from users where role = '1'";
+    $admin = mysqli_query($connect, $sql);
+    $admin_quantity = mysqli_fetch_array($admin)['count(*)'];
+    $sql = "select count(*) from users where role = '0'";
+    $customer = mysqli_query($connect, $sql);
+    $customer_quantity = mysqli_fetch_array($customer)['count(*)'];
+    $sql = "select 
+        sum(total_price) as income
+        from orders
+        where status = 3 and DATE_FORMAT(created_at, '%e-%m') = DATE_FORMAT(NOW(), '%e-%m')";
+    $income_array = mysqli_query($connect, $sql);
+    $income = mysqli_fetch_array($income_array)['income'];
+    $sql = "select count(*) from products";
+    $product = mysqli_query($connect, $sql);
+    $product_quantity = mysqli_fetch_array($product)['count(*)'];
 ?>
 
         <div class="main__container">
             <div class="container-fluid px-4">
                 
-<!--                --><?php //require_once '../error_success.php' ?>
+                <?php require_once '../error_success.php' ?>
+                <div class="row gx-5">
+                    <div class="col-md-3">
+                        <div class="card d-flex flex-row">
+                            <div class="card__content d-flex flex-column justify-content-between">
+                                <h5 class="card__name">SỐ LƯỢNG TRANG SỨC</h5>
+                                <span class="card__quantity"><?= $product_quantity ?></span>
+                            </div>
+                            <div class="card__icon d-flex flex-fill">
+                                <i class="bi bi-vinyl-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card d-flex flex-row">
+                            <div class="card__content d-flex flex-column justify-content-between">
+                                <h5 class="card__name">SỐ LƯỢNG NHÂN VIÊN</h5>
+                                <span class="card__quantity"><?= $admin_quantity ?></span>
+                            </div>
+                            <div class="card__icon d-flex flex-fill">
+                                <i class="bi bi-people-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card d-flex flex-row">
+                            <div class="card__content d-flex flex-column justify-content-between">
+                                <h5 class="card__name">SỐ LƯỢNG NGƯỜI DÙNG</h5>
+                                <span class="card__quantity"><?= $customer_quantity ?> </span>
+                            </div>
+                            <div class="card__icon d-flex flex-fill">
+                                <i class="bi bi-people-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card d-flex flex-row">
+                            <div class="card__content d-flex flex-column justify-content-between">
+                                <h5 class="card__name">Doanh thu hôm nay</h5>
+                                <span class="card__quantity"><?= $income ?> đ</span>
+                            </div>
+                            <div class="card__icon d-flex flex-fill">
+                                <i class="bi bi-people-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
                 <div class="row gx-5">
                     <div class="col-md-3 mt-5">

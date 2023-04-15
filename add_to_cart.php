@@ -1,10 +1,15 @@
 <?php
 
     require './database/connect.php';
-    require 'check_user_cart.php';
-    session_start();
+    require './check_user_cart.php';
 
     $id = $_POST['product_id'];
+
+    if (empty($_POST['size']) || empty($_POST['color']) || empty($_POST['material'])) {
+        $_SESSION['error'] = 'Vui lòng chọn size, màu sắc và chất liệu';
+        header('location:product.php?id=' . $id);
+        exit();
+    }
     $size = $_POST['size'];
     $sql = "select name from sizes where id = $size";
     $result = mysqli_query($connect, $sql);

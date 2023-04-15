@@ -7,8 +7,8 @@ if(empty($_GET['id'])) {
     exit();
 }
   
-if($_GET['admin_id'] != $_SESSION['id'] || $_SESSION['level'] != 2) {
-    $_SESSION['error'] = 'Bạn không có quyền để xóa bánh này';
+if($_GET['admin_id'] != $_SESSION['id'] || $_SESSION['role'] != 2) {
+    $_SESSION['error'] = 'Bạn không có quyền để xóa trang sức này';
     header('location:index.php');
     exit();
 }
@@ -25,7 +25,7 @@ mysqli_close($connect);
 if(empty($error)) {
     $_SESSION['success'] = 'Đã xóa thành công';
 } else {
-    $_SESSION['error'] = 'Không thể xóa bánh này!';
+    $_SESSION['error'] = 'Không thể xóa trang sức này!';
 }
 
 header('location:index.php');

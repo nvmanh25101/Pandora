@@ -13,9 +13,11 @@ $sql = "select * from users where id = '$id'";
 $result = mysqli_query($connect, $sql);
 $each = mysqli_fetch_array($result);
 
+$city = explode(', ', $each['address'])[3];
+$district = explode(', ', $each['address'])[2];
+$ward = explode(', ', $each['address'])[1];
 $sql = "select * from cart_item where cart_id = '$cart_id'";
 $result = mysqli_query($connect, $sql);
-
 $sql = "select sum(quantity * price) as sum_price from cart_item 
         join products
         on products.id = cart_item.product_id
@@ -86,7 +88,7 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
                             <div class="form_address">
                                 <label for="">Địa chỉ</label>
                                 <input type="text" name="address_receiver" class="form-control mb-2" style="width:80%"
-                                    placeholder="Địa chỉ cụ thể" required>
+                                    value="<?= explode(', ', $each['address'])[0] ?>" required>
                             </div>
                             <select id="city-select" required>
                                 <option value="">Chọn Tỉnh / Thành phố</option>
@@ -208,7 +210,7 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
                                 <?= number_format($value['price'] * $value['quantity']) ?>&#8363
                             </span>
                     </div>
-                    <div class="ms-5">
+                    <div class="ms-5 mt-2">
                         <span >
                             Phí vận chuyển
                         </span>
@@ -217,7 +219,7 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
                             </span>
                     </div>
                 </div>
-                <div class="row ms-3 pb-4 mt-4" style="border-bottom: #ccc 1px solid;">
+                <div class="row ms-3 pb-4 mt-4">
                     <div class="ms-5">
                         <span >
                             Tổng cộng
@@ -250,23 +252,76 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
             crossorigin="anonymous"></script>
 
 
-        <script>
-            $(document).ready(function () {
-                $.getJSON('tinh_tp.json', function (data) {
-                    $.each(data, function (key, value) {
-                        $('#city-select').append('<option value="' + value.code + '">' + value.name + '</option>');
-                    })
-                })
+</div>
+<div id="backtop">
+    <i class="bi bi-chevron-compact-up"></i>
+</div>
+<script src="./assets/js/jquery-3.6.4.min.js"></script>
+<script src="js/app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 
-                $('#city-select').change(function () {
-                    var city = $(this).val();
-                    $.getJSON('quan_huyen.json', function (data) {
-                        $.each(data, function (key, value) {
-                            if (value.parent_code == city) {
-                                $('#district-select').append('<option value="' + value.code + '">' + value.name + '</option>');
-                            }
-                        })
-                    })
+
+<script>
+    $(document).ready(function () {
+        $.getJSON('./assets/hanh_chinh/tinh_tp.json', function (data) {
+            $.each(data, function (key, value) {
+                if (value.name_with_type == '<?= $city ?>') {
+                    $('#city-select').append('<option value="' + value.code + '" selected>' + value.name + '</option>');
+                } else {
+                    $('#city-select').append('<option value="' + value.code + '">' + value.name + '</option>');
+                }
+            })
+        })
+
+        $.getJSON('./assets/hanh_chinh/quan_huyen.json', function (data) {
+            var city = $('#city-select').val();
+            $.each(data, function (key, value) {
+                if (value.parent_code == city) {
+                    if (value.name_with_type == '<?= $district ?>') {
+                        $('#district-select').append('<option value="' + value.code + '" selected>' + value.name + '</option>');
+                    } else {
+                        $('#district-select').append('<option value="' + value.code + '">' + value.name + '</option>');
+                    }
+                }
+            })
+        })
+
+        $.getJSON('./assets/hanh_chinh/xa_phuong.json', function (data) {
+            var district = $('#district-select').val();
+
+            $.each(data, function (key, value) {
+                if (value.parent_code == district) {
+                    if (value.name_with_type == '<?= $ward ?>') {
+                        $('#ward-select').append('<option value="' + value.path_with_type + '" selected>' + value.name + '</option>');
+                        var ward = $('#ward-select').val();
+                        $('#address-min').val(ward);
+                    } else {
+                        $('#ward-select').append('<option value="' + value.path_with_type + '">' + value.name + '</option>');
+                    }
+                }
+            })
+        })
+
+        $('#city-select').change(function () {
+            var city = $(this).val();
+            $.getJSON('./assets/hanh_chinh/quan_huyen.json', function (data) {
+                $.each(data, function (key, value) {
+                    if (value.parent_code == city) {
+                        $('#district-select').append('<option value="' + value.code + '">' + value.name + '</option>');
+                    }
+                })
+            })
+        })
+
+        $('#district-select').change(function () {
+            var district = $(this).val();
+            $.getJSON('./assets/hanh_chinh/xa_phuong.json', function (data) {
+                $.each(data, function (key, value) {
+                    if (value.parent_code == district) {
+                        $('#ward-select').append('<option value="' + value.path_with_type + '">' + value.name + '</option>');
+                    }
                 })
 
                 $('#district-select').change(function () {
@@ -284,7 +339,14 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
                     $('#address-min').val(ward);
                 });
             })
-        </script>
+        });
+
+        $('#ward-select').change(function () {
+            var ward = $(this).val();
+            $('#address-min').val(ward);
+        });
+    })
+</script>
 
 
 </body>

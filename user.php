@@ -90,21 +90,30 @@
                 while($rowOrder = mysqli_fetch_assoc($resultOrder)){
             ?>
             <tr >
-              <td  class="order-shopping">GN<?php echo $rowOrder['id'] ?>BKR</th>
+              <td  class="order-shopping"><?php echo $rowOrder['id'] ?></th>
               <td class="time-shopping" ><?php 
                       echo ($rowOrder['created_at']);
                     ?></td>
               <td class="total-shopping"><?= number_format($rowOrder['total_price'], 0, '.', ' ') ?>&#8363</td>
               <td class="stt-shopping" ><?php switch ($rowOrder['status']) {
-                                            case 0:
-                                                echo "Mới đặt";
-                                                break;
-                                            case 1:
-                                                echo "Đã duyệt";
-                                                break;
-                                            case 2:
-                                                echo "Đã huỷ";
-                                                break;
+                      case 0:
+                          echo "Mới đặt";
+                          break;
+                      case 1:
+                          echo "Đang chuẩn bị hàng";
+                          break;
+                      case 2:
+                          echo "Đang giao hàng";
+                          break;
+                      case 3:
+                          echo "Hoàn thành";
+                          break;
+                      case 4:
+                          echo "Người đặt đã huỷ";
+                          break;
+                      case 5:
+                          echo "Người bán đã huỷ";
+                          break;
                                         }
                                         ?></td>
    

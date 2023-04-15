@@ -18,10 +18,13 @@ mysqli_query($connect, $sql);
 $sql = "update products
 set status = 0
 where category_child_id in 
-      (select id from category_child
+      (select category_child.id from category_child
                  join categories
                  on categories.id = category_child.category_id
                  where categories.id = '$id' and categories.status = 0)";
+
+mysqli_query($connect, $sql);
+
 $error = mysqli_error($connect);
 mysqli_close($connect);
 

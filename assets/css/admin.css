@@ -529,7 +529,7 @@ body {
 }
 
 .delete-size {
-    background-color: #ffffff;
+    background: none;
     border: none;
 }
 .delete-size i {

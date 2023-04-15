@@ -71,14 +71,16 @@ body, html {
     width: 163px;
     border-radius: 5px;
     font-family: Playfair Display;
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 400;
     margin-top: 45px;
     text-align: center;
+    color: #338bbc;
 	
 }
 .btnConfirm{
-	background-color: white;
+	background-color: #338bbc;
+    color: white;
     height: 45px;
     width: 180px;
     border-radius: 5px;
@@ -87,6 +89,7 @@ body, html {
     font-weight: 400;
     margin-top: 45px;
     margin-left: 35%;
+    border: none;
 }
 .btnup a{
     padding-top: 4px;

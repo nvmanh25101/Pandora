@@ -1,7 +1,7 @@
 <?php
 require_once '../check_admin_signin.php';
 
-if (empty($_POST['name']) || empty($_POST['size']) || empty($_POST['color']) || empty($_POST['material']) || empty($_POST['price']) || empty($_POST['category']) || empty($_POST['admin_id']) || $_FILES['image']['size'] === 0) {
+if (empty($_POST['name']) || empty($_POST['size']) || empty($_POST['quantity'])  || empty($_POST['color']) || empty($_POST['material']) || empty($_POST['price']) || empty($_POST['category']) || empty($_POST['admin_id']) || $_FILES['image']['size'] === 0) {
     $_SESSION['error'] = 'Phải điền đầy đủ thông tin';
     header('location:form_insert.php');
     exit();
