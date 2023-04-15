@@ -1,8 +1,8 @@
 <?php
 
-require './PHPMailer/PHPMailer.php';
-require './PHPMailer/SMTP.php';
-require './PHPMailer/Exception.php';
+require 'PHPMailer/PHPMailer.php';
+require 'PHPMailer/SMTP.php';
+require 'PHPMailer/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
@@ -20,7 +20,7 @@ try {
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
     $mail->Username   = 'manhnguyen1104010@gmail.com';                     //SMTP username
-    $mail->Password   = 'qdbaxfgndwygzbdq';                               //SMTP password
+    $mail->Password   = 'cgksvrgiblulqnnf';                               //SMTP password
     $mail->SMTPSecure = 'ssl';                          //Enable implicit TLS encryption
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
     $mail->CharSet = 'UTF-8';

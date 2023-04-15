@@ -1,4 +1,5 @@
 <?php
+
 if (empty($_POST['last_name']) || empty($_POST['first_name']) || empty($_POST['email']) || empty($_POST['password']) || empty($_POST['birthday']) || empty($_POST['phonenumber']) || empty($_POST['address']) || empty($_POST['address_last'])) {
     $_SESSION['error'] = 'Bạn chưa điền đủ thông tin!';
     header('location:signup.php');
@@ -35,7 +36,8 @@ if (mysqli_num_rows($resultEmail) > 0) {
     $resultInsert = mysqli_query($connect, $sqlInsert);
 
     require './mail/mail.php';
-    $url  = "http://" . $_SERVER['HTTP_HOST'] . "/mail";
+//    "http://" .
+    $url  =  $_SERVER['HTTP_HOST'] . "/mail";
     $link = "<a href='$url/email_verification.php?email=$email&token=$token_verification'>Kích hoạt tài khoản</a>";
     sendmail($email, $name, $link);
     header("location: signup.php?errorpass='Vui lòng kiểm tra email'");

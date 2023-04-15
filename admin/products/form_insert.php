@@ -145,10 +145,18 @@ $result_size = mysqli_query($connect, $sql);
         $('#add_size').click(function () {
             $('#size_quantity').append(`
                 <div class="col-6 d-flex flex-row">
-                    <div class="">
-                        <label class="form-label" for="size">Kích thước(cm)</label>
-                        <input type="text" name="size[]" id="size" class="form__input form-control" />
-                    </div>
+                   <div class="">
+                                <label class="form-label me-2" for="size">Kích thước(cm)</label>
+                                <button class="btn btn-outline-secondary dropdown-toggle fs-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">Hiện có</button>
+                                <ul class="dropdown-menu">
+                                    <?php foreach ($result_size as $item_size) { ?>
+                                        <li>
+                                            <span class="dropdown-item fs-5"><?= $item_size['name'] ?></span>
+                                        </li>
+                                    <?php } ?>
+                                </ul>
+                                <input type="text" name="size[]" id="size" class="form__input form-control"/>
+                            </div>
 
                     <div class="ms-1">
                         <label class="form-label" for="quantity">Số lượng</label>

@@ -103,5 +103,40 @@ require './database/connect.php';
 
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <script src="js/app.js"></script>
+<script>
+    $(document).ready(function () {
+        $.getJSON('./assets/hanh_chinh/tinh_tp.json', function (data) {
+            $.each(data, function (key, value) {
+                $('#city-select').append('<option value="' + value.code + '">' + value.name + '</option>');
+            })
+        })
+
+        $('#city-select').change(function () {
+            var city = $(this).val();
+            $.getJSON('./assets/hanh_chinh/quan_huyen.json', function (data) {
+                $.each(data, function (key, value) {
+                    if (value.parent_code == city) {
+                        $('#district-select').append('<option value="' + value.code + '">' + value.name + '</option>');
+                    }
+                })
+            })
+        })
+
+        $('#district-select').change(function () {
+            var district = $(this).val();
+            $.getJSON('./assets/hanh_chinh/xa_phuong.json', function (data) {
+                $.each(data, function (key, value) {
+                    if (value.parent_code == district) {
+                        $('#ward-select').append('<option value="' + value.path_with_type + '">' + value.name + '</option>');
+                    }
+                })
+            })
+        });
+        $('#ward-select').change(function () {
+            var ward = $(this).val();
+            $('#address-min').val(ward);
+        });
+    })
+</script>
 </body>
 </html>

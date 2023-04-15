@@ -61,6 +61,9 @@ foreach ($cart_item as $key => $value) :
     mysqli_query($connect, $sql);
 endforeach;
 
+$sql = "delete from cart_item where cart_id = $cart_id";
+mysqli_query($connect, $sql);
+
 mysqli_close($connect);
 
 $_SESSION['success'] = 'Đặt hàng thành công';

@@ -11,7 +11,7 @@ $sqlTtin = "SELECT id, name_receiver, address_receiver, phone_receiver, DATE_FOR
 $resultTtin = mysqli_query($connect,$sqlTtin);
 $rowTtin = mysqli_fetch_assoc($resultTtin);
 
-$sqlBanh = "SELECT * FROM products,order_product WHERE order_id = $idOrder and order_product.product_id = products.id";
+$sqlBanh = "SELECT * FROM products,order_detail WHERE order_id = $idOrder and order_detail.product_id = products.id";
 $resultBanh = mysqli_query($connect,$sqlBanh);
 
 
@@ -46,7 +46,7 @@ $resultBanh = mysqli_query($connect,$sqlBanh);
             <div class="order-product-content">
                
                  <div class="order-left">
-                    <h1>Mã đơn hàng: GN<?php echo $rowTtin['id']  ?>BKR</h1>
+                    <h1>Mã đơn hàng: <?php echo $rowTtin['id']  ?></h1>
                     <p class="mt-3">Tên người đặt: <?php echo $rowTtin['name_receiver']  ?></p>
                     <p>Thời gian đặt hàng: <?php echo $rowTtin['created_at']  ?></p>
                     <p>Số điện thoại: <?php echo $rowTtin['phone_receiver']  ?></p>
@@ -54,18 +54,26 @@ $resultBanh = mysqli_query($connect,$sqlBanh);
                     <h1>Thông tin sản phẩm:</h1>
                  </div>
                   <div class="order-right">
-                    <p class="order-text" >Trạng thái: <?php switch ($status) {
-                                            case 0:
-                                                echo "Đơn hàng chưa được duyệt";
-                                                break;
-                                            case 1:
-                                                echo "Nguời gửi đang chuẩn bị hàng";
-                                                break;
-                                            case 2:
-                                                echo "Đơn hàng đã bị huỷ";
-                                                break;
-                                        }
-                                        ?> </p> 
+                    <p class="order-text" >Trạng thái:
+                        <?php switch ($status) {
+                            case 0:
+                                echo "Đơn hàng chưa được duyệt";
+                                break;
+                            case 1:
+                                echo "Nguời gửi đang chuẩn bị hàng";
+                                break;
+                             case 2:
+                                echo "Đang giao hàng";
+                                break;
+                             case 3:
+                                echo "Hoàn thành";
+                                break;
+                            case 5:
+                            case 4:
+                                echo "Đơn hàng đã bị huỷ";
+                                break;
+                        }?>
+                    </p>
                  </div>
              </div>
 

@@ -2,7 +2,6 @@
 
     require './database/connect.php';
     require 'check_user_cart.php';
-    session_start();
 
     $id = $_POST['product_id'];
     $size = $_POST['size'];
