@@ -7,7 +7,7 @@ require './database/connect.php';
 <head>
 <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SIGNIN-PANDORA</title>
+    <title>Đăng nhập-PANDORA</title>
     <link rel="shortcut icon" type="image" href="img/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
@@ -32,13 +32,7 @@ require './database/connect.php';
 							<input type="password" id="floatingInput" name="password" class="form-control form-control-lg" placeholder="Password"  required >
 						</div>
 						<small style="color:red;">
-						<?php
-						if (isset($_GET['error'])) {
-							echo "{$_GET['error']}";
-						} else {
-							echo "";
-						}
-						?>
+						<?php require './admin/error_success.php'; ?>
 						</small>
 						<div class=" d-flex mt-3 mb-3" style="display: inline;">
                 			<a class="text-primary-50 me-1" href="" style="font-weight: 600; font-size: 17px;">Quên mật khẩu</a>Hoặc

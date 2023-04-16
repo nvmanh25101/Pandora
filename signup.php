@@ -74,13 +74,7 @@ require './database/connect.php';
                                placeholder="Địa chỉ cụ thể" required>
                     </div>
                     <small style="color:red;">
-                        <?php
-                        if (isset($_GET['error'])) {
-                            echo (string) ($_GET['error']);
-                        } else {
-                            echo "";
-                        }
-                        ?>
+                    <?php require './admin/error_success.php'; ?>
                     </small>
 
                     <button class="btnSignup glow-on-hover btn-lg bg-dark" name="btnSignup" type="submit">Đăng ký
