@@ -226,7 +226,7 @@ b {
 
 #main-menu ul.sub-menu {	
 	position: absolute;
-	background: #e9bce9;
+	background: #ffcad4;
 	list-style: none;
 	width: 250px;
 	display: none;
@@ -429,8 +429,8 @@ ul.categories li .category-top {
 	text-align: center;
 }
 
-.category-info hr{
-	width: 50%;
+.category-cat{
+	border-bottom: solid 1px #ccc;
 }
 
 ul.categories li img {

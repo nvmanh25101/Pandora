@@ -166,14 +166,14 @@ $sum = mysqli_fetch_array($result)['sum_price'];
                     </span>
                 </div>
                 <button class="btn-payment-text mt-2 ms-4">
-                    <a href="./checkout.php?cart_id=<?= $cart_id ?>">THANH TOÁN</a>
+                    <a class="ps-5 pe-5" href="./checkout.php?cart_id=<?= $cart_id ?>">THANH TOÁN</a>
                 </button>
                 
-                <div class="mt-3 ms-5">
+                <div class="mt-3 ms-5" style="text-align: center;">
                     <a href="index.php" style="color: #d1b8c5">Tiếp tục mua sắm ></a>
                 </div>
-                <div class="img-pay mt-3" style="display: flex">
-                    <img src="img/trustbadge.webp" alt="">
+                <div class="img-pay mt-3" style="display: flex; ">
+                    <img class="ms-5" src="img/trustbadge.webp" alt="">
                 </div>
             </div>
         </div>

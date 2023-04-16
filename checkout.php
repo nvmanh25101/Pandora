@@ -172,8 +172,8 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
                     $sum = mysqli_fetch_array($result)['sum_price'];
                     ?>
                 <?php foreach ($cart_item as $key => $value) : ?>
-                <div class="row ms-3 pb-4" style="border-bottom: #ccc 1px solid;">
-                    <div class="table__section col-md-8" style="display: flex;">
+                <div class="row ms-3 pb-4">
+                    <div class="col-md-8 " style="display: flex;">
                     
                         <div class="item-img" data-label="Sản phẩm">
                             <a href="./product.php?id=<?= $value['product_id'] ?>" class="cart__image">
@@ -198,11 +198,11 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
                             <?= number_format($value['price'] * $value['quantity']) ?>&#8363
                         </span>
                     </div>
-                 <?php endforeach ?>
                 </div>
+                <?php endforeach ?>
 
                 <div class="row ms-3 pb-4 mt-4" style="border-bottom: #ccc 1px solid;">
-                    <div class="ms-5">
+                    <div class="ms-2">
                         <span >
                             Tạm tính
                         </span>
@@ -210,7 +210,7 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
                                 <?= number_format($value['price'] * $value['quantity']) ?>&#8363
                             </span>
                     </div>
-                    <div class="ms-5 mt-2">
+                    <div class="ms-2 mt-2">
                         <span >
                             Phí vận chuyển
                         </span>
@@ -220,7 +220,7 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
                     </div>
                 </div>
                 <div class="row ms-3 pb-4 mt-4">
-                    <div class="ms-5">
+                    <div class="ms-2">
                         <span >
                             Tổng cộng
                         </span>
