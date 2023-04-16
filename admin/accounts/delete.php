@@ -1,20 +1,24 @@
-<?php 
-    require_once '../check_super_admin_signin.php';
-if(empty($_GET['id'])) {
-    $_SESSION['error'] = 'Phải chọn để xóa';
-    header('location:index.php');
-    exit();
-}
+<?php
+require_once '../check_super_admin_signin.php';
+try {
+    if (empty($_POST['id'])) {
+        throw new Exception("Phải chọn để xóa!");
 
-$id = $_GET['id'];
+    }
 
-require_once '../../database/connect.php';
-$sql = "update users set deleted_at = now() 
+    $id = $_POST['id'];
+
+    require_once '../../database/connect.php';
+    $sql = "update users set deleted_at = now() 
              where id = '$id'";
 
-mysqli_query($connect, $sql);
+    mysqli_query($connect, $sql);
+    if (mysqli_error($connect)) {
+        throw new Exception("Đã xảy ra lỗi, vui lòng thử lại sau!");
+    }
+    mysqli_close($connect);
 
-mysqli_close($connect);
-
-$_SESSION['success'] = 'Đã xóa thành công';
-header('location:index.php');
+    echo 1;
+} catch (Throwable $e) {
+    echo $e->getMessage();
+}

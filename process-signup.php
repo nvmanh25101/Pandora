@@ -36,7 +36,7 @@ if (mysqli_num_rows($resultEmail) > 0) {
     $pass_hash = password_hash($pass, PASSWORD_DEFAULT);
     $token_verification = uniqid() . time();
     $sqlInsert = "INSERT INTO users(name,gender, birth_date, email, password, phone, address, token_verification) 
-                VALUES('$name', $gender, '$birthday', '$email', '$pass_hash', '$phone', '$address', '$token_verification')";
+                VALUES('$name', '$gender', '$birthday', '$email', '$pass_hash', '$phone', '$address', '$token_verification')";
 
     $resultInsert = mysqli_query($connect, $sqlInsert);
 

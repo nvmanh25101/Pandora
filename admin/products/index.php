@@ -16,7 +16,7 @@ if (isset($_GET['search'])) {
 }
 
 if (isset($_GET['search_status'])) {
-    $where = 'products.status like '.$_GET['search_status'];
+    $where = 'products.status like ' . $_GET['search_status'];
 }
 
 $sql_num_product = "select count(*) from products 
@@ -30,7 +30,7 @@ $num_product_per_page = 10;
 $num_page = ceil($num_product / $num_product_per_page);
 $skip_page = $num_product_per_page * ($page_current - 1);
 
-$sql = "select products.*, category_child.name as category_name, users.name as admin_name, products.user_id, sizes.name AS name_size, product_size.quantity
+$sql = "select products.*, category_child.name as category_name, users.name as admin_name, products.user_id, sizes.name AS name_size, product_size.quantity, product_size.size_id
     from products
     join category_child
     on category_child.id = products.category_child_id
@@ -50,19 +50,19 @@ $result = mysqli_query($connect, $sql);
 require_once '../navbar-vertical.php';
 ?>
 
-    <div class="main__container">
-        <div class="main-container-text d-flex align-items-center justify-content-center">
-            <a class="header__name text-decoration-none" href="#">Trang sức</a>
-        </div>
-        <div class="container-fluid px-4 mt-2">
-            <a href="form_insert.php" class="btn-insert btn btn-dark btn-lg">Thêm</a>
-            <div class="row gx-5">
-                <div class="col-12">
-                    <div class="table-responsive-sm">
-                        <table class="product__table table table-sm table-light table-bordered  align-middle">
+<div class="main__container">
+    <div class="main-container-text d-flex align-items-center justify-content-center">
+        <a class="header__name text-decoration-none" href="#">Trang sức</a>
+    </div>
+    <div class="container-fluid px-4 mt-2">
+        <a href="form_insert.php" class="btn-insert btn btn-dark btn-lg">Thêm</a>
+        <div class="row gx-5">
+            <div class="col-12">
+                <div class="table-responsive-sm">
+                    <table class="product__table table table-sm table-light table-bordered  align-middle">
 
-                            <?php require_once '../error_success.php' ?>
-                            <thead>
+                        <?php require_once '../error_success.php' ?>
+                        <thead>
                             <tr>
                                 <th scope="col">Mã</th>
                                 <th scope="col">Tên trang sức</th>
@@ -76,21 +76,18 @@ require_once '../navbar-vertical.php';
                                 <th scope="col">Sửa</th>
                                 <th scope="col">Xóa</th>
                             </tr>
-                            </thead>
-                            <tbody>
+                        </thead>
+                        <tbody>
                             <?php foreach ($result as $each) { ?>
                                 <tr>
                                     <th scope="row">
-                                        <a href="detail.php?id=<?= $each['id'] ?>"
-                                           class="text-decoration-none"><?= $each['id'] ?></a>
+                                        <a href="detail.php?id=<?= $each['id'] ?>" class="text-decoration-none"><?= $each['id'] ?></a>
                                     </th>
                                     <td>
-                                        <a href="detail.php?id=<?= $each['id'] ?>"
-                                           class="text-decoration-none"><?= $each['name'] ?></a>
+                                        <a href="detail.php?id=<?= $each['id'] ?>" class="text-decoration-none"><?= $each['name'] ?></a>
                                     </td>
                                     <td>
-                                        <img class="products__img"
-                                             src="../../assets/images/products/<?= $each['image'] ?>" alt="">
+                                        <img class="products__img" src="../../assets/images/products/<?= $each['image'] ?>" alt="">
                                     </td>
                                     <td><?php
                                         if ($each['name_size'] !== 'One size') {
@@ -104,23 +101,30 @@ require_once '../navbar-vertical.php';
                                     <td><?= $each['category_name'] ?></td>
                                     <td><?= $each['quantity'] ?></td>
                                     <td><?php
-                                        if ($each['status'] === '1') { ?>
+                                        if ($each['status'] == '1' && $each['quantity'] > 0) { ?>
                                             Đang bán
+                                        <?php } else if($each['status'] == '1' && $each['quantity'] == 0){ ?>
+                                            Hết hàng
                                         <?php } else { ?>
                                             Ngừng bán
                                         <?php } ?>
                                     </td>
                                     <td><?= $each['admin_name'] ?></td>
-                                    <?php if ($each['status'] === '1') { ?>
+                                    <?php if ($each['status'] == '1' && $each['quantity'] > 0) { ?>
                                         <td>
                                             <a href="form_update.php?id=<?= $each['id'] ?>&admin_id=<?= $each['user_id'] ?>">
                                                 <i class="bi bi-pencil-fill"></i>
                                             </a>
                                         </td>
                                         <td>
-                                            <a onclick="return confirm('Bạn chắc chắn muốn xóa?')"
-                                               href="delete.php?id=<?= $each['id'] ?>&admin_id=<?= $each['user_id'] ?>">
+                                            <a onclick="showNoti(<?= $each['id'] ?>, <?= $each['user_id'] ?>, <?= $each['size_id'] ?>)">
                                                 <i class="bi bi-trash-fill"></i>
+                                            </a>
+                                        </td>
+                                    <?php } else if ($each['status'] == '1' && $each['quantity'] == 0){ ?>
+                                        <td colspan="2">
+                                            <a href="form_update.php?id=<?= $each['id'] ?>&admin_id=<?= $each['user_id'] ?>" class="text-decoration-none d-flex justify-content-center">
+                                                <i class="bi bi-plus-circle fs-1 me-2"></i>
                                             </a>
                                         </td>
                                     <?php } else { ?>
@@ -133,13 +137,13 @@ require_once '../navbar-vertical.php';
                                 </tr>
                             <?php } ?>
 
-                            </tbody>
-                        </table>
-                    </div>
-
+                        </tbody>
+                    </table>
                 </div>
+
             </div>
         </div>
     </div>
+</div>
 
 <?php require_once '../footer.php'; ?>

@@ -16,6 +16,16 @@ where id = '$id'";
 
 mysqli_query($connect, $sql);
 
+
+$sql = "update products
+set status = 1
+where category_child_id in 
+      (select category_child.id from category_child
+                 join categories
+                 on categories.id = category_child.category_id
+                 where categories.id = '$id' and categories.status = 1)";
+mysqli_query($connect, $sql);
+
 mysqli_close($connect);
 
 $_SESSION['success'] = 'Đã mở thành công';

@@ -53,25 +53,30 @@
                                 <th scope="col">Email</th>
                                 <th scope="col">Giới tính</th>
                                 <th scope="col">Số điện thoại</th>
+<!--                                <th scope="col">Xóa</th>-->
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php foreach ($result as $each) { ?>
-                                <tr>
-                                    <th scope="row">
-                                        <a href="./detail.php?id=<?= $each['id'] ?>" class="text-decoration-none">
-                                            <?= $each['id'] ?>
-                                        </a>
-                                    </th>
-                                    <td><?= $each['name'] ?></td>
-                                    <td>
-                                        <img class="account__img" src="../../assets/images/user/<?= $each['avatar'] ?>" alt="Avatar">
-                                    </td>
-                                    <td><?= $each['email'] ?></td>
-                                    <td><?= $each['gender'] === 1?'Nam':'Nữ' ?></td>
-                                    <td><?= $each['phone'] ?></td>
-
-                                </tr>
+                                <?php foreach ($result as $each) { ?>
+                                    <tr>
+                                        <th scope="row">
+                                            <a href="./detail.php?id=<?= $each['id'] ?>" class="text-decoration-none">
+                                                <?= $each['id'] ?>
+                                            </a>
+                                        </th>
+                                        <td><?= $each['name'] ?></td>
+                                        <td>
+                                            <img class="account__img" src="../../assets/images/user/<?= $each['avatar'] ?>" alt="Avatar">
+                                        </td>
+                                        <td><?= $each['email'] ?></td>
+                                        <td><?= $each['gender'] === '1'?'Nam':'Nữ' ?></td>
+                                        <td><?= $each['phone'] ?></td>
+<!--                                        <td>-->
+<!--                                            <a onclick="showNoti()">-->
+<!--                                                <i class="bi bi-trash-fill"></i>-->
+<!--                                            </a>-->
+<!--                                        </td>-->
+                                    </tr>
                                 <?php } ?>
                                
                             </tbody>

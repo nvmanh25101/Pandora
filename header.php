@@ -108,7 +108,9 @@ require './database/connect.php';
               <?php } else { ?>
                 <span id="CartCount"><?php 
                   $user_id = $_SESSION['id'];
-                    $sql = "select count(*) from carts where user_id = '$user_id'";
+                    $sql = "select count(*) from carts 
+                        join cart_item on carts.id = cart_item.cart_id
+                        where user_id = '$user_id'";
                     $result = mysqli_query($connect, $sql);
                     $count = mysqli_fetch_array($result)['count(*)'];
                     echo $count;

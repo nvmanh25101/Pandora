@@ -95,30 +95,13 @@ $result = mysqli_query($connect, $sql);
                                     <th scope="col">
                                         <div class="two_buttons">
                                             <?php if ($each['status'] == 1) { ?>
-                                                    <form action="./update.php" method="post">
-                                                        <input type="hidden" name="id" value="<?= $each['id'] ?>">
-                                                        <input type="hidden" name="status" value="2">
-                                                        <button class="btn btnBrowser">Giao hàng</button>
-                                                    </form>
+                                                        <button onclick="update_order(<?= $each['id'] ?>, 2)" class="btn btnBrowser">Giao hàng</button>
                                             <?php } else if($each['status'] == 2) { ?>
-                                                <form action="./update.php" method="post">
-                                                    <input type="hidden" name="id" value="<?= $each['id'] ?>">
-                                                    <input type="hidden" name="status" value="3">
-                                                    <button class="btn btnBrowser">Hoàn thành</button>
-                                                </form>
+                                                    <button onclick="update_order(<?= $each['id'] ?>, 3)" class="btn btnBrowser">Hoàn thành</button>
                                             <?php } else if ($each['status'] == 0){ ?>
-                                                <form action="./update.php" method="post">
-                                                    <input type="hidden" name="id" value="<?= $each['id'] ?>">
-                                                    <input type="hidden" name="status" value="1">
-                                                    <input type="hidden" name="user_admin_id" value="<?= $_SESSION['id'] ?>">
-                                                    <button class="btn btnBrowser">Duyệt</button>
-                                                </form>
-                                                <form action="./update.php" method="post">
-                                                    <input type="hidden" name="id" value="<?= $each['id'] ?>">
-                                                    <input type="hidden" name="status" value="5">
-                                                    <input type="hidden" name="user_admin_id" value="<?= $_SESSION['id'] ?>">
-                                                    <button class="btn btnBrowser">Hủy</button>
-                                                </form>
+                                                    <button onclick="update_order(<?= $each['id'] ?>, 1, <?= $_SESSION['id'] ?>)" class="btn btnBrowser">Duyệt</button>
+
+                                                    <button onclick="update_order(<?= $each['id'] ?>, 5, <?= $_SESSION['id'] ?>)" class="btn btnBrowser">Hủy</button>
                                             <?php } else { ?>
                                             <?php } ?>
                                         </div>

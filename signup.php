@@ -35,9 +35,9 @@ require './database/connect.php';
                                required>
                     </div>
                     <div class="form-outline mb-4" style="float: left;">
-                        <input type="radio" class="gender me-1" name="gender" value="1" id="nam" autocomplete="off">
+                        <input type="radio" class="gender me-1" name="gender" value="1" id="gender" autocomplete="off">
                         <label for="nam">Nam</label>
-                        <input type="radio" class="gender me-1" name="gender" value="0" id="nu" autocomplete="off">
+                        <input type="radio" class="gender me-1" name="gender" value="0" id="gender" autocomplete="off">
                         <label for="nu">Nữ</label>
                     </div>
                     <div class="form-outline mb-4">
@@ -79,12 +79,11 @@ require './database/connect.php';
 
                     <button class="btnSignup glow-on-hover btn-lg bg-dark" name="btnSignup" type="submit">Đăng ký
                     </button>
-
+                </form>
                     <div class=" d-flex mt-5 mb-3" style="display: inline;">
                         <a class="text-primary-50 me-1" href="index.php" style="font-weight: 600; font-size: 17px;">
                             <i class="bi bi-arrow-left me-2 mt-1"></i>Quay về trang chủ</a>
                     </div>
-                </form>
 
             </div>
         </div>

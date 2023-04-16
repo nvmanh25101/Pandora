@@ -99,13 +99,11 @@ $result_size = mysqli_query($connect, $sql);
                             <p>Kích Thước:</p>
                         </div>
 
-                        <div class="select-swap ">
+                        <div class="select-swap-size">
                             <?php foreach ($result_size as $size) { ?>
                                 <div class="data-one">
                                     <input type="radio" id="size-<?= $size['id'] ?>" name="size" value="<?= $size['id'] ?>" class="input-opt">
-                                    <label for="size-<?= $size['id'] ?>" class="sd">
-                                        <?= $size['name'] ?> cm
-                                    </label>
+                                    <label for="size-<?= $size['id'] ?>" class="sd"><?= $size['name'] ?> cm</label>
                                 </div>
                             <?php } ?>
                         </div>
@@ -273,13 +271,11 @@ $result_size = mysqli_query($connect, $sql);
     <?php require './footer.php'; ?>
 
 
+    <script type="text/javascript" src="./assets/js/jquery-3.6.4.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
-    <script type="text/javascript" src="frontend/js/bootstrap.min.js"></script>
 
 
     <!--footer-->
-    <script type="text/javascript" src="./assets/js/jquery-3.6.4.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -323,6 +319,9 @@ $result_size = mysqli_query($connect, $sql);
                 $('.sd').removeClass('active');
                 $(this).addClass('active');
             });
+
+            $('.sd:first').addClass('active').is(":checked");
+            $('.input-opt:first').attr('checked', 'checked');
         });
     </script>
 </body>

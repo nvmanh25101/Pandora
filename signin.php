@@ -14,7 +14,7 @@ require './database/connect.php';
 	<link rel="stylesheet" href="css/login.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="js/app.js"></script>
+    <link rel="stylesheet" href="./assets/css/sweetalert2.min.css">
 </head>
 <body>
   <?php require './header.php'; ?>
@@ -31,9 +31,9 @@ require './database/connect.php';
 						<div class="form-outline mb-2">
 							<input type="password" id="floatingInput" name="password" class="form-control form-control-lg" placeholder="Password"  required >
 						</div>
-						<small style="color:red;">
-						<?php require './admin/error_success.php'; ?>
-						</small>
+<!--						<small style="color:red;">-->
+<!--						--><?php //require './admin/error_success.php'; ?>
+<!--						</small>-->
 						<div class=" d-flex mt-3 mb-3" style="display: inline;">
                 			<a class="text-primary-50 me-1" href="" style="font-weight: 600; font-size: 17px;">Quên mật khẩu</a>Hoặc
                				 <a class="text-primary-50 ms-1" href="signup.php" style="  font-weight: 600; font-size: 17px;">Đăng ký?</a>
@@ -42,15 +42,29 @@ require './database/connect.php';
 						<button class="btn-signin glow-on-hover btn-lg bg-dark" name="btnSignin" type="submit" >Đăng nhập</button>
 						
 					</form>
-				  
+				  <input id="error" hidden value="<?= isset($_SESSION['error']) ?? $_SESSION['error'] ?>">
 				</div>
 			</div>
 		</section>
     <?php require './footer.php'; ?>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+    <script src="./assets/js/sweetalert2.all.min.js"></script>
   <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
   <script src="js/app.js"></script>
+<script>
+    $(document).ready(function (){
+        if ($("#error").val() !== '') {
+            Swal.fire(
+                {
+                    title: 'Thông báo!',
+                    text: $("#error").val(),
+                    icon: 'info',
+                    confirmButtonText: 'OK'
+                }
+            )
+        }
+    })
+</script>
 </body>
 </html>

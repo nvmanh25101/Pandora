@@ -89,7 +89,7 @@ $result = mysqli_query($connect, $sql);
                                         </a>
                                     </td>
                                     <td>
-                                        <a onclick="return confirm('Bạn chắc chắn muốn xóa?')" href="delete.php?id=<?= $each['id'] ?>">
+                                        <a onclick="showNoti(<?= $each['id'] ?>)">
                                             <i class="bi bi-trash-fill"></i>
                                         </a>
                                     </td>

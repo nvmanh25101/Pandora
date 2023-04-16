@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="//theme.hstatic.net/200000103143/1000942575/14/favicon.png?v=1433" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" integrity="sha512-NhSC1YmyruXifcj/KFRWoC561YpHpc5Jtzgvbuzx5VozKpWvQ+4nXhPdFgmx8xqexRcpAglTj9sIBWINXa8x5w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -102,6 +103,20 @@
                     </div>
                 </li>
                 <li class="nav-item navbar__item">
+                    <a class="nav-link d-flex align-items-center navbar__link <?= $page === 'sizes' ? 'active' : '' ?>"
+                       href="../../sizes">
+                        <i class="navbar__link-icon bi bi-border-width"></i>
+                        <span>Kích thước</span>
+                    </a>
+                </li>
+                <li class="nav-item navbar__item">
+                    <a class="nav-link d-flex align-items-center navbar__link <?= $page === 'personal' ? 'active' : '' ?>"
+                       href="../../personal">
+                        <i class="navbar__link-icon bi bi-person-fill"></i>
+                        <span>Tài khoản cá nhân</span>
+                    </a>
+                </li>
+                <li class="nav-item navbar__item">
                     <a class="nav-link d-flex align-items-center navbar__link" href="../../signout.php">
                         <i class="navbar__link-icon bi bi-box-arrow-in-right"></i>
                         <span>Đăng xuất khỏi Trái Đất</span> 
@@ -183,23 +198,37 @@
                 </div>
             </li>
             <li class="nav-item navbar__item">
-                    <a class="nav-link d-flex align-items-center navbar__link <?= $page === 'accounts' ? 'active' : '' ?>"
-                       href="../../accounts">
-                        <i class="navbar__link-icon bi bi-person"></i>
-                        <span>Tài khoản</span>
-                    </a>
-                    <div class="sub-navbar">
-                        <ul class="list-group">
-                            <li class="sub-navbar__item">
-                                <a class="sub-navbar__link list-group-item-action" href="../../accounts">Nhân viên</a>
-                            </li>
-                            <li class="sub-navbar__item">
-                                <a class="sub-navbar__link list-group-item-action" href="../../accounts/users">Khách
-                                    hàng</a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                <a class="nav-link d-flex align-items-center navbar__link <?= $page === 'accounts' ? 'active' : '' ?>"
+                   href="../../accounts">
+                    <i class="navbar__link-icon bi bi-person"></i>
+                    <span>Tài khoản</span>
+                </a>
+                <div class="sub-navbar">
+                    <ul class="list-group">
+                        <li class="sub-navbar__item">
+                            <a class="sub-navbar__link list-group-item-action" href="../../accounts">Nhân viên</a>
+                        </li>
+                        <li class="sub-navbar__item">
+                            <a class="sub-navbar__link list-group-item-action" href="../../accounts/users">Khách
+                                hàng</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item navbar__item">
+                <a class="nav-link d-flex align-items-center navbar__link <?= $page === 'sizes' ? 'active' : '' ?>"
+                   href="../../sizes">
+                    <i class="navbar__link-icon bi bi-border-width"></i>
+                    <span>Kích thước</span>
+                </a>
+            </li>
+            <li class="nav-item navbar__item">
+                <a class="nav-link d-flex align-items-center navbar__link <?= $page === 'personal' ? 'active' : '' ?>"
+                   href="../../personal">
+                    <i class="navbar__link-icon bi bi-person-fill"></i>
+                    <span>Tài khoản cá nhân</span>
+                </a>
+            </li>
             <li class="nav-item navbar__item">
                 <a class="nav-link d-flex align-items-center navbar__link" href="../../signout.php">
                     <i class="navbar__link-icon bi bi-box-arrow-in-right"></i>

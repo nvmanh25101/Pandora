@@ -85,7 +85,7 @@
 
                                         </td>
                                         <td>
-                                            <a href="delete.php?id=<?= $each['id'] ?>">
+                                            <a onclick="showNoti(<?= $each['id'] ?>)">
                                                 <i class="bi bi-trash-fill"></i>
                                             </a>
                                         </td>
