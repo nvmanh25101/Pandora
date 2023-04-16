@@ -60,7 +60,7 @@
           <ul class="categories">
             <?php foreach($result_pandora as $each) { ?>
             <li class="ms-4">
-              <div class="category-item">
+              <div class="category-item pb-3">
                 <div class="category-top">
                   <a href="#" class="category-thumb">
                     <img src="./assets/images/products/<?= $each['image'] ?>" alt="">
@@ -71,7 +71,6 @@
                   <a href="#" class="category-cat">
                     <?= $each['name'] ?>
                   </a>
-                  <hr>  
                 </div>
               </div>
             </li>

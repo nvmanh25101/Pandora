@@ -431,6 +431,21 @@ ul.productss li .product-info .product-name{
     border-top-right-radius: 10px;
 }
 
+.list-policy{
+    max-width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.policy-last{
+    text-align: center;
+}
+
+.list-policy li{
+    width: 20%;
+}
+
 
 /*reponsive product*/
 

@@ -136,14 +136,6 @@ $result_size = mysqli_query($connect, $sql);
                         </div>
                     </div>
 
-                    <div class="product-quantity">
-                        <div class="text">
-                            <p>Số lượng:</p>
-                        </div>
-                        <div class="buttons_added">
-                            <input type="number" name="quantity" value="1" max="30" min="1">
-                        </div>
-                    </div>
                     <input type="hidden" name="product_id" value="<?= $id ?>">
 
                     <div class="product-actions">
@@ -184,8 +176,8 @@ $result_size = mysqli_query($connect, $sql);
       </div>  
     </div>
     
-    <div class=" policy-last"  >
-      <ul class="list-policy" style="display: flex" >
+    <div class=" policy-last ms-5"  >
+      <ul class="list-policy ms-5 mt-2" style="display: flex" >
         <li class="">
             <h4>Chính sách đổi hàng</h4>
             <p>Chính sách đổi hàng chỉ áp dụng cho các sản phẩm bị lỗi kĩ thuật và là hàng nguyên giá hoặc giảm giá dưới 20%. Chính sách áp dụng một đổi một trong vòng 15 ngày kể từ ngày nhận hàng và chỉ đổi duy nhất 01 lần.</p>
