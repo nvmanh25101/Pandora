@@ -1,6 +1,6 @@
 <?php
     require_once '../../check_super_admin_signin.php';
-    $page = "categories";
+    $page = "category-detail";
     require_once './navbar-vertical.php';
 
     require_once '../../../database/connect.php';
@@ -120,4 +120,4 @@
         </div>
     </div>
 
-<?php require_once '../../footer.php';?>
+<?php require_once './footer.php';?>

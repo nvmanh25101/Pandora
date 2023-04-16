@@ -15,32 +15,22 @@ if(empty($_POST['name'])) {
 }
 
 $name = $_POST['name'];
-
+$image_old = $_POST['image_old'];
+$image_new = $_FILES['image_new'];
 $file_name = '';
-if ($_FILES['image']['size'] !== 0) {
-    $image = $_FILES['image'];
-    // Ảnh
+if($image_new['size'] > 0) {
     $folder = '../../assets/images/categories/';
-    $path = $image['name'];
+    $path = $image_new['name'];
     $file_extension = pathinfo($path, PATHINFO_EXTENSION);
-    $file_type = array("jpg", "jpeg", "png");
-
-    if ($image["size"] > 1000000) {
-        $_SESSION['error'] = 'File của bạn quá lớn!';
-        header('location:form_insert.php');
-        exit();
-    }
-
-    if(!in_array((string) $file_extension, $file_type)) {
-        $_SESSION['error'] = 'Chỉ cho phép file dạng .JPG, .PNG, .JPEG';
-        header('location:form_insert.php');
-        exit();
-    }
-
-    $file_name = 'category_' . time() . '.' . $file_extension;
+    $file_name = 'admin_' . time() . '.' . $file_extension; // tránh trùng ảnh
     $path_file = $folder . $file_name;
-    move_uploaded_file($image['tmp_name'], $path_file);
+
+    move_uploaded_file($image_new['tmp_name'], $path_file);
 }
+else {
+    $file_name = $image_old;
+}
+
 
 require_once '../../database/connect.php';
 

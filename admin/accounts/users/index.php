@@ -1,7 +1,7 @@
 <?php 
     require_once '../../check_admin_signin.php';
-    $page = "accounts";
-    require_once './navbar-vertical.php';
+    $page = "account-user";
+    require_once '../../categories/category_detail/navbar-vertical.php';
 
     require_once '../../../database/connect.php';
 
@@ -87,4 +87,4 @@
         </div>
     </div>
 
-<?php require_once '../../footer.php'; ?>
+<?php require_once '../../categories/category_detail/footer.php'; ?>

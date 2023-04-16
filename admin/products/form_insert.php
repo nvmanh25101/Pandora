@@ -115,7 +115,26 @@ $result_size = mysqli_query($connect, $sql);
 
 <script src="../../assets/js/jquery-3.6.4.min.js"></script>
 <script src="../../assets/js/bootstrap.bundle.min.js"></script>
+<script src="../../assets/js/notify.js"></script>
+
 <script>
+    $.notify.addStyle('noti',{
+        html: '<div><i class="bi bi-check-circle-fill"></i> <span data-notify-text/>☺</div>',
+        classes: {
+            base: {
+                "white-space": "nowrap",
+                "background-color": "black",
+                "padding": "12px",
+                "border-radius": "5px",
+            },
+            success: {
+                "color": "#468847",
+                "background-color": "#DFF0D8",
+                "font-size": "2rem"
+            }
+        }
+    })
+
     $(document).ready(function () {
         $('#category').change(function () {
             let category_id = $(this).val();
@@ -179,6 +198,11 @@ $result_size = mysqli_query($connect, $sql);
         $('.btn-menu').click(function () {
             $('.navbar-vertical-mobile').toggle("fast");
             $('.header__navbar-overlay').toggle("fast");
+        });
+
+        $.notify("<?php if(isset($_SESSION['success'])) { echo $_SESSION['success']; unset($_SESSION['success']); }  ?>", {
+            style: 'noti',
+            className: 'success'
         });
     });
 </script>

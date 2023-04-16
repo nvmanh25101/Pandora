@@ -139,6 +139,16 @@ body {
     background-color: #ff9fad;
 }
 
+.sub-navbar__link.active {
+    color: #fdffff;
+    background-color: #ff9fad;
+    border-left: 4px solid #f8f2e8;
+}
+
+.sub-navbar:has(> .sub-navbar__link.active) {
+    display: block;
+}
+
 .navbar-mobile-brand {
     padding-right: 50px;
 }

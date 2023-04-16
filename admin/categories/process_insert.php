@@ -20,13 +20,13 @@ if ($_FILES['image']['size'] !== 0) {
 
     if ($image["size"] > 1000000) {
         $_SESSION['error'] = 'File của bạn quá lớn!';
-        header('location:form_insert.php');
+        header('location:index.php');
         exit();
     }
 
     if(!in_array((string) $file_extension, $file_type)) {
         $_SESSION['error'] = 'Chỉ cho phép file dạng .JPG, .PNG, .JPEG';
-        header('location:form_insert.php');
+        header('location:index.php');
         exit();
     }
 
