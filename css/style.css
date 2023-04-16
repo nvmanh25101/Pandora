@@ -503,6 +503,11 @@ ul.products li:hover .product-info a {
 	box-shadow: 0 4px 12px #00000026;
 }
 
+.product-thumb img{
+	width: 100%;
+	height: auto;
+}
+
 ul.products li .product-info a {
 	display: block;
 	text-decoration: none;

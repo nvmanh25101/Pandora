@@ -156,7 +156,7 @@
       <?php } ?>
 
   </div>
-
+  
   <div id="intro">
     <div class="headline">
       <h3>Vòng mềm</h3>
@@ -202,7 +202,6 @@
         </div>
       </li>
       <?php } ?>
-
   </div>
 
   <div id="intro">
@@ -296,9 +295,9 @@
       <?php } ?>
 
   </div>
-
-  <div id="intro" class="container p-2 m-2" >
-    <div class="row " style="border-top: 5px solid #fbcad4">
+  
+  <div id="intro" class="container  p-2 " >
+    <div class="row" style="border-top: 5px solid #fbcad4">
     <div class="col-md-8">
       <ul class="products mt-5">
         <li>
@@ -402,7 +401,175 @@
       </div>
 
     </div>
-  </div>  
+  </div>
+
+  <div id="intro" class="container p-2" >
+    <div class="row " style="border-top: 5px solid #fbcad4">
+    <div class="col-md-8">
+      <ul class="products mt-5">
+        <li>
+          <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="img/grandmother.webp" alt="">
+              </a>
+            </div>
+            <div class="product-info">
+              <a href="#" class="product-suggest p-2">
+                    BÀ
+                <hr>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="img/friends.webp" alt="">
+              </a>
+            </div>
+            <div class="product-info">
+              <a href="#" class="product-suggest p-2">
+                BẠN BÈ
+                <hr>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="img/sister.webp" alt="">
+              </a>
+            </div>
+            <div class="product-info">
+              <a href="#" class="product-suggest p-2">
+                CHỊ EM GÁI
+                <hr>
+              </a>
+            </div>
+          </div>
+        </li>
+      </ul>
+      <ul class="products">
+        <li>
+          <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="img/daughter.webp" alt="">
+              </a>
+            </div>
+            <div class="product-info">
+              <a href="#" class="product-suggest p-2">
+                CON GÁI
+                <hr>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="img/mother.webp" alt="">
+              </a>
+            </div>
+            <div class="product-info">
+              <a href="#" class="product-suggest p-2">
+                MẸ
+                <hr>
+              </a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="img/girlfriend.webp" alt="">
+              </a>
+            </div>
+            <div class="product-info">
+              <a href="#" class="product-suggest p-2">
+                 NGƯỜI YÊU
+                <hr>
+              </a>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+      <div class="headline-last col-md-4 mt-5">
+        <h3 class="mt-5" style="font-weight: 900">TẶNG NGƯỜI PHỤ NỮ BẠN YÊU</h3>
+        <button style="background: #000; color: #fff">Xem thêm</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="container album mb-5" style="border-top: 5px solid #fbcad4">
+    <div class="row m-1 mt-4 mb-3" >
+      <h3 class="m-2 mb-3" style="font-weight: bold; text-align: center;">BỘ SƯU TẬP</h3>
+      <div class="col-md-3" style="text-align: center;">
+        <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="img/pandora_moments.webp" alt="">
+              </a>
+            </div>
+            <div class="product-info">
+              <h5 class="m-3" style="font-weight: bold;">Pandora Moments</h5>
+            </div>
+          </div>
+          <button class="mt-4" style="background: #000; color: #fff; ">Xem thêm</button>
+      </div>
+
+      <div class="col-md-3" style="text-align: center;">
+        <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="img/pandora_timeless.webp" alt="">
+              </a>
+            </div>
+            <div class="product-info">
+              <h5 class="m-3" style="font-weight: bold;">Pandora Timeless</h5>
+            </div>
+          </div>
+          <button class="mt-4" style="background: #000; color: #fff; ">Xem thêm</button>
+      </div>
+
+      <div class="col-md-3" style="text-align: center;">
+        <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="img/pandoraME.webp" alt="">
+              </a>
+            </div>
+            <div class="product-info">
+              <h5 class="m-3" style="font-weight: bold;">Pandora ME</h5>
+            </div>
+          </div>
+          <button class="mt-4" style="background: #000; color: #fff; ">Xem thêm</button>
+      </div>
+
+      <div class="col-md-3" style="text-align: center;">
+        <div class="product-item">
+            <div class="product-top">
+              <a href="#" class="product-thumb">
+                <img src="img/disneyxPandora.webp" alt="">
+              </a>
+            </div>
+            <div class="product-info">
+              <h5 class="m-3" style="font-weight: bold;">Disney x Pandora</h5>
+            </div>
+          </div>
+          <button class="mt-4" style="background: #000; color: #fff; ">Xem thêm</button>
+      </div>
+    </div>
+  </div>
 
   <!-- image slider start -->
   <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">

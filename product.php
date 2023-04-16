@@ -147,8 +147,8 @@ $result_size = mysqli_query($connect, $sql);
 
     </div>
 
-    <div class="col-md-12 policy ms-3 mt-3" style="display: flex">
-        <div class="col-md-2 ms-3" style="border-right: solid #d78ac8 1px;">
+    <div class="col-md-12 policy  mt-3" style="display: flex">
+        <div class="col-md-2 ms-5" style="border-right: solid #d78ac8 1px;">
             <p>Chính sách áp dụng một đổi một trong vòng 15 ngày kể từ ngày nhận hàng và chỉ đổi duy nhất 01 lần.</p>
         </div>
         <div class="col-md-2 ms-3" style="border-right: solid #d78ac8 1px;">
