@@ -18,7 +18,7 @@ $num_order_per_page = 10;
 
 $num_page = ceil($num_order / $num_order_per_page);
 $skip_page = $num_order_per_page * ($page_current - 1);
-$sql = "SELECT orders.id, name_receiver, address_receiver, phone_receiver, DATE_FORMAT(orders.created_at, '%d/%m/%Y %T') as created_at, orders.status, users.name, orders.user_admin_id 
+$sql = "SELECT orders.*, DATE_FORMAT(orders.created_at, '%d/%m/%Y %T') as created_at, users.name
     from orders
     join users on orders.user_id = users.id
     limit $num_order_per_page offset $skip_page";
@@ -41,6 +41,7 @@ $result = mysqli_query($connect, $sql);
                                 <th class="orderer-product" scope="col">Người đặt</th>
                                 <th class="recipient-product" scope="col">Người nhận</th>
                                 <th class="time-product" scope="col">Thời gian đặt</th>
+                                <th class="status-order" scope="col">Tổng tiền</th>
                                 <th class="status-order" scope="col">Trạng thái</th>
                                 <th class="status-order" scope="col">Người duyệt đơn</th>
                                 <th class="manage-order" scope="col">Quản lý</th>
@@ -62,6 +63,7 @@ $result = mysqli_query($connect, $sql);
                                     </th>
 
                                     <th scope="col"><?= $each['created_at'] ?></th>
+                                    <th scope="col"><?= number_format($each['total_price']) ?>đ</th>
                                     <th scope="col" style="font-weight:600;">
                                         <?php switch ($each['status']) {
                                             case 0:

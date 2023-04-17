@@ -19,10 +19,6 @@
     $material = $_POST['material'];
     $quantity = 1;
 
-    $sql = "select * from products where id = $id";
-    $result = mysqli_query($connect, $sql);
-    $each = mysqli_fetch_array($result);
-
     $user_id = $_SESSION['id'];
     $sql = "select * from carts where user_id = $user_id";
     $result = mysqli_query($connect, $sql);

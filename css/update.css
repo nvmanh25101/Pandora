@@ -31,8 +31,7 @@ body{
 }
 h2 {
     padding-top: 50px;
-    font-family: Playfair Display;  
-    color: #FF1493;
+    font-family: Playfair Display;
 
 }
 .form_name {
@@ -57,39 +56,24 @@ label {
     margin-top: 30px;
 }
 .btnUpdate{
-    background-color: white;
+    background-color: #000000;
     height: 45px;
-    width: 163px;
+    width: 646px;
     left: 563px;
     top: 412px;
     border-radius: 5px;
-    border: 1px solid #FF1493;
     font-family: Playfair Display;
     font-size: 24px;
     font-weight: 400;
-    color: #FF1493;
+    color: #FFFFFF;
     margin-top: 27px;
 	
 }
-.btnUpdatet{
-	background-color: white;
-    height: 45px;
-    width: 163px;
-    left: 563px;
-    top: 412px;
-    border-radius: 5px;
-    border: 1px solid #FF1493;
-    font-family: Playfair Display;
-    font-size: 24px;
-    font-weight: 400;
-    color: #FF1493;
-    margin-top: 27px;
-	margin-left: 320px;
+.btnUpdate:hover{
+    background-color: #cccccc;
+    color: #000000;
 }
-.btnup{
-	display: flex;
-	
-}
+
 /*reponsive*/
 
 @media screen and (max-width: 450px) {
@@ -135,9 +119,7 @@ label {
 	   #yBt{
 		 display: none;
 	   }
-	   #backtop{
-		 display: none;
-	   }
+
 	   footer {
  
 		 width: 100%;

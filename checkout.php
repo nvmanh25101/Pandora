@@ -13,9 +13,8 @@ $sql = "select * from users where id = '$id'";
 $result = mysqli_query($connect, $sql);
 $each = mysqli_fetch_array($result);
 
-$city = explode(', ', $each['address'])[3];
-$district = explode(', ', $each['address'])[2];
-$ward = explode(', ', $each['address'])[1];
+[$address, $ward, $district, $city] = explode(', ', $each['address']);
+
 $sql = "select * from cart_item where cart_id = '$cart_id'";
 $result = mysqli_query($connect, $sql);
 $sql = "select sum(quantity * price) as sum_price from cart_item 
@@ -37,7 +36,7 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/confirminfo.css">
@@ -47,72 +46,69 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
 
 <body>
 
-    <div class="main-container-header" style="background: #fafafa">
-        <div class="row">
-            <div class="col-md-6 pt-4" style="background: #fff; width:50%; border-right: solid 1px #ccc;">
-                <div class="confirm-box">
-                    <div class="confirm-text mt-4">
-                        <p>Pandora Việt Nam</p>
-                    </div>
+<div class="main-container-header" style="background: #fafafa">
+    <div class="row">
+        <div class="col-md-6 py-4" style="background: #fff; border-right: solid 1px #ccc;">
+            <div class="confirm-box">
+                <div class="confirm-text mt-4">
+                    <p>Pandora Việt Nam</p>
                 </div>
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb ms-5">
-                        <li class="breadcrumb-item ms-5"><a href="index.php">Giỏ hàng</a></li>
-                        <li class="breadcrumb-item"><a href="#">Thông tin giao hàng</a></li>
-                    </ol>
-                </nav>
-                <form class="form-page " action="./process_checkout.php" method="post">
-                    <div class="page_container ">
-                        <div class="main_content">
-                            <div class="row user_infor">
+            </div>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb ms-5">
+                    <li class="breadcrumb-item ms-5"><a href="index.php">Giỏ hàng</a></li>
+                    <li class="breadcrumb-item"><a href="#">Thông tin giao hàng</a></li>
+                </ol>
+            </nav>
+            <form class="form-page " action="./process_checkout.php" method="post">
+                <div class="page_container ">
+                    <div class="main_content">
+                        <div class="row user_infor">
 
-                                <div class="col-md-3 "><img class="image-img" style="width:50%;"
-                                        src="./img/<?= $each['avatar'] ?>" />
+                            <div class="col-md-2">
+                                <img class="image-img" style="width: 100px; height: 100px;border-radius: 50%;"
+                                                        src="./assets/images/admin/adminvjppro.jpg"/>
+                            </div>
+                            <div class="col-md-8 ms-3">
+                                <div class="name mb-3 mt-3">
+                                    <?= $each['name'] ?>(<?= $each['email'] ?>)
                                 </div>
-                                <div class="col-md-3">
-                                    <div class="name">
-                                        <?= $each['name'] ?>
-                                    </div>
-                                    <div class="email mb-2">
-                                        <?= $each['email'] ?>
-                                    </div>
-                                    <a href="signout.php"><i class="bi bi-box-arrow-right" aria-hidden="true"></i>Đăng
-                                        Xuất</a>
-                                </div>
+                                <a href="signout.php"><i class="bi bi-box-arrow-right" aria-hidden="true"></i>Đăng Xuất</a>
                             </div>
-                            <div class="form_name">
-                                <label for="">Họ và tên</label>
-                                <input type="text" name="name_receiver" class="form-control" value="<?= $each['name'] ?>"
-                                    style="width:80%" required>
-                            </div>
-                            <div class="form_address">
-                                <label for="">Địa chỉ</label>
-                                <input type="text" name="address_receiver" class="form-control mb-2" style="width:80%"
-                                    value="<?= explode(', ', $each['address'])[0] ?>" required>
-                            </div>
-                            <select id="city-select" required>
-                                <option value="">Chọn Tỉnh / Thành phố</option>
-                            </select>
-                            <select id="district-select" required>
-                                <option value="">Chọn Quận / Huyện</option>
-                            </select>
-                            <select id="ward-select" required>
-                                <option value="">Chọn Xã / Phường</option>
-                            </select>
-                            <input name="address_last" hidden id="address-min">
-
-                            <div class="form_phone">
-                                <label for="">Số điện thoại</label>
-                                <input type="text" name="phone_receiver" class="form-control" value="<?= $each['phone'] ?>"
-                                    style="width:80%" required>
-                            </div>
-
                         </div>
+                        <div class="form_name">
+                            <label for="">Họ và tên</label>
+                            <input type="text" name="name_receiver" class="form-control" value="<?= $each['name'] ?>"
+                                   style="width:80%" required>
+                        </div>
+                        <div class="form_address">
+                            <label for="">Địa chỉ</label>
+                            <input type="text" name="address_receiver" class="form-control mb-2" style="width:80%"
+                                   value="<?= $address ?>" required>
+                        </div>
+                        <select id="city-select" required>
+                            <option value="">Chọn Tỉnh / Thành phố</option>
+                        </select>
+                        <select id="district-select" required>
+                            <option value="">Chọn Quận / Huyện</option>
+                        </select>
+                        <select id="ward-select" required>
+                            <option value="">Chọn Xã / Phường</option>
+                        </select>
+                        <input name="address_last" hidden id="address-min">
+
+                        <div class="form_phone">
+                            <label for="">Số điện thoại</label>
+                            <input type="text" name="phone_receiver" class="form-control" value="<?= $each['phone'] ?>"
+                                   style="width:80%" required>
+                        </div>
+
                     </div>
-                    <h1 style="margin: 60px 50px 10px 50px; font-size: 25px; font-weight: bold;">Phương thức thanh toán</h1>
-                    <div class="pay" style="width:80%">
-                        <div class="bybank mt-2"><input type="radio" class="payment me-1 ms-3" name="payment" value="0"
-                                id="bank" autocomplete="off">
+                    <h1 style="margin: 40px 0 20px 0; font-size: 25px; font-weight: bold;">Phương thức thanh toán</h1>
+                    <div class="pay" >
+                        <div class="bybank mt-2">
+                            <input type="radio" class="payment me-1 ms-3" name="payment" value="0"
+                                                        id="bank" autocomplete="off">
                             <label for="bank"><img src="img/paybyBank.svg" alt="" class="payby"> Chuyển khoản qua ngân hàng</label>
                             <div class="infbank ">
                                 <p>Quý khách vui lòng chuyển khoản theo thông tin sau:</p>
@@ -124,57 +120,66 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
                                     hiển thị khi bấm Hoàn tất đơn hàng</p>
                             </div>
                         </div>
-                        <div class="shipcod mt-2"><input type="radio" class="payment me-1 ms-3" name="payment" value="1"
-                                id="shipcod" autocomplete="off">
+                        <div class="shipcod mt-2">
+                            <input type="radio" class="payment me-1 ms-3" name="payment" value="1"
+                                                         id="shipcod" autocomplete="off">
                             <label for="shipcod"><img src="img/cod.svg" alt="" class="payby"> Thanh toán khi giao hàng (COD)</label>
                         </div>
 
-                        <div class="vnpay mt-2"><input type="radio" class="payment me-1 ms-3" name="payment" value="1"
-                                id="shipcod" autocomplete="off">
-                            <label for="vnpay"><img src="img/vnpay_new.svg" alt="" class="payby" style="width: 40px; height: 35px;"> Thẻ ATM/Visa/Master/JCB/QR Pay qua cổng VNPAY</label>
+                        <div class="vnpay mt-2">
+                            <input type="radio" class="payment me-1 ms-3" name="payment" value="2"
+                                                       id="shipcod" autocomplete="off">
+                            <label for="vnpay"><img src="img/vnpay_new.svg" alt="" class="payby"
+                                                    style="width: 40px; height: 35px;"> Thẻ ATM/Visa/Master/JCB/QR Pay qua
+                                cổng VNPAY</label>
                         </div>
 
-                        <div class="momo mt-2"><input type="radio" class="payment me-1 ms-3" name="payment" value="2"
-                                id="momo" autocomplete="off">
-                            <label for="momo"><img src="img/momo.svg" alt="" class="payby" style="width: 40px; height: 35px;"> Ví Momo</label>
+                        <div class="momo mt-2">
+                            <input type="radio" class="payment me-1 ms-3" name="payment" value="3"
+                                                      id="momo" autocomplete="off">
+                            <label for="momo"><img src="img/momo.svg" alt="" class="payby"
+                                                   style="width: 40px; height: 35px;"> Ví Momo</label>
                         </div>
 
-                        <div class="paypoo mt-2"><input type="radio" class="payment me-1 ms-3" name="payment" value="2"
-                                id="momo" autocomplete="off">
-                            <label for="paypoo"><img src="img/paypoo.svg" alt="" class="payby" style="width: 40px; height: 35px;"> Trả góp qua ví Payoo</label>
+                        <div class="paypoo mt-2">
+                            <input type="radio" class="payment me-1 ms-3" name="payment" value="4"
+                                                        id="momo" autocomplete="off">
+                            <label for="paypoo"><img src="img/paypoo.svg" alt="" class="payby"
+                                                     style="width: 40px; height: 35px;"> Trả góp qua ví Payoo</label>
                         </div>
                     </div>
                     <div class="btnup">
-                        <a class="btnReturn ms-5" href="./cart.php">Giỏ hàng</a>
-                        <button class="btnConfirm me-auto">Hoàn tất đơn hàng</button>
+                        <a class="btnReturn" href="./cart.php">Giỏ hàng</a>
+                        <button class="btnConfirm">Hoàn tất đơn hàng</button>
                     </div>
-                </form>
-            </div>
-            <div class="about-order col-md-6 pt-5" style="width:50%;">
-                <?php
-                    $user_id = $_SESSION['id'];
-                    $sql = "select * from carts where user_id = $user_id;";
-                    $result = mysqli_query($connect, $sql);
-                    $cart = mysqli_fetch_array($result);
-                    $cart_id = $cart['id'];
-                    $sql = "select cart_item.*, products.name, products.image, products.price from cart_item 
+                </div>
+            </form>
+
+        </div>
+        <div class="about-order col-md-6 pt-5" >
+            <?php
+            $sql = "select * from carts where user_id = $id";
+            $result = mysqli_query($connect, $sql);
+            $cart = mysqli_fetch_array($result);
+            $cart_id = $cart['id'];
+            $sql = "select cart_item.*, products.name, products.image, products.price from cart_item 
                             join products
                             on products.id = cart_item.product_id
                             where cart_id = $cart_id";
-                    $cart_item = mysqli_query($connect, $sql);
-                    $cart_item_count = mysqli_num_rows($cart_item);
+            $cart_item = mysqli_query($connect, $sql);
+            $cart_item_count = mysqli_num_rows($cart_item);
 
-                    $sql = "select sum(quantity * price) as sum_price from cart_item 
+            $sql = "select sum(quantity * price) as sum_price from cart_item 
                             join products
                             on products.id = cart_item.product_id
-                            WHERE cart_item.cart_id = $cart_id;";
-                    $result = mysqli_query($connect, $sql);
-                    $sum = mysqli_fetch_array($result)['sum_price'];
-                    ?>
-                <?php foreach ($cart_item as $key => $value) : ?>
+                            WHERE cart_item.cart_id = $cart_id";
+            $result = mysqli_query($connect, $sql);
+            $sum = mysqli_fetch_array($result)['sum_price'];
+            ?>
+            <?php foreach ($cart_item as $key => $value) : ?>
                 <div class="row ms-3 pb-4">
                     <div class="col-md-8 " style="display: flex;">
-                    
+
                         <div class="item-img" data-label="Sản phẩm">
                             <a href="./product.php?id=<?= $value['product_id'] ?>" class="cart__image">
                                 <img src="./assets/images/products/<?php echo $value['image'] ?>">
@@ -185,7 +190,7 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
                                 <?php echo $value['name'] ?>
                             </a>
                             <div class="inf-product mt-2">
-                                <?php echo $value['size']?>/
+                                <?php echo $value['size'] ?>/
                                 <?php echo $value['color'] ?>/
                                 <?php echo $value['material'] ?>
                             </div>
@@ -199,63 +204,59 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
                         </span>
                     </div>
                 </div>
-                <?php endforeach ?>
+            <?php endforeach ?>
 
-                <div class="row ms-3 pb-4 mt-4" style="border-bottom: #ccc 1px solid;">
-                    <div class="ms-2">
-                        <span >
+            <div class="row ms-3 pb-4 mt-4" style="border-bottom: #ccc 1px solid;">
+                <div class="ms-2">
+                        <span>
                             Tạm tính
                         </span>
-                            <span class="item-price me-5" style="float: right; margin-right: 20px">
+                    <span class="item-price me-5" style="float: right; margin-right: 20px">
                                 <?= number_format($value['price'] * $value['quantity']) ?>&#8363
                             </span>
-                    </div>
-                    <div class="ms-2 mt-2">
-                        <span >
+                </div>
+                <div class="ms-2 mt-2">
+                        <span>
                             Phí vận chuyển
                         </span>
-                            <span class="item-price me-5" style="float: right; margin-right: 20px">
+                    <span class="item-price me-5" style="float: right; margin-right: 20px">
                                 Miễn phí
                             </span>
-                    </div>
                 </div>
-                <div class="row ms-3 pb-4 mt-4">
-                    <div class="ms-2">
-                        <span >
+            </div>
+            <div class="row ms-3 pb-4 mt-4">
+                <div class="ms-2">
+                        <span>
                             Tổng cộng
                         </span>
-                            <span class="item-price me-5" style="float: right; margin-right: 20px">
+                    <span class="item-price me-5" style="float: right; margin-right: 20px">
                                 <?= number_format($value['price'] * $value['quantity']) ?>&#8363
                             </span>
-                    </div>
                 </div>
+            </div>
         </div>
     </div>
 
-        <div id="hotline">
-            <a href="tel:0333135698" id="yBtn">
-                <i class="bi bi-telephone-fill"></i>
-            </a>
-            <div class="text-quotes">
-                <a href="tel:0333135698">0333135698</a>
-            </div>
+    <div id="hotline">
+        <a href="tel:0333135698" id="yBtn">
+            <i class="bi bi-telephone-fill"></i>
+        </a>
+        <div class="text-quotes">
+            <a href="tel:0333135698">0333135698</a>
+        </div>
 
-        </div>
-        <div id="backtop">
-            <i class="bi bi-chevron-compact-up"></i>
-        </div>
-        <script src="./assets/js/jquery-3.6.4.min.js"></script>
-        <script src="js/app.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    </div>
+
+    <script src="./assets/js/jquery-3.6.4.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
 
 
 </div>
-<div id="backtop">
-    <i class="bi bi-chevron-compact-up"></i>
-</div>
+
 <script src="./assets/js/jquery-3.6.4.min.js"></script>
 <script src="js/app.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"

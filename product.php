@@ -8,14 +8,13 @@ $sql = "select products.*, category_child.name as category_name, sizes.name AS n
 from products
 join category_child
 on category_child.id = products.category_child_id
-join product_size
+left join product_size
 on product_size.product_id = products.id
-JOIN sizes
+left JOIN sizes
 ON product_size.size_id = sizes.id
 where products.id = '$id'";
 $result = mysqli_query($connect, $sql);
 $each = mysqli_fetch_array($result);
-
 $category_id = $each['category_child_id'];
 $sql = "select * from products
   where category_child_id = '$category_id'";
@@ -26,14 +25,13 @@ $sql = "select sizes.* from sizes
     on product_size.size_id = sizes.id
     where product_size.product_id = '$id' and product_size.quantity > 0";
 $result_size = mysqli_query($connect, $sql);
-
 ?>
 <!DOCTYPE html>
 <html>
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="viewport" content="width=device-width">
     <title>SANPHAM - PANDORA</title>
     <link rel="shortcut icon" type="image" href="img/myLogo.png">
@@ -41,13 +39,14 @@ $result_size = mysqli_query($connect, $sql);
     <link rel="stylesheet" href="./assets/css/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/product.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="js/app.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -56,42 +55,43 @@ $result_size = mysqli_query($connect, $sql);
 
 <body>
 
-    <?php require './header.php'; ?>
-    <!--product-->
+<?php require './header.php'; ?>
+<!--product-->
 
-  <div class="content-top mt-5">
+<div class="content-top mt-5">
     <p class="mt-1">Miễn phí vận chuyển toàn bộ đơn hàng</p>
-  </div>
+</div>
 
-  <nav aria-label="breadcrumb ">
+<nav aria-label="breadcrumb ">
     <ol class="breadcrumb m-2">
-      <li class="breadcrumb-item"><a href="index.php">Trang chủ</a></li>
-      <li class="breadcrumb-item"><a href="#">Tất cả sản phẩm</a></li>
-      <li class="breadcrumb-item active" aria-current="page"><?= $each['name'] ?></li>
+        <li class="breadcrumb-item"><a href="index.php">Trang chủ</a></li>
+        <li class="breadcrumb-item"><a href="#">Tất cả sản phẩm</a></li>
+        <li class="breadcrumb-item active" aria-current="page"><?= $each['name'] ?></li>
     </ol>
-  </nav>
+</nav>
 
-  <div class="product">
+<div class="product">
     <div class="product-content">
-        <?php require './admin/error_success.php'; ?>
-       <div class="product-content-left">
-                <img class="image-img" style="width:100%;" src="./assets/images/products/<?= $each['image'] ?>" data-zoom-image="./assets/images/products/<?= $each['image'] ?>" />
+        <div class="product-content-left">
+            <img class="image-img" style="width:100%;" src="./assets/images/products/<?= $each['image'] ?>"
+                 data-zoom-image="./assets/images/products/<?= $each['image'] ?>"/>
         </div>
 
         <div class="product-content-right">
-                <div class="product-content-right-name">
-                    <h1><?= $each['name'] ?></h1>
+            <div class="product-content-right-name">
+                <h1><?= $each['name'] ?></h1>
 
-                </div>
-                <hr>
-                <div class="product-price">
-                    <p class="line-price">
+            </div>
+            <hr>
+            <div class="product-price">
+                <p class="line-price">
                         <span class="product-content-right-name price-pro p-2" itemprop="price" content="220000">
                             <?= number_format($each['price'], 0, '.', ' ') ?>&#8363
                         </span>
-                    </p>
-                </div>
-
+                </p>
+            </div>
+            <?php if($each['status'] !== 0) { ?>
+                <?php require './admin/error_success.php'; ?>
                 <form action="add_to_cart.php" method="POST">
 
                     <div class="product-select-swatch">
@@ -100,11 +100,17 @@ $result_size = mysqli_query($connect, $sql);
                         </div>
 
                         <div class="select-swap-size">
-                            <?php foreach ($result_size as $size) { ?>
-                                <div class="data-one">
-                                    <input type="radio" id="size-<?= $size['id'] ?>" name="size" value="<?= $size['id'] ?>" class="input-opt">
-                                    <label for="size-<?= $size['id'] ?>" class="sd"><?= $size['name'] ?> cm</label>
-                                </div>
+                            <?php
+                            if (mysqli_num_rows($result_size) > 0) {
+                                foreach ($result_size as $size) { ?>
+                                    <div class="data-one">
+                                        <input type="radio" id="size-<?= $size['id'] ?>" name="size"
+                                               value="<?= $size['id'] ?>" class="input-opt">
+                                        <label for="size-<?= $size['id'] ?>" class="sd"><?= $size['name'] ?> cm</label>
+                                    </div>
+                                <?php } ?>
+                            <?php } else { ?>
+                                <p class="text-danger">Hết hàng</p>
                             <?php } ?>
                         </div>
                     </div>
@@ -142,7 +148,9 @@ $result_size = mysqli_query($connect, $sql);
                         <button type="submit" id="AddToCart" class="btnAddtocart">Thêm vào giỏ hàng</button>
                     </div>
                 </form>
-
+            <?php } else { ?>
+            <h1>Sản phẩm đã ngừng bán!</h1>
+            <?php } ?>
         </div>
 
     </div>
@@ -163,41 +171,46 @@ $result_size = mysqli_query($connect, $sql);
         <div class="tab mt-3">
             <button class="tablinkss">Thông tin sản phẩm</button>
 
-    </div>
-    <div class="content-product-tab">
-      <div id="Content" class="tablinks">
-        <?= nl2br($each['description']) ?>
-      </div>
-      <div class="content-detail mt-2">
-          <div class="">Bộ sưu tập: Pandora Moments</div>
-          <div class="">Mã sản phẩm: <?= $each['id'] ?></div>
-          <div class="">Chất liệu: <?= $each['material'] ?></div>
-          <div class="">Màu sắc: <?= $each['color'] ?></div>
-      </div>  
-    </div>
-    
-    <div class=" policy-last ms-5"  >
-      <ul class="list-policy ms-5 mt-2" style="display: flex" >
-        <li class="">
-            <h4>Chính sách đổi hàng</h4>
-            <p>Chính sách đổi hàng chỉ áp dụng cho các sản phẩm bị lỗi kĩ thuật và là hàng nguyên giá hoặc giảm giá dưới 20%. Chính sách áp dụng một đổi một trong vòng 15 ngày kể từ ngày nhận hàng và chỉ đổi duy nhất 01 lần.</p>
-        </li>
-        <li class="">
-            <h4>Tặng quà</h4>
-            <p>Bạn muốn gửi tặng trang sức Pandora đến người đặc biệt? Chỉ cần chọn sản phẩm bạn muốn tặng, nhân viên CSKH của chúng tôi sẽ tự tay gói quà và viết thông điệp bạn muốn gửi đến người nhận quà. Chỉ cần ghi chú lên đơn hàng khi đặt hàng bạn nhé! Pandora sẽ liên hệ bạn ngay!</p>
-        </li>
-        <li class="">
-            <h4>Miễn phí vận chuyển</h4>
-            <p>Pandora miễn phí giao hàng trên toàn quốc với mọi giá trị đơn hàng.</p>
-        </li>
-        <li class="">
-            <h4>Cách thức bảo quản</h4>
-            <p>Nên vệ sinh sản phẩm bằng bộ vệ sinh sản phẩm chuyên dụng của Pandora và sau khi sử dụng vui lòng vệ sinh, bảo quản trong hộp kín để tránh tiếp xúc với không khí và tránh bị oxi hóa.</p>
-        </li>
-      </ul>
-  </div>
+        </div>
+        <div class="content-product-tab">
+            <div id="Content" class="tablinks">
+                <?= nl2br($each['description']) ?>
+            </div>
+            <div class="content-detail mt-2">
+                <div class="">Bộ sưu tập: Pandora Moments</div>
+                <div class="">Mã sản phẩm: <?= $each['id'] ?></div>
+                <div class="">Chất liệu: <?= $each['material'] ?></div>
+                <div class="">Màu sắc: <?= $each['color'] ?></div>
+            </div>
+        </div>
 
-  </div>
+        <div class=" policy-last ms-5">
+            <ul class="list-policy ms-5 mt-2" style="display: flex">
+                <li class="">
+                    <h4>Chính sách đổi hàng</h4>
+                    <p>Chính sách đổi hàng chỉ áp dụng cho các sản phẩm bị lỗi kĩ thuật và là hàng nguyên giá hoặc giảm
+                        giá dưới 20%. Chính sách áp dụng một đổi một trong vòng 15 ngày kể từ ngày nhận hàng và chỉ đổi
+                        duy nhất 01 lần.</p>
+                </li>
+                <li class="">
+                    <h4>Tặng quà</h4>
+                    <p>Bạn muốn gửi tặng trang sức Pandora đến người đặc biệt? Chỉ cần chọn sản phẩm bạn muốn tặng, nhân
+                        viên CSKH của chúng tôi sẽ tự tay gói quà và viết thông điệp bạn muốn gửi đến người nhận quà.
+                        Chỉ cần ghi chú lên đơn hàng khi đặt hàng bạn nhé! Pandora sẽ liên hệ bạn ngay!</p>
+                </li>
+                <li class="">
+                    <h4>Miễn phí vận chuyển</h4>
+                    <p>Pandora miễn phí giao hàng trên toàn quốc với mọi giá trị đơn hàng.</p>
+                </li>
+                <li class="">
+                    <h4>Cách thức bảo quản</h4>
+                    <p>Nên vệ sinh sản phẩm bằng bộ vệ sinh sản phẩm chuyên dụng của Pandora và sau khi sử dụng vui lòng
+                        vệ sinh, bảo quản trong hộp kín để tránh tiếp xúc với không khí và tránh bị oxi hóa.</p>
+                </li>
+            </ul>
+        </div>
+
+    </div>
 
     <div id="Home-notice">
         <div class="latest-wrap">
@@ -226,14 +239,15 @@ $result_size = mysqli_query($connect, $sql);
                                 <a href="" class="product-cat"><?= $category_product['name'] ?></a>
                                 <div class="product-price-action">
                                     <p class="product-price"><?= number_format(
-                                                                    $category_product['price'],
-                                                                    0,
-                                                                    '.',
-                                                                    ','
-                                                                ) ?></p>
+                                            $category_product['price'],
+                                            0,
+                                            '.',
+                                            ','
+                                        ) ?></p>
                                     <div class="product-action">
                                         <form action="view_cart.php?id=<?= $each['id'] ?>" method="POST">
-                                            <button type="submit" name="addcart" class="btn-action"><i class="bi bi-cart-fill"></i>
+                                            <button type="submit" name="addcart" class="btn-action"><i
+                                                        class="bi bi-cart-fill"></i>
                                             </button>
                                         </form>
                                     </div>
@@ -256,9 +270,6 @@ $result_size = mysqli_query($connect, $sql);
         </div>
 
     </div>
-    <div id="backtop">
-        <i class="bi bi-chevron-compact-up"></i>
-    </div>
 
     <?php require './footer.php'; ?>
 
@@ -269,7 +280,9 @@ $result_size = mysqli_query($connect, $sql);
 
     <!--footer-->
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
@@ -280,7 +293,7 @@ $result_size = mysqli_query($connect, $sql);
     <script src="js/app.js"></script>
     <script src="js/product.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('.image-img')
                 .wrap('<span style="display:inline-block"></span>')
                 .css('display', 'block')
@@ -289,25 +302,25 @@ $result_size = mysqli_query($connect, $sql);
                     magnify: 1.5
                 });
 
-            $('.data-one').click(function() {
+            $('.data-one').click(function () {
                 let product_id = <?= $id ?>;
                 let size_id = $(this).children('input').val();
                 $.ajax({
-                        url: './get_quantity.php',
-                        type: 'POST',
-                        dataType: 'json',
-                        data: {
-                            size_id: size_id,
-                            product_id: product_id
-                        }
-                    })
+                    url: './get_quantity.php',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        size_id: size_id,
+                        product_id: product_id
+                    }
+                })
 
-                    .done(function(res) {
+                    .done(function (res) {
                         $('#quantity').text(res);
                     })
             });
 
-            $('.sd').click(function() {
+            $('.sd').click(function () {
                 $('.sd').removeClass('active');
                 $(this).addClass('active');
             });

@@ -43,7 +43,7 @@
 
 .btnBrowser{
     margin-top: 12px;
-    border: 1px solid #FF1493;
+    border: 1px solid #000000;
     background-color: white;
     height: 40px;
     width: 100px;
@@ -52,6 +52,10 @@
     font-size: 15px;
     color: #333;
     cursor: pointer;
+}
+
+.btnBrowser:hover{
+    background-color: #cccccc;
 }
 
 .highcharts-figure,

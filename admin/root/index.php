@@ -64,10 +64,10 @@
                         <div class="card d-flex flex-row">
                             <div class="card__content d-flex flex-column justify-content-between">
                                 <h5 class="card__name">Doanh thu hôm nay</h5>
-                                <span class="card__quantity"><?= $income ?> đ</span>
+                                <span class="card__quantity"><?= $income ?? 0 ?> đ</span>
                             </div>
                             <div class="card__icon d-flex flex-fill">
-                                <i class="bi bi-people-fill"></i>
+                                <i class="bi bi-cash"></i>
                             </div>
                         </div>
                     </div>

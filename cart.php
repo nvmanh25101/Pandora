@@ -1,11 +1,21 @@
 <?php
 require './check_user_cart.php';
 require_once './database/connect.php';
+
 $user_id = $_SESSION['id'];
-$sql = "select * from carts where user_id = $user_id;";
+$sql = "select * from carts where user_id = $user_id";
 $result = mysqli_query($connect, $sql);
 $cart = mysqli_fetch_array($result);
-$cart_id = $cart['id'];
+
+$cart_id = $cart['id'] ?? 0;
+if (mysqli_num_rows($result) === 0) {
+    $sql = "insert into carts(user_id)
+          values('$user_id')";
+
+    $result = mysqli_query($connect, $sql);
+    $cart_id = mysqli_insert_id($connect);
+}
+
 $sql = "select cart_item.*, products.name, products.image, products.price from cart_item 
         join products
         on products.id = cart_item.product_id
@@ -157,7 +167,7 @@ $sum = mysqli_fetch_array($result)['sum_price'];
             <div class="col-md-4 mt-2">
                 <div class="ms-4">
                     <span class="cartt__subtotal-title me-4">Tổng tiền</span>
-                    <span class="cartt__total me-5"><?= number_format($sum) ?>&#8363</span>
+                    <span class="cartt__total me-5"><?= number_format($sum) ?? 0 ?>&#8363</span>
                 </div>
                 <div class="ms-4 mt-2" style="display: flex">
                     <span class="cartt__subtotal-title me-3 mt-3"><input class="mycheckbox" type="checkbox"></span>
@@ -203,9 +213,6 @@ $sum = mysqli_fetch_array($result)['sum_price'];
         </div>
     </div>
 
-    <div id="backtop">
-        <i class="bi bi-chevron-compact-up"></i>
-    </div>
 
     <?php require './footer.php'; ?>
 

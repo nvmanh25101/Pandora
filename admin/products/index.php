@@ -36,15 +36,14 @@ $sql = "select products.*, category_child.name as category_name, users.name as a
     on category_child.id = products.category_child_id
     join users
     on users.id = products.user_id
-    join product_size
+    left join product_size
     on product_size.product_id = products.id
-    JOIN sizes
+    left JOIN sizes
     ON product_size.size_id = sizes.id
     where $where
     ORDER BY status desc,id DESC
     limit $num_product_per_page offset $skip_page
     ";
-
 $result = mysqli_query($connect, $sql);
 
 require_once '../navbar-vertical.php';

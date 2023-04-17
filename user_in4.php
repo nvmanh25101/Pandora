@@ -57,7 +57,7 @@
           Địa chỉ: <?= $each['address'] ?? '' ?>
 
         </p>
-        <p class="text-address"><a href="update.php">Sửa thông tin</a></p>
+        <p class="text-address"><a href="update_in4.php">Sửa thông tin</a></p>
      </div>
      <div class="his_tran mt-2">
         <h2>Lịch Sử Mua Hàng</h2>
@@ -141,9 +141,7 @@
         <a href="tel:0333135698">0333135698</a>
       </div>
     </div>
-    <div id="backtop">
-      <i class="bi bi-chevron-compact-up"></i>
-    </div>
+
 
     
   <script src="https://code.jquery.com/jquery-3.6.0.js"></script>

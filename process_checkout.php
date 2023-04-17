@@ -8,7 +8,7 @@ if(empty($_SESSION['id'])){
   exit();
 }
 
-if(empty($_POST['name_receiver']) || empty($_POST['phone_receiver']) || empty($_POST['address_receiver'])) {
+if(empty($_POST['name_receiver']) || empty($_POST['phone_receiver']) || empty($_POST['address_receiver']) || empty($_POST['address_last']) || empty($_POST['payment'])) {
     header('location:checkout.php');
     exit;
 }
@@ -59,6 +59,8 @@ foreach ($cart_item as $key => $value) :
     $sql = "insert into order_detail(order_id, product_id, name, size, color, material, quantity, price) 
     values('$last_order_id', '$product_id', '$name', '$size', '$color', '$material', '$quantity', '$price')";
     mysqli_query($connect, $sql);
+    $sql_quantity = "update products set quantity = quantity - $quantity where id = $product_id";
+    mysqli_query($connect, $sql_quantity);
 endforeach;
 
 $sql = "delete from cart_item where cart_id = $cart_id";

@@ -31,8 +31,6 @@ body, html {
      margin: 10px 0px 20px 90px;
  }
  .form-page {
-    height: 100%;
-    width: 800px;
     margin: 0 auto;
  }
 .confirm-text{
@@ -43,7 +41,6 @@ body, html {
 }
 .page_container{
     justify-content: center;
-    height: 410px;
  
     margin-left: 100px;
 }
@@ -51,7 +48,7 @@ body, html {
     margin-left: 300px;
 }
 .form_name{
-    margin-top: 64px;
+    margin-top: 30px;
     font-family: Roboto;
     font-size: 16px;
 }
@@ -67,8 +64,6 @@ body, html {
 }
 .btnReturn{
     background-color: white;
-    height: 45px;
-    width: 163px;
     border-radius: 5px;
     font-family: Playfair Display;
     font-size: 20px;
@@ -76,7 +71,7 @@ body, html {
     margin-top: 45px;
     text-align: center;
     color: #338bbc;
-	
+	padding: 12px;
 }
 .btnConfirm{
 	background-color: #338bbc;
@@ -88,7 +83,6 @@ body, html {
     font-size: 20px;
     font-weight: 400;
     margin-top: 45px;
-    margin-left: 35%;
     border: none;
 }
 .btnup a{
@@ -96,6 +90,7 @@ body, html {
 }
 .btnup{
 	display: flex;
+    justify-content: space-between;
 	
 }
 .btnReturn:hover,
@@ -114,10 +109,7 @@ body, html {
     }
   
    
-    .page_container{
-        
-        margin: 12px;
-    }
+
     .btnConfirm{
         margin-left: 0;
     }
@@ -136,7 +128,7 @@ body, html {
 }
 
 .user_infor{
-    margin-top: 40px;
+
 }
 label{
     margin-bottom: 10px;
@@ -146,7 +138,6 @@ label{
 
 .pay{
     border: #FFBFBF solid 1px;
-    margin: 0px 50px;
 }
 
 .bybank, .shipcod, .vnpay, .momo{

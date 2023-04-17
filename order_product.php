@@ -155,9 +155,6 @@ $resultBanh = mysqli_query($connect,$sqlBanh);
                 <a href="tel:0333135698">0333135698</a>
               </div>
             </div>
-            <div id="backtop">
-              <i class="bi bi-chevron-compact-up"></i>
-            </div>
             <?php require './footer.php'; ?>
 <script src="js/app.js"></script>
   <script src="js/product.js"></script>

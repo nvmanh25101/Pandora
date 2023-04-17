@@ -115,16 +115,16 @@ $(document).ready(function () {
       "<button type='button' class='slick-next pull-right'><i class='fa fa-angle-right' aria-hidden='true'></i></button>",
   });
 
-  $(window).scroll(function () {
-    if ($(this).scrollTop()) {
-      $("#backtop").faceIn();
-    } else {
-      $("#backtop").faceOut();
-    }
-  });
-  $("#backtop").click(function () {
-    $("html, body").animate({ scrollTop: 0 }, 400);
-  });
+  // $(window).scroll(function () {
+  //   if ($(this).scrollTop()) {
+  //     $("#backtop").faceIn();
+  //   } else {
+  //     $("#backtop").faceOut();
+  //   }
+  // });
+  // $("#backtop").click(function () {
+  //   $("html, body").animate({ scrollTop: 0 }, 400);
+  // });
 
   // $("#search").keydown(function(){
   //   let search = $("#search").val();

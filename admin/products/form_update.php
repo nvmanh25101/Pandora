@@ -23,9 +23,9 @@
     on category_child.id = products.category_child_id
     join categories
     on categories.id = category_child.category_id
-    join product_size
+    left join product_size
     on product_size.product_id = products.id
-    JOIN sizes
+    left JOIN sizes
     ON product_size.size_id = sizes.id
     where products.id = '$id'";
     $result = mysqli_query($connect, $sql);

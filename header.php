@@ -39,7 +39,7 @@ require './database/connect.php';
               Tài khoản
             </a>
           <?php } else { ?>
-              <a href="./user.php?id=<?= $each['id'] ?>">
+              <a href="./user_in4.php?id=<?= $each['id'] ?>">
               <i class="bi bi-people-fill" aria-hidden="true"></i>
               <?= $_SESSION['name'] ?>
             </a>
@@ -89,7 +89,7 @@ require './database/connect.php';
               <i class="bi bi-person" aria-hidden="true"></i>
             </a>
           <?php } else { ?>
-              <a class="item" href="user.php">
+              <a class="item" href="user_in4.php">
               <i class="bi bi-person" aria-hidden="true"></i>
               Chào , <?= $_SESSION['name'] ?>
             </a>

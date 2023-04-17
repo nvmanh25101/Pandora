@@ -42,7 +42,7 @@ require './database/connect.php';
 						<button class="btn-signin glow-on-hover btn-lg bg-dark" name="btnSignin" type="submit" >Đăng nhập</button>
 						
 					</form>
-				  <input id="error" hidden value="<?= isset($_SESSION['error']) ?? $_SESSION['error'] ?>">
+				  <input id="error" hidden value="<?php echo $_SESSION['error'] ?? ''; unset($_SESSION['error']) ?>">
 				</div>
 			</div>
 		</section>
