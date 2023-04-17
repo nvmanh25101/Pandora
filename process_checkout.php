@@ -3,13 +3,15 @@ session_start();
 require './database/connect.php';
 
 
-if(empty($_SESSION['id'])){
+if(empty($_SESSION['id']) || empty($_POST['cart_id'])){
   header('location:./signin.php');
   exit();
 }
 
+$cart_id = $_POST['cart_id'];
 if(empty($_POST['name_receiver']) || empty($_POST['phone_receiver']) || empty($_POST['address_receiver']) || empty($_POST['address_last']) || empty($_POST['payment'])) {
-    header('location:checkout.php');
+    $_SESSION['error'] = 'Vui lòng nhập đầy đủ thông tin';
+    header('location:checkout.php?cart_id='.$cart_id);
     exit;
 }
 
@@ -22,10 +24,6 @@ $address_last = $_POST['address_last'];
 $payment = $_POST['payment'];
 
 $address_receiver .= ', '.$address_last;
-
-$sql = "select id from carts where user_id = $user_id";
-$result = mysqli_query($connect, $sql);
-$cart_id = mysqli_fetch_array($result)['id'];
 
 $sql = "select sum(quantity * price) as sum_price from cart_item 
         join products

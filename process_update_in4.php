@@ -17,6 +17,7 @@
         SET name = '$name', gender = '$gender', birth_date = '$birth_date', phone = '$phone', address = '$address' 
         WHERE id = '$id'";
         $result = mysqli_query($connect,$sql);
+        $_SESSION['name'] = $name;
         $_SESSION['success'] = "Cập nhật thành công!";
         header("location: update_in4.php");
     }else{
@@ -28,6 +29,7 @@
             $sql = "UPDATE users SET name = '$name' , address = '$address',phone = '$phone', gender = '$genderId', password = '$pass_hash' WHERE id = '$id'";
     
             $result = mysqli_query($connect,$sql);
+            $_SESSION['name'] = $name;
             if(isset($result) > 0){
                 $_SESSION['success'] = "Cập nhật thành công!";
                 header("location: update_in4.php");

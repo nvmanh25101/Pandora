@@ -76,6 +76,7 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
                                 <a href="signout.php"><i class="bi bi-box-arrow-right" aria-hidden="true"></i>Đăng Xuất</a>
                             </div>
                         </div>
+                        <?php require './admin/error_success.php'; ?>
                         <div class="form_name">
                             <label for="">Họ và tên</label>
                             <input type="text" name="name_receiver" class="form-control" value="<?= $each['name'] ?>"
@@ -148,6 +149,7 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
                                                      style="width: 40px; height: 35px;"> Trả góp qua ví Payoo</label>
                         </div>
                     </div>
+                    <input type="hidden" name="cart_id" value="<?= $cart_id ?>">
                     <div class="btnup">
                         <a class="btnReturn" href="./cart.php">Giỏ hàng</a>
                         <button class="btnConfirm">Hoàn tất đơn hàng</button>
@@ -230,8 +232,8 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
                             Tổng cộng
                         </span>
                     <span class="item-price me-5" style="float: right; margin-right: 20px">
-                                <?= number_format($value['price'] * $value['quantity']) ?>&#8363
-                            </span>
+                        <?= number_format($value['price'] * $value['quantity']) ?>&#8363
+                    </span>
                 </div>
             </div>
         </div>

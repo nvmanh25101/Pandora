@@ -617,7 +617,7 @@ if (mysqli_num_rows($result) == 0) {
                 success: {
                     "color": "#468847",
                     "background-color": "#DFF0D8",
-                    "font-size": "2rem"
+                    "font-size": "1.4rem"
                 }
             }
         })
