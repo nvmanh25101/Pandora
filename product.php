@@ -71,25 +71,24 @@ $result_size = mysqli_query($connect, $sql);
 </nav>
 
 <div class="product">
-    <div class="product-content">
-        <div class="product-content-left">
-            <img class="image-img" style="width:100%;" src="./assets/images/products/<?= $each['image'] ?>"
-                 data-zoom-image="./assets/images/products/<?= $each['image'] ?>"/>
+    <div class="product-content row">
+        <div class="product-content-left col-6">
+            <img class="image-img" src="./assets/images/products/<?= $each['image'] ?>"/>
         </div>
 
-        <div class="product-content-right">
+        <div class="product-content-right col-6">
             <div class="product-content-right-name">
                 <h1><?= $each['name'] ?></h1>
 
             </div>
-            <hr>
             <div class="product-price">
                 <p class="line-price">
                         <span class="product-content-right-name price-pro p-2" itemprop="price" content="220000">
-                            <?= number_format($each['price'], 0, '.', ' ') ?>&#8363
+                            <?= number_format($each['price'], 0, '.', ',') ?>&#8363
                         </span>
                 </p>
             </div>
+            <hr>
             <?php if($each['status'] !== 0) { ?>
                 <?php require './admin/error_success.php'; ?>
                 <form action="add_to_cart.php" method="POST">
@@ -143,9 +142,9 @@ $result_size = mysqli_query($connect, $sql);
                     </div>
 
                     <input type="hidden" name="product_id" value="<?= $id ?>">
-
+                    <hr>
                     <div class="product-actions">
-                        <button type="submit" id="AddToCart" class="btnAddtocart">Thêm vào giỏ hàng</button>
+                        <button type="submit" id="AddToCart" class="btnAddtocart">Thêm vào giỏ</button>
                     </div>
                 </form>
             <?php } else { ?>
@@ -285,23 +284,20 @@ $result_size = mysqli_query($connect, $sql);
             crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script> -->
     <script type="text/javascript" src="./assets/js/jquery.zoom.min.js"></script>
 
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-
-    <script src="js/app.js"></script>
-    <script src="js/product.js"></script>
     <script>
         $(document).ready(function () {
             $('.image-img')
-                .wrap('<span style="display:inline-block"></span>')
-                .css('display', 'block')
-                .parent()
-                .zoom({
-                    magnify: 1.5
-                });
-
+            .wrap('<span style="display:inline-block"></span>')
+            .css('display', 'block')
+            .parent()
+            .zoom({
+                magnify: 1.8
+            });
+            
             $('.data-one').click(function () {
                 let product_id = <?= $id ?>;
                 let size_id = $(this).children('input').val();
@@ -314,21 +310,24 @@ $result_size = mysqli_query($connect, $sql);
                         product_id: product_id
                     }
                 })
-
-                    .done(function (res) {
+                
+                .done(function (res) {
                         $('#quantity').text(res);
                     })
+                });
+                
+                $('.sd').click(function () {
+                    $('.sd').removeClass('active');
+                    $(this).addClass('active');
+                });
+                
+                $('.sd:first').addClass('active').is(":checked");
+                $('.input-opt:first').attr('checked', 'checked');
             });
-
-            $('.sd').click(function () {
-                $('.sd').removeClass('active');
-                $(this).addClass('active');
-            });
-
-            $('.sd:first').addClass('active').is(":checked");
-            $('.input-opt:first').attr('checked', 'checked');
-        });
     </script>
+
+    <script src="js/app.js"></script>
+    <script src="js/product.js"></script>
 </body>
 
 </html>
