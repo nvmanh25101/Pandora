@@ -229,7 +229,9 @@ if (mysqli_num_rows($result) == 0) {
     </div>
 
     <?php
-    $sql_pandora = "SELECT * FROM products WHERE category_child_id='18' order by id desc";
+    $sql_pandora = "SELECT * from products 
+    join (SELECT product_id FROM order_detail GROUP BY product_id ORDER BY COUNT(*) DESC) AS t 
+    ON t.product_id = products.id";
     $result_pandora = mysqli_query($connect, $sql_pandora);
     ?>
 
@@ -238,10 +240,10 @@ if (mysqli_num_rows($result) == 0) {
             <li>
                 <a class="product-item" href="./product.php?id=<?= $each['id'] ?>">
                     <div class="product-top">
-                        <a href="./product.php?id=<?= $each['id'] ?>" class="product-thumb">
+                        <div class="product-thumb">
                             <img src="./assets/images/products/<?= $each['image'] ?>" alt="">
 
-                        </a>
+                        </div>
                     </div>
                     <div class="product-info">
                         <div class="product-cat">
