@@ -10,7 +10,10 @@ $sql = "select * from users where id = '$id'";
 $result = mysqli_query($connect, $sql);
 $each = mysqli_fetch_array($result);
 
-$sqlOrder = "select id, name_receiver, address_receiver, phone_receiver, DATE_FORMAT(created_at, '%d/%m/%Y %T') as created_at, status, total_price from orders where user_id = '$id'";
+$sqlOrder = "select id, name_receiver, address_receiver, phone_receiver, DATE_FORMAT(created_at, '%d/%m/%Y %T') as created_at, status, total_price 
+from orders 
+where user_id = '$id'
+order by created_at desc, status asc";
 $resultOrder = mysqli_query($connect, $sqlOrder);
 ?>
 <!DOCTYPE html>
@@ -154,11 +157,9 @@ $resultOrder = mysqli_query($connect, $sqlOrder);
 		</div>
 	</div>
 
+    <script src="./assets/js/jquery-3.6.4.min.js"></script>
 
-
-	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
