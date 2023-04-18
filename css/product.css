@@ -267,8 +267,8 @@ body, html {
 /* Style the buttons inside the tab */
 
 .tablinkss {
-    background: #3d1a1a;
-    color: #c0c906;
+    background: #cc8bc0;
+    color: #fff;
  
   border: none;
   cursor: pointer;
@@ -283,6 +283,12 @@ body, html {
     border-top-right-radius: 10px;
 }
 
+.user-img img{
+    width: 60%;
+}
+.user-img img{
+    width: 120px;
+}
 .content-product-tab{
     margin: 0;
     padding: 15px;
@@ -293,6 +299,38 @@ body, html {
 .content-detail>p{
     font-weight: bold;
 }
+
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
 
 .policy-last{
     text-align: center;

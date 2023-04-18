@@ -183,33 +183,93 @@ $result_size = mysqli_query($connect, $sql);
                 <div class="">Màu sắc: <?= $each['color'] ?></div>
             </div>
         </div>
+    </div>
+    
 
-        <div class=" policy-last ms-5">
-            <ul class="list-policy ms-5 mt-2" style="display: flex">
-                <li class="">
-                    <h4>Chính sách đổi hàng</h4>
-                    <p>Chính sách đổi hàng chỉ áp dụng cho các sản phẩm bị lỗi kĩ thuật và là hàng nguyên giá hoặc giảm
-                        giá dưới 20%. Chính sách áp dụng một đổi một trong vòng 15 ngày kể từ ngày nhận hàng và chỉ đổi
-                        duy nhất 01 lần.</p>
-                </li>
-                <li class="">
-                    <h4>Tặng quà</h4>
-                    <p>Bạn muốn gửi tặng trang sức Pandora đến người đặc biệt? Chỉ cần chọn sản phẩm bạn muốn tặng, nhân
-                        viên CSKH của chúng tôi sẽ tự tay gói quà và viết thông điệp bạn muốn gửi đến người nhận quà.
-                        Chỉ cần ghi chú lên đơn hàng khi đặt hàng bạn nhé! Pandora sẽ liên hệ bạn ngay!</p>
-                </li>
-                <li class="">
-                    <h4>Miễn phí vận chuyển</h4>
-                    <p>Pandora miễn phí giao hàng trên toàn quốc với mọi giá trị đơn hàng.</p>
-                </li>
-                <li class="">
-                    <h4>Cách thức bảo quản</h4>
-                    <p>Nên vệ sinh sản phẩm bằng bộ vệ sinh sản phẩm chuyên dụng của Pandora và sau khi sử dụng vui lòng
-                        vệ sinh, bảo quản trong hộp kín để tránh tiếp xúc với không khí và tránh bị oxi hóa.</p>
-                </li>
-            </ul>
+    <?php
+        $sql_vote = "select votes.*, users.name as user_name, users.avatar as user_avatar
+        from votes join users on votes.product_id = '$id' and votes.user_id = users.id";
+        $result_vote = mysqli_query($connect,$sql_vote);
+
+        $count_vote = "select COUNT(product_id) from votes where product_id = '$id'";
+        $result_count = mysqli_query($connect,$count_vote);
+        $count = mysqli_fetch_array($result_count);
+        foreach ($count as $value) 
+
+    ?>
+    <div class="product-tab mt-5">
+        <div class="content-product-tab">
+            <h4 class="ms-2" style="font-weight: bold">Đánh giá</h4>
+
+                    <table class="vote-table full m-2">
+                        <tbody>
+                        <?php foreach ($result_vote as $vote) { ?>
+                            <tr class="vote__row table__section">
+                                <td class="user-img">
+                                        <img src="img/<?= $vote['user_avatar'] ?>" alt="">
+                                </td>
+                                <td class="item-content-text">
+                                    <div class="user_name">
+                                        <?= $vote['user_name'] ?>
+                                    </div>
+                                    <div class="rating">
+                                        Số sao: <?= $vote['rating'] ?>
+                                        <div class="rate ms-5">
+                                        <input <?= $vote['rating'] == 5 ? 'checked' : '' ?> type="radio" id="star5" name="rate" value="5" />
+                                            <label for="star5" title="text">5 stars</label>
+                                        <input <?= $vote['rating'] == 4 ? 'checked' : '' ?> type="radio" id="star4" name="rate" value="4" />
+                                            <label for="star4" title="text">4 stars</label>
+                                        <input type="radio" id="star3" name="rate" value="3" />
+                                            <label for="star3" title="text">3 stars</label>
+                                        <input type="radio" id="star2" name="rate" value="2" />
+                                            <label for="star2" title="text">2 stars</label>
+                                        <input type="radio" id="star1" name="rate" value="1" />
+                                            <label for="star1" title="text">1 star</label>
+
+                                    </div>  
+                                    </div>
+                                    <div class="time-vote">
+                                        <?= $vote['created_at'] ?>
+                                    </div>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+            
+                        
+                       
+                        
+            </div>
         </div>
 
+        
+    </div>
+
+    <div class=" policy-last ms-5">
+        <ul class="list-policy ms-5 mt-2" style="display: flex">
+            <li class="">
+                <h4>Chính sách đổi hàng</h4>
+                <p>Chính sách đổi hàng chỉ áp dụng cho các sản phẩm bị lỗi kĩ thuật và là hàng nguyên giá hoặc giảm
+                    giá dưới 20%. Chính sách áp dụng một đổi một trong vòng 15 ngày kể từ ngày nhận hàng và chỉ đổi
+                    duy nhất 01 lần.</p>
+            </li>
+            <li class="">
+                <h4>Tặng quà</h4>
+                <p>Bạn muốn gửi tặng trang sức Pandora đến người đặc biệt? Chỉ cần chọn sản phẩm bạn muốn tặng, nhân
+                    viên CSKH của chúng tôi sẽ tự tay gói quà và viết thông điệp bạn muốn gửi đến người nhận quà.
+                    Chỉ cần ghi chú lên đơn hàng khi đặt hàng bạn nhé! Pandora sẽ liên hệ bạn ngay!</p>
+            </li>
+            <li class="">
+                <h4>Miễn phí vận chuyển</h4>
+                <p>Pandora miễn phí giao hàng trên toàn quốc với mọi giá trị đơn hàng.</p>
+            </li>
+            <li class="">
+                <h4>Cách thức bảo quản</h4>
+                <p>Nên vệ sinh sản phẩm bằng bộ vệ sinh sản phẩm chuyên dụng của Pandora và sau khi sử dụng vui lòng
+                    vệ sinh, bảo quản trong hộp kín để tránh tiếp xúc với không khí và tránh bị oxi hóa.</p>
+            </li>
+        </ul>
     </div>
 
     <div id="Home-notice">
