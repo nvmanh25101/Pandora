@@ -189,7 +189,7 @@ $resultBanh = mysqli_query($connect, $sqlBanh);
                                     </div>
                                 </div>
                             </div>
-                        <?php } else { ?>
+                        <?php } else if ($rowTtin['status'] == 3 && mysqli_num_rows($result_vote) > 0){ ?>
                             <span class="item-vote">
                                 <button class="vote " type="button">Bạn đã đánh giá sản phẩm này</button>
                             </span>
