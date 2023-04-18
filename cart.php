@@ -60,7 +60,7 @@ $sum = mysqli_fetch_array($result)['sum_price'];
         <h4 class="ms-3">Giỏ Hàng của bạn</h4>
     </div>
     <div class="Pagecart container mb-4 ">
-        <form class="row" action="./checkout.php" method="post">
+        <form class="row" action="./checkout.php" method="post" id="form-checkout">
             <div class="cart-content col-md-8">
                 <div class="Empty_cart" <?php
                     if (empty($cart_item_count)) {
@@ -187,12 +187,12 @@ $sum = mysqli_fetch_array($result)['sum_price'];
                     <span class="cartt__total me-5"><?= number_format($sum) ?? 0 ?>&#8363</span>
                 </div>
                 <div class="ms-4 mt-2" style="display: flex">
-                    <span class="cartt__subtotal-title me-3 mt-3"><input class="mycheckbox" type="checkbox"></span>
+                    <span class="cartt__subtotal-title me-3 mt-3"><input class="mycheckbox" id="checkout-check" type="checkbox"></span>
                     <span class="me-5">
                         <p>Khi bấm nút "Thanh toán" đồng nghĩa Khách hàng đã hiểu và đồng ý các Điều khoản dịch vụ của Pandora Việt Nam.</p>
                     </span>
                 </div>
-                <button class="btn-payment-text mt-2 ms-4">
+                <button type="button" class="btn-payment-text mt-2 ms-4">
                     <a class="ps-5 pe-5">THANH TOÁN</a>
                 </button>
                 
@@ -233,9 +233,22 @@ $sum = mysqli_fetch_array($result)['sum_price'];
 
 
     <?php require './footer.php'; ?>
-
+ <script src="./assets/js/jquery-3.6.4.min.js"></script>
 
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            $(".btn-payment-text").click(function () {
+                if ($("#checkout-check").is(":checked")) {
+                    $("#form-checkout").submit();
+                } else {
+                   alert("Bạn chưa đồng ý với điều khoản của Pandora Việt Nam. Vui lòng đồng ý để tiếp tục thanh toán");
+                }
+            });
+        });
+
+    </script>
 <script src="js/app.js"></script>
 <script src="js/product.js"></script>
 
