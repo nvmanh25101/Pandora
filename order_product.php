@@ -223,6 +223,48 @@ $resultBanh = mysqli_query($connect,$sqlBanh);
             </div>
             <?php require './footer.php'; ?>
 <script src="./assets/js/bootstrap.bundle.min.js"></script>
+<script src="./assets/js/notify.js"></script>
+<script>
+    $(document).ready(function () {
+        $.notify.addStyle('noti', {
+            html: '<div><i class="bi bi-check-circle-fill"></i> <span data-notify-text/>☺</div>',
+            classes: {
+                base: {
+                    "white-space": "nowrap",
+                    "background-color": "black",
+                    "padding": "12px",
+                    "border-radius": "5px",
+                },
+                success: {
+                    "color": "#468847",
+                    "background-color": "#DFF0D8",
+                    "font-size": "1.4rem"
+                }
+            }
+        })
+
+        $("#search").autocomplete({
+            source: "search.php"
+        }).autocomplete("instance")._renderItem = function (ul, item) {
+            return $("<li class='sub-search-item'>")
+                .append(`<a href='./product.php?id=${item.value}' class='sub-search-link'>
+                  <img class='sub-search-link__img' src='./assets/images/products/${item.image}' alt=''>
+                  <h5 class='sub-search-link__name'>
+                    ${item.label}
+                  </h5>
+                  <span class='sub-search-link__price'>
+                  ${item.price}&#8363
+                  </span>
+                </a>`
+                ).appendTo(ul);
+        };
+
+        $.notify("<?php if (isset($_SESSION['success'])) { echo $_SESSION['success']; unset($_SESSION['success']); }  ?>", {
+            style: 'noti',
+            className: 'success'
+        });
+    });
+</script>
 <script src="js/app.js"></script>
   <script src="js/product.js"></script>
 </body>
