@@ -16,20 +16,22 @@ if (isset($_POST['btnSignin'])) {
             if (password_verify($pass, $pass_hash)) {
                 $_SESSION['id'] = $id;
                 $_SESSION['name'] = $name;
+                $_SESSION['role'] = $row['role'];
+                $_SESSION['success'] = "Đăng nhập thành công!";
                 header("location:index.php");
             } else {
-                $error = "Incorrect account or password ";
-                header("location:signin.php?error=$error");
+                $_SESSION['error'] = "Sai tài khoản hoặc mật khẩu!";
+                header("location:signin.php");
             }
         }
         else {
-            $error = "Kiểm tra email của bạn để xác thực tài khoản!";
-            header("location:signin.php?error=$error");
+            $_SESSION['infor'] ="Kiểm tra email của bạn để xác thực tài khoản!";
+            header("location:signin.php");
         }
     }
     else{
-            $error = "Incorrect account or password ";
-            header("location:signin.php?error=$error");
+        $_SESSION['error'] = "Sai tài khoản hoặc mật khẩu";
+        header("location:signin.php");
         }
     } else {
         header("location: signin.php");

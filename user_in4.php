@@ -128,7 +128,7 @@ $resultOrder = mysqli_query($connect, $sqlOrder);
                                     </td>
                                 <?php } ?>
 								<td class="sttt-shopping">
-                                    <a class="detail-txt" href="order_product.php?order_id=<?= $rowOrder['id'] ?>&status=<?= $rowOrder['status'] ?>">Xem chi tiết</a>
+                                    <a class="detail-txt" href="order_product.php?order_id=<?= $rowOrder['id'] ?>">Xem chi tiết</a>
                                 </td>
 							</tr>
 						<?php

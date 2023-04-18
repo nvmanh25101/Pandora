@@ -42,14 +42,12 @@ $result_size = mysqli_query($connect, $sql);
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/product.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="js/app.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/product.css">
 
 </head>
 
@@ -187,62 +185,50 @@ $result_size = mysqli_query($connect, $sql);
 
     <?php
         $sql_vote = "select votes.*, users.name as user_name, users.avatar as user_avatar
-        from votes join users on votes.product_id = '$id' and votes.user_id = users.id";
+        from votes
+        join users
+        on votes.product_id = '$id' and votes.user_id = users.id";
         $result_vote = mysqli_query($connect,$sql_vote);
 
         $count_vote = "select COUNT(product_id) from votes where product_id = '$id'";
         $result_count = mysqli_query($connect,$count_vote);
         $count = mysqli_fetch_array($result_count);
-        foreach ($count as $value) 
-
     ?>
     <div class="product-tab mt-5">
         <div class="content-product-tab">
             <h4 class="ms-2" style="font-weight: bold">Đánh giá</h4>
-
-                    <table class="vote-table full m-2">
-                        <tbody>
-                        <?php foreach ($result_vote as $vote) { ?>
-                            <tr class="vote__row table__section">
-                                <td class="user-img">
-                                        <img src="img/<?= $vote['user_avatar'] ?>" alt="">
-                                </td>
-                                <td class="item-content-text">
-                                    <div class="user_name">
-                                        <?= $vote['user_name'] ?>
-                                    </div>
-                                    <div class="rating">
-                                        Số sao: <?= $vote['rating'] ?>
-                                        <div class="rate ms-5">
-                                        <input <?= $vote['rating'] == 5 ? 'checked' : '' ?> type="radio" id="star5" name="rate" value="5" />
-                                            <label for="star5" title="text">5 stars</label>
-                                        <input <?= $vote['rating'] == 4 ? 'checked' : '' ?> type="radio" id="star4" name="rate" value="4" />
-                                            <label for="star4" title="text">4 stars</label>
-                                        <input type="radio" id="star3" name="rate" value="3" />
-                                            <label for="star3" title="text">3 stars</label>
-                                        <input type="radio" id="star2" name="rate" value="2" />
-                                            <label for="star2" title="text">2 stars</label>
-                                        <input type="radio" id="star1" name="rate" value="1" />
-                                            <label for="star1" title="text">1 star</label>
-
-                                    </div>  
-                                    </div>
-                                    <div class="time-vote mt-5">
-                                        <?= $vote['created_at'] ?>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php } ?>
-                        </tbody>
-                    </table>
-            
-                        
-                       
-                        
+                <?php foreach ($result_vote as $vote) { ?>
+                    <div class="vote__row mb-3">
+                        <div class="user-vote-img">
+                                <img src="./assets/images/admin/adminvjppro.jpg" alt="">
+                        </div>
+                        <div class="item-content-text">
+                            <div class="user_name mb-2">
+                                <?= $vote['user_name'] ?>
+                            </div>
+                            <div class="product-rating mb-2">
+                                <div class="product-rate">
+                                    <?php
+                                    $star = $vote['rating'];
+                                    for ($i = 1; $i <= 5; $i++) {
+                                        if ($i <= $star) {
+                                            echo '<i class="bi bi-star-fill full-star"></i>';
+                                        } else {
+                                            echo '<i class="bi bi-star"></i>';
+                                        }
+                                    }
+                                    ?>
+                                </div>
+                            </div>
+                            <div class="time-vote">
+                                <?= $vote['created_at'] ?>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                <?php } ?>
             </div>
         </div>
-
-        
     </div>
 
     <div class=" policy-last ms-5">

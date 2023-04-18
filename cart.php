@@ -60,7 +60,7 @@ $sum = mysqli_fetch_array($result)['sum_price'];
         <h4 class="ms-3">Giỏ Hàng của bạn</h4>
     </div>
     <div class="Pagecart container mb-4 ">
-        <div class="row">
+        <form class="row" action="./checkout.php" method="post">
             <div class="cart-content col-md-8">
                 <div class="Empty_cart" <?php
                     if (empty($cart_item_count)) {
@@ -91,6 +91,7 @@ $sum = mysqli_fetch_array($result)['sum_price'];
                     <tbody>
                         <?php foreach ($cart_item as $key => $value) : ?>
                             <tr class="cart__row table__section">
+                            <?php require './admin/error_success.php'; ?>
                                 <td class="item-img" data-label="Sản phẩm">
                                     <a href="./product.php?id=<?= $value['product_id'] ?>" class="cart__image">
     
@@ -105,7 +106,7 @@ $sum = mysqli_fetch_array($result)['sum_price'];
                                         Giá <?php echo number_format($value['price']) ?>&#8363
                                     </div>
                                     <div class="mt-2">
-                                        <span style="font-weight: bold;"> Mã SP:</span> PDR<?php echo $value['product_id'] ?> - <?php echo $value['size'] ?>
+                                        <span style="font-weight: bold;"> Mã SP:</span><?php echo $value['product_id'] ?> - <?php echo $value['size'] ?>
                                     </div>
     
                                     <div class="cart__remove">
@@ -113,29 +114,39 @@ $sum = mysqli_fetch_array($result)['sum_price'];
                                     </div>
                                 </td>
                                 <td class="item-content-price" data-label="Đơn giá">
-                              <span class="item-price">
+                            <span class="item-price">
                                 
-                              </span>
+                            </span>
                                 </td>
                                 <td class="item-amount" data-label="Số lượng">
-                                    <div class="product-quantitys">
-                                        <div class="buttons_added">
-                                            <a class="minus is-form"
-                                               href="update_quantity_in_cart.php?cart_id=<?= $value['cart_id'] ?>&product_id=<?= $value['product_id'] ?>&type=decre">
-                                                -
-                                            </a>
-                                            <a class="input-qty"><?php echo $value['quantity'] ?> </a>
-                                            <a class="plus is-form"
-                                               href="update_quantity_in_cart.php?cart_id=<?= $value['cart_id'] ?>&product_id=<?= $value['product_id'] ?>&type=incre">
-                                                +
-                                            </a>
-                                        </div>
-                                    </div>
+                                    <?php $product_id = $value['product_id'];
+                                        $sql = "select quantity from product_size where product_id = $product_id";
+                                        $result_quantity = mysqli_query($connect, $sql);
+                                        $quantity = mysqli_fetch_array($result_quantity )['quantity'];
+                                        if($quantity == 0){
+                                            echo '<span style="color:red;">Hết hàng</span>';
+                                        }
+                                        else{ ?>
+                                            <div class="product-quantitys">
+                                                <div class="buttons_added">
+                                                    <a class="minus is-form"
+                                                    href="update_quantity_in_cart.php?cart_id=<?= $value['cart_id'] ?>&product_id=<?= $value['product_id'] ?>&type=decre">
+                                                        -
+                                                    </a>
+                                                    <a class="input-qty"><?php echo $value['quantity'] ?> </a>
+                                                    <a class="plus is-form"
+                                                    href="update_quantity_in_cart.php?cart_id=<?= $value['cart_id'] ?>&product_id=<?= $value['product_id'] ?>&type=incre">
+                                                        +
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                    <?php } ?>
                                 </td>
                                 <td class="item-total-price" data-label="Tổng giá">
-                                  <span class="item-price">
+                                <span class="item-price">
                                     <?= number_format($value['price'] * $value['quantity']) ?>&#8363
-                                  </span>
+                                </span>
                                 </td>
                                 <td class="item-total-price" data-label="Tổng giá">
                                     <a class="btn-text"
@@ -182,7 +193,7 @@ $sum = mysqli_fetch_array($result)['sum_price'];
                     </span>
                 </div>
                 <button class="btn-payment-text mt-2 ms-4">
-                    <a class="ps-5 pe-5" href="./checkout.php?cart_id=<?= $cart_id ?>">THANH TOÁN</a>
+                    <a class="ps-5 pe-5">THANH TOÁN</a>
                 </button>
                 
                 <div class="mt-3 ms-5" style="text-align: center;">
@@ -192,7 +203,8 @@ $sum = mysqli_fetch_array($result)['sum_price'];
                     <img class="ms-5" src="img/trustbadge.webp" alt="">
                 </div>
             </div>
-        </div>
+            <input type="text" hidden name="cart_id" value="<?= $cart_id ?>">
+        </form>
     </div>
 
     <div class="container more_info p-3 mb-3">

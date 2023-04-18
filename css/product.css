@@ -330,6 +330,9 @@ body, html {
     color: #c59b08;
 }
 
+.full-star {
+    color: #ffb400;
+}
 
 .policy-last{
     text-align: center;
@@ -340,6 +343,18 @@ body, html {
 .policy-last h4{
     font-size: 24px;
     font-weight: bold;
+}
+
+.vote__row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.user-vote-img img{
+    width: 50px;
+    border-radius: 50%;
+    margin-right: 12px;
 }
 /* Create an active/current tablink class */
 

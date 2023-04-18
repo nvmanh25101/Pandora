@@ -27,22 +27,22 @@ require './database/connect.php';
 						<div class="form-outline mb-4">
 							<input type="email"  id="floatingInput" name="email" class="form-control form-control-lg"  placeholder="Email" required >
 						</div>
-			
+
 						<div class="form-outline mb-2">
 							<input type="password" id="floatingInput" name="password" class="form-control form-control-lg" placeholder="Password"  required >
 						</div>
-<!--						<small style="color:red;">-->
-<!--						--><?php //require './admin/error_success.php'; ?>
-<!--						</small>-->
 						<div class=" d-flex mt-3 mb-3" style="display: inline;">
                 			<a class="text-primary-50 me-1" href="" style="font-weight: 600; font-size: 17px;">Quên mật khẩu</a>Hoặc
                				 <a class="text-primary-50 ms-1" href="signup.php" style="  font-weight: 600; font-size: 17px;">Đăng ký?</a>
 						</div>
-						
+
+						<small style="color:red;">
+						<?php require './admin/error_success.php'; ?>
+						</small>
 						<button class="btn-signin glow-on-hover btn-lg bg-dark" name="btnSignin" type="submit" >Đăng nhập</button>
-						
+
 					</form>
-				  <input id="error" hidden value="<?php echo $_SESSION['error'] ?? ''; unset($_SESSION['error']) ?>">
+				  <input id="infor" hidden value="<?php echo $_SESSION['infor'] ?? ''; unset($_SESSION['infor']) ?>">
 				</div>
 			</div>
 		</section>
@@ -54,11 +54,11 @@ require './database/connect.php';
   <script src="js/app.js"></script>
 <script>
     $(document).ready(function (){
-        if ($("#error").val() !== '') {
+        if ($("#infor").val() !== '') {
             Swal.fire(
                 {
                     title: 'Thông báo!',
-                    text: $("#error").val(),
+                    text: $("#infor").val(),
                     icon: 'info',
                     confirmButtonText: 'OK'
                 }

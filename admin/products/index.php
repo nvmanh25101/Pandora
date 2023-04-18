@@ -12,11 +12,11 @@ if (isset($_GET['page'])) {
 $search = '';
 if (isset($_GET['search'])) {
     $search = htmlspecialchars($_GET['search'], ENT_QUOTES);
-    $where = "products.name like '%$search%' or products.id like '%$search%'";
+    $where = "products.name like '%$search%' or products.id = '%$search%'";
 }
 
 if (isset($_GET['search_status'])) {
-    $where = 'products.status like ' . $_GET['search_status'];
+    $where = 'products.status = ' . $_GET['search_status'];
 }
 
 $sql_num_product = "select count(*) from products 

@@ -43,6 +43,11 @@
                         </div>
 
                         <div class="mb-4 fs-4 text-dark">
+                            <label class="form-label me-3" for="">Mật khẩu mới</label>
+                            <input type="password" id="password" class="form__input form-control" name="password"/>
+                        </div>
+
+                        <div class="mb-4 fs-4 text-dark">
                             <label class="form-label me-3" for="gender">Giới tính</label>
                             <input type="radio" id="gender" class="form__input form-check-input me-2" <?= $each['gender'] === '1' ? "checked":"" ?> name="gender" value="1"/>Nam
                             <input type="radio" id="gender" class="form__input form-check-input ms-3 me-2" <?= $each['gender'] === '0' ? "checked":"" ?> name="gender" value="0"/>Nữ
