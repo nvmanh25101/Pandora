@@ -125,11 +125,24 @@ $resultBanh = mysqli_query($connect,$sqlBanh);
                   </span>
 
                 </td>
+
               </tr>
-            <?php
+              <tr class="item-vote ms-5">
+                
+                <td class="ms-5" >
+
+                  <span class="item-vote ms-5">
+                    <button class="btn-vote ms-5">
+                      <a class="vote " href="vote.php?id=<?= $rowBanh['id'] ?>">Đánh giá sản phẩm</a>
+                    </button>
+                  </span>
+                </td>
+              </tr>
+
+              <?php
                 }
               }                   
-            ?>
+              ?>
 
 
 

@@ -56,7 +56,7 @@ $sum = mysqli_fetch_array($result)['sum_price'];
 <body>
     <?php require './header.php'; ?>
 
-    <div class="mt-5">
+    <div class="mt-5 ms-5">
         <h4 class="ms-3">Giỏ Hàng của bạn</h4>
     </div>
     <div class="Pagecart container mb-4 ">
@@ -87,7 +87,7 @@ $sum = mysqli_fetch_array($result)['sum_price'];
                         echo 'style = "display:block;"';
                     }
                 ?>>
-                    <table class="cart-table full">
+                <table class="cart-table full">
                     <tbody>
                         <?php foreach ($cart_item as $key => $value) : ?>
                             <tr class="cart__row table__section">
