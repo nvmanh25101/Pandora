@@ -126,9 +126,9 @@ $resultBanh = mysqli_query($connect, $sqlBanh);
                         $result_vote = mysqli_query($connect, $sql);
                         if ($rowTtin['status'] == 3 && mysqli_num_rows($result_vote) == 0) { ?>
                             <span class="item-vote">
-                          <button class="vote " type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">Đánh giá</button>
+                          <button class="vote " type="button" data-bs-toggle="modal" data-bs-target="#exampleModal-<?= $product_id ?>">Đánh giá</button>
                         </span>
-                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                            <div class="modal fade" id="exampleModal-<?= $product_id ?>" tabindex="-1" aria-labelledby="exampleModalLabel"
                                  aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -178,7 +178,7 @@ $resultBanh = mysqli_query($connect, $sqlBanh);
                                             <input type="hidden" name="order_id" value="<?= $rowTtin['id'] ?>">
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                                                    Close
+                                                    Đóng
                                                 </button>
                                                 <button type="submit" class="send-votes glow-on-hover">
                                                     Gửi đánh giá
