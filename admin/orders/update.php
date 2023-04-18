@@ -10,16 +10,24 @@ try {
   
   require_once '../../database/connect.php';
 
-  if (isset($_POST['user_admin_id'])){
-    $user_admin_id = $_POST['user_admin_id'];
+  if (isset($_POST['admin_id'])){
+    $user_admin_id = $_POST['admin_id'];
     $sql = "update orders
     set status = '$status', 
         user_admin_id = '$user_admin_id'
     where id = '$id'";
   } else {
-    $sql = "update orders
-    set status = '$status'
-    where id = '$id'";
+      $sql = "select user_admin_id from orders where id = '$id'";
+        $result = mysqli_query($connect, $sql);
+        $admin = mysqli_fetch_array($result);
+        $user_admin_id = $admin['user_admin_id'];
+      if($user_admin_id != $_SESSION['id'] || $_SESSION['role'] != 2) {
+          throw new Exception("Bạn không có quyền để truy cập!!");
+      } else {
+          $sql = "update orders
+            set status = '$status'
+            where id = '$id'";
+      }
   }
 
   mysqli_query($connect, $sql);

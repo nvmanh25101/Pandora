@@ -4,12 +4,23 @@ $page = "orders";
 require_once '../navbar-vertical.php';
 require_once '../../database/connect.php';
 
+$where = '1';
 $page_current = 1;
 if (isset($_GET['page'])) {
     $page_current = $_GET['page'];
 }
 
-$sql_num_order = "select count(*) from orders";
+$search = '';
+if (isset($_GET['search'])) {
+    $search = htmlspecialchars($_GET['search'], ENT_QUOTES);
+    $where = "orders.id like '%$search%' or users.name like '%$search%'";
+}
+
+if (isset($_GET['search_status'])) {
+    $where = 'orders.status = ' . $_GET['search_status'];
+}
+
+$sql_num_order = "select count(*) from orders join users on orders.user_id = users.id where $where";
 $arr_num_order = mysqli_query($connect, $sql_num_order);
 $result_num_order = mysqli_fetch_array($arr_num_order);
 $num_order = $result_num_order['count(*)'];
@@ -21,7 +32,10 @@ $skip_page = $num_order_per_page * ($page_current - 1);
 $sql = "SELECT orders.*, DATE_FORMAT(orders.created_at, '%d/%m/%Y %T') as created_at, users.name
     from orders
     join users on orders.user_id = users.id
-    limit $num_order_per_page offset $skip_page";
+    where $where
+    order by orders.created_at desc, orders.status asc
+    limit $num_order_per_page offset $skip_page
+    ";
 $result = mysqli_query($connect, $sql);
 ?>
 <div class="main__container">

@@ -84,20 +84,43 @@ small{
 }
 
 
-.btn-vote{
-    background: rgb(184, 111, 180); 
-    border: none;
-    padding: 10px;
+.item-totall-price {
+    position: relative;
+}
+.product-vote-item {
+    display: flex;
+}
+.product-vote-thumb img {
+    width: 70px;
+}
+.item-vote {
+    display: block;
+    margin-top: 50px;
+    position: absolute;
+    bottom: 0;
 }
 
 .vote{
+    display: block;
     color: #fff;
+    background-color: #000000;
+    padding: 12px 20px;
+    border-radius: 5px;
+}
+
+.vote:hover{
+    background-color: #cccccc;
+    color: #000000;
 }
 
 .rate {
-    float: left;
     height: 46px;
     padding: 0 10px;
+    margin-left: 8px;
+}
+.item-modal-vote {
+    display: flex;
+    align-items: center;
 }
 .rate:not(:checked) > input {
     position:absolute;
@@ -260,9 +283,6 @@ footer{
 		width: 100%;
 		display: block;
         margin-top: 18px;
-		
-		
-		
 	}
     h2{
         padding: 15px 0;
@@ -276,6 +296,7 @@ footer{
         color: black;
         font-size: 15px;
 	}
+
 	
 	/*
 	Label the data

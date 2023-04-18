@@ -1,19 +1,17 @@
-<?php 
+<?php
 require './database/connect.php';
 session_start();
 if(empty($_SESSION['id'])){
   header("location:signin.php");
 }
-$status = $_GET['status'];
 $idCus = $_SESSION['id'];
 $idOrder = $_GET['order_id'];
 $sqlTtin = "SELECT id, name_receiver, address_receiver, phone_receiver, DATE_FORMAT(created_at, '%d/%m/%Y %T') as created_at, status, total_price FROM orders WHERE id = $idOrder and user_id = $idCus";
 $resultTtin = mysqli_query($connect,$sqlTtin);
 $rowTtin = mysqli_fetch_assoc($resultTtin);
 
-$sqlBanh = "SELECT * FROM products,order_detail WHERE order_id = $idOrder and order_detail.product_id = products.id";
+$sqlBanh = "SELECT order_detail.*, products.image, products.id FROM products,order_detail WHERE order_id = $idOrder and order_detail.product_id = products.id";
 $resultBanh = mysqli_query($connect,$sqlBanh);
-
 
 ?>
 <!DOCTYPE html>
@@ -23,28 +21,23 @@ $resultBanh = mysqli_query($connect,$sqlBanh);
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="viewport" content="width=device-width">
   <title>DON HANG - PANDORA</title>
-  <link rel="shortcut icon" type="image" href="img/myLogo.png">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <link rel="shortcut icon" href="//theme.hstatic.net/200000103143/1000942575/14/favicon.png?v=1433" type="image/png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
   <!-- CSS only -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-  <link rel="stylesheet" type="text/css" href="css/style.css">
-  <link rel="stylesheet" type="text/css" href="css/order.css">
-  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
- 
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="js/app.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/order.css">
 </head>
 <body>
 <?php require './header.php'; ?>
         <div class="order-product mb-3">
         <h2>Thông tin đơn hàng</h2>
             <div class="order-product-content">
-               
+
                  <div class="order-left">
                     <h1>Mã đơn hàng: <?php echo $rowTtin['id']  ?></h1>
                     <p class="mt-3">Tên người đặt: <?php echo $rowTtin['name_receiver']  ?></p>
@@ -55,7 +48,7 @@ $resultBanh = mysqli_query($connect,$sqlBanh);
                  </div>
                   <div class="order-right">
                     <p class="order-text" >Trạng thái:
-                        <?php switch ($status) {
+                        <?php switch ($rowTtin['status']) {
                             case 0:
                                 echo "Đơn hàng chưa được duyệt";
                                 break;
@@ -90,7 +83,7 @@ $resultBanh = mysqli_query($connect,$sqlBanh);
           </thead>
           <tbody>
 
-            <?php 
+            <?php
               if(mysqli_num_rows($resultBanh) > 0){
                 while($rowBanh = mysqli_fetch_assoc($resultBanh)){
             ?>
@@ -114,8 +107,8 @@ $resultBanh = mysqli_query($connect,$sqlBanh);
                   </span>
                 </td>
                 <td class="item-amountt" data-label="Số lượng">
-                  <div class="product-quantitys">     
-                    <?php echo  $rowBanh['quantity'] ?>   
+                  <div class="product-quantitys">
+                    <?php echo  $rowBanh['quantity'] ?>
                   </div>
                 </td>
                 <td class="item-totall-price" data-label="Tổng giá">
@@ -123,31 +116,91 @@ $resultBanh = mysqli_query($connect,$sqlBanh);
                   <span class="item-price">
                     <?php echo number_format($rowBanh['price'] * $rowBanh['quantity']) ?>&#8363
                   </span>
+                    <?php
+                    $order_id = $rowTtin['id'];
+                    $sql = "select * from votes 
+                            JOIN products ON products.id = votes.product_id
+                            JOIN order_detail
+                            ON order_detail.product_id = votes.product_id
+                            JOIN sizes
+                            ON sizes.name = order_detail.size
+                            WHERE order_detail.order_id = $order_id and votes.user_id = $idCus";
+                    $result_vote = mysqli_query($connect, $sql);
+                    if ($rowTtin['status'] == 3 && mysqli_num_rows($result_vote) == 0) { ?>
+                        <span class="item-vote">
+    <!--                        href="vote.php?id=--><?//= $rowBanh['id'] ?><!--"-->
+                          <button class="vote " type="button"  data-bs-toggle="modal" data-bs-target="#exampleModal">Đánh giá</button>
+                        </span>
+                    <?php } ?>
+                        <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Đánh giá sản phẩm</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                            <form action="process-votes.php" method = "Post">
+                                <div class="modal-body">
+                                      <div class="product-vote">
+                                              <div class="product-vote-item">
+                                                  <div class="product-vote-top me-2">
+                                                      <div  class="product-vote-thumb">
+                                                          <img src="./assets/images/products/<?= $rowBanh['image'] ?>" alt="">
+                                                      </div>
+                                                  </div>
+                                                  <div class="product-vote-info">
+                                                      <div  class="product-vote-cat">
+                                                          <?= $rowBanh['name'] ?>
+                                                      </div>
+                                                      <p class="product-vote-price">
+                                                          <?= $rowBanh['size'] . '-' . $rowBanh['color'] . '-' . $rowBanh['material'] ?>
+                                                      </p>
+                                                  </div>
+                                              </div>
+                                          <div class="item-modal-vote">
+                                              Chất lượng sản phẩm
+                                              <input type="hidden" name="id" value="<?= $rowBanh['id'] ?>" />
+                                              <input type="hidden" name="id_user" value="<?= $idCus  ?>" />
+                                              <div class="rate">
+                                                  <input type="radio" id="star5" name="rate" value="5" />
+                                                  <label for="star5" title="text">5 stars</label>
+                                                  <input type="radio" id="star4" name="rate" value="4" />
+                                                  <label for="star4" title="text">4 stars</label>
+                                                  <input type="radio" id="star3" name="rate" value="3" />
+                                                  <label for="star3" title="text">3 stars</label>
+                                                  <input type="radio" id="star2" name="rate" value="2" />
+                                                  <label for="star2" title="text">2 stars</label>
+                                                  <input type="radio" id="star1" name="rate" value="1" />
+                                                  <label for="star1" title="text">1 star</label>
+                                              </div>
+                                          </div>
+                                      </div>
+                              </div>
+                                <input type="hidden" name="order_id" value="<?= $rowTtin['id'] ?>">
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                      <button type = "submit" class="send-votes glow-on-hover">
+                                          Gửi đánh giá
+                                      </button>
+                              </div>
+                            </form>
 
-                </td>
-
-              </tr>
-              <tr class="item-vote ms-5">
-                
-                <td class="ms-5" >
-
-                  <span class="item-vote ms-5">
-                    <button class="btn-vote ms-5">
-                      <a class="vote " href="vote.php?id=<?= $rowBanh['id'] ?>">Đánh giá sản phẩm</a>
-                    </button>
-                  </span>
+                        </div>
+                      </div>
+                    </div>
                 </td>
               </tr>
 
               <?php
                 }
-              }                   
+              }
               ?>
 
 
 
 </tbody>
-</table>   
+</table>
       <div class="row-total mb-5">
         <div class="cart-price-right">
           <p>
@@ -159,7 +212,7 @@ $resultBanh = mysqli_query($connect,$sqlBanh);
 
           </div>
             </div>
-    
+
             <div id="hotline">
               <a href="tel:0333135698" id="yBtn">
                 <i class="bi bi-telephone-fill"></i>
@@ -169,6 +222,7 @@ $resultBanh = mysqli_query($connect,$sqlBanh);
               </div>
             </div>
             <?php require './footer.php'; ?>
+<script src="./assets/js/bootstrap.bundle.min.js"></script>
 <script src="js/app.js"></script>
   <script src="js/product.js"></script>
 </body>

@@ -47,7 +47,7 @@ if (mysqli_num_rows($resultEmail) > 0) {
     sendmail($email, $name, $link);
 
     if (isset($resultInsert) > 0) {
-        $_SESSION['error'] = "Vui lòng kiểm tra email!";
+        $_SESSION['infor'] = "Vui lòng kiểm tra email!";
         header("location: signin.php");
         exit();
     } else {
