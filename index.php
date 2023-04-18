@@ -64,7 +64,7 @@ if (mysqli_num_rows($result) == 0) {
                             <div class="category-item pb-3">
                                 <div class="category-top">
                                     <a href="#" class="category-thumb d-block">
-                                        <img src="./assets/images/categories/<?= $each['image'] ?>" alt="">
+                                        <img src="./assets/images/products/<?= $each['image'] ?>" alt="">
 
                                     </a>
                                 </div>

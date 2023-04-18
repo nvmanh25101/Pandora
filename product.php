@@ -227,7 +227,7 @@ $result_size = mysqli_query($connect, $sql);
 
                                     </div>  
                                     </div>
-                                    <div class="time-vote">
+                                    <div class="time-vote mt-5">
                                         <?= $vote['created_at'] ?>
                                     </div>
                                 </td>
