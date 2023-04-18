@@ -6,8 +6,12 @@ if (empty($_SESSION['id'])) {
 }
 
 $id = $_SESSION['id'];
-$cart_id = $_GET['cart_id'];
-
+if(empty($_POST['cart_id'])){
+    $cart_id = $_GET['cart_id'];
+} else {
+    $cart_id = $_POST['cart_id'];
+}
+$note = $_POST['note'] ?? '';
 require './database/connect.php';
 $sql = "select * from users where id = '$id'";
 $result = mysqli_query($connect, $sql);
@@ -150,6 +154,7 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
                         </div>
                     </div>
                     <input type="hidden" name="cart_id" value="<?= $cart_id ?>">
+                    <textarea  name="note" hidden ><?= nl2br($note) ?></textarea>
                     <div class="btnup">
                         <a class="btnReturn" href="./cart.php">Giỏ hàng</a>
                         <button class="btnConfirm">Hoàn tất đơn hàng</button>

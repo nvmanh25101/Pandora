@@ -9,7 +9,7 @@ if(empty($_SESSION['id']) || empty($_POST['cart_id'])){
 }
 
 $cart_id = $_POST['cart_id'];
-if(empty($_POST['name_receiver']) || empty($_POST['phone_receiver']) || empty($_POST['address_receiver']) || empty($_POST['address_last']) || empty($_POST['payment'])) {
+if(empty($_POST['name_receiver']) || empty($_POST['phone_receiver']) || empty($_POST['address_receiver']) || empty($_POST['address_last']) || !isset($_POST['payment'])) {
     $_SESSION['error'] = 'Vui lòng nhập đầy đủ thông tin';
     header('location:checkout.php?cart_id='.$cart_id);
     exit;
@@ -22,7 +22,6 @@ $phone_receiver = $_POST['phone_receiver'];
 $note = $_POST['note'];
 $address_last = $_POST['address_last'];
 $payment = $_POST['payment'];
-
 $address_receiver .= ', '.$address_last;
 
 $sql = "select sum(quantity * price) as sum_price from cart_item 
@@ -57,7 +56,7 @@ foreach ($cart_item as $key => $value) :
     $sql = "insert into order_detail(order_id, product_id, name, size, color, material, quantity, price) 
     values('$last_order_id', '$product_id', '$name', '$size', '$color', '$material', '$quantity', '$price')";
     mysqli_query($connect, $sql);
-    $sql_quantity = "update products set quantity = quantity - $quantity where id = $product_id";
+    $sql_quantity = "update product_size set quantity = quantity - $quantity where product_id = $product_id";
     mysqli_query($connect, $sql_quantity);
 endforeach;
 

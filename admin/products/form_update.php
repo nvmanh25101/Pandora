@@ -42,6 +42,9 @@
         on product_size.size_id = sizes.id
         where product_size.product_id = '$id'";
     $result = mysqli_query($connect, $sql);
+
+    $sql = "select * from sizes";
+    $result_size = mysqli_query($connect, $sql);
     require_once '../navbar-vertical.php';
 ?>
     <div class="main__form">
@@ -76,7 +79,15 @@
                              <?php foreach ($result as $size_quan){ ?>
                                  <div class="col-6 d-flex flex-row mt-2 align-content-center">
                                      <div class="">
-                                         <label class="form-label" for="size">Kích thước</label>
+                                        <label class="form-label" for="size">Kích thước</label>
+                                        <button class="btn btn-outline-secondary dropdown-toggle fs-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">Hiện có</button>
+                                        <ul class="dropdown-menu">
+                                            <?php foreach ($result_size as $item_size) { ?>
+                                                <li>
+                                                    <span class="dropdown-item fs-5"><?= $item_size['name'] ?></span>
+                                                </li>
+                                            <?php } ?>
+                                        </ul>
                                          <input type="text" name="size[]" id="size" value="<?= $size_quan['name'] ?>" class="form__input form-control" />
                                      </div>
 
@@ -203,6 +214,14 @@
                 <div class="col-6 d-flex flex-row mt-2 align-items-center">
                     <div class="">
                         <label class="form-label" for="size">Kích thước(cm)</label>
+                        <button class="btn btn-outline-secondary dropdown-toggle fs-5" type="button" data-bs-toggle="dropdown" aria-expanded="false">Hiện có</button>
+                                <ul class="dropdown-menu">
+                                    <?php foreach ($result_size as $item_size) { ?>
+                                        <li>
+                                            <span class="dropdown-item fs-5"><?= $item_size['name'] ?></span>
+                                        </li>
+                                    <?php } ?>
+                                </ul>
                         <input type="text" name="size[]" id="size" class="form__input form-control" />
                     </div>
 
