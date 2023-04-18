@@ -102,7 +102,7 @@ $resultBanh = mysqli_query($connect,$sqlBanh);
                   </a>
                 </td>
                 <td class="item-contentt-text">
-                 <a class="item-txt"><?php echo $rowBanh['name'] ?></a>
+                 <a class="item-txt"> <?php echo $rowBanh['name'] ?></a>
                 <br>
                   <div class="cart__remove">
                     <small>Kích thước: <?php echo $rowBanh['size'] ?> cm</small><br>

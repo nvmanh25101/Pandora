@@ -165,7 +165,7 @@ $row = mysqli_fetch_assoc($result);
                 success: {
                     "color": "#468847",
                     "background-color": "#DFF0D8",
-                    "font-size": "2rem"
+                    "font-size": "1.4rem"
                 }
             }
         })

@@ -136,6 +136,7 @@
 	padding-left: 1.3px;
 	color: #c484c7;
 	text-decoration: underline;
+	cursor: pointer;
 }
 
 .detail-txt:hover {

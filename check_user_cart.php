@@ -1,8 +1,7 @@
 <?php
 session_start();
 if(!isset($_SESSION['id'])) {
-    $error = "Vui lòng đăng nhập!";
-    header("location:signin.php?error=$error");
-
+    $_SESSION['error'] = "Vui lòng đăng nhập để sử dụng giỏ hàng!";
+    header("location:signin.php");
+    exit();
 }
-?>

@@ -246,10 +246,6 @@ b {
 
 }
 
-#main-menu ul.sub-menu a {
-	color: white;
-}
-
 #main-menu li:hover>ul.sub-menu {
 	display: block;
 }
@@ -258,12 +254,14 @@ b {
 	padding: 8px 15px;
 	border-bottom: 1px solid none;
 	left: 0;
+	color: black;
 
 }
 
 #main-menu ul.sub-menu li:hover>a {
 	border-bottom: 1px solid white;
 	transition: 0.25s;
+	color: #fff;
 }
 
 #main-menu ul.sub-menu li:last-child a {
@@ -884,6 +882,30 @@ ul.products li .product-info .product-price-action .product-action button {
 /*	opacity: 1;*/
 /*	background: #c0c906;*/
 /*}*/
+
+/* SWEETALERT */
+.swal2-popup {
+    /* font-size: 1.4rem !important; */
+    /* width: 50rem !important; */
+}
+.swal2-cancel,
+.swal2-confirm,
+.swal2-deny {
+    font-size: 1rem;
+    font-weight: 300;
+    margin: 0 8px;
+    padding: 8px 30px;
+    border-radius: 5px;
+}
+
+.swal2-confirm {
+    background-color: #28a745 !important;
+}
+
+.swal2-confirm:hover {
+    background-color: #218838 !important;
+}
+
 
 @keyframes pulse {
 	0% {

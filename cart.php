@@ -44,15 +44,13 @@ $sum = mysqli_fetch_array($result)['sum_price'];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="css/cart.css">
-    <link rel="stylesheet" type="text/css" href="css/product.css">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="js/app.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+          
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+          
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+          <link rel="stylesheet" type="text/css" href="css/product.css">
+          <link rel="stylesheet" type="text/css" href="css/cart.css">
 </head>
 
 <body>
@@ -66,7 +64,9 @@ $sum = mysqli_fetch_array($result)['sum_price'];
             <div class="cart-content col-md-8">
                 <div class="Empty_cart" <?php
                     if (empty($cart_item_count)) {
-                        echo 'style = "display:block;"';
+                        echo 'style = "    display: flex;
+                        flex-direction: column;
+                        align-items: center"';
                     } else {
                         echo 'style = "display:none;"';
                     }
@@ -164,7 +164,13 @@ $sum = mysqli_fetch_array($result)['sum_price'];
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 mt-2">
+            <div class="col-md-4 mt-2" <?php
+                    if (empty($cart_item_count)) {
+                        echo 'style = "display:none;"';
+                    } else {
+                        echo 'style = "display:block;"';
+                    }
+                ?>>
                 <div class="ms-4">
                     <span class="cartt__subtotal-title me-4">Tổng tiền</span>
                     <span class="cartt__total me-5"><?= number_format($sum) ?? 0 ?>&#8363</span>
