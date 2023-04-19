@@ -36,7 +36,7 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Thanh toán đơn hàng-PANDORA</title>
-    <link rel="shortcut icon" type="image" href="img/myLogo.png">
+    <link rel="shortcut icon" href="//theme.hstatic.net/200000103143/1000942575/14/favicon.png?v=1433" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -44,8 +44,6 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/confirminfo.css">
-    <script src="js/app.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 
 <body>
@@ -254,22 +252,14 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
 
     </div>
 
+
+</div>
+
     <script src="./assets/js/jquery-3.6.4.min.js"></script>
-    <script src="js/app.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
-
-
-</div>
-
-<script src="./assets/js/jquery-3.6.4.min.js"></script>
-<script src="js/app.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
-
 
 <script>
     $(document).ready(function () {
@@ -355,6 +345,7 @@ $sum = mysqli_fetch_array($result_sum)['sum_price'];
         });
     })
 </script>
+<script src="js/app.js"></script>
 
 
 </body>

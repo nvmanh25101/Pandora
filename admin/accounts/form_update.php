@@ -16,6 +16,11 @@
     $each = mysqli_fetch_array($result);
 ?>
     <div class="main__form">
+        <div class="main-container-text d-flex align-items-center justify-content-center">
+            <a class="header__name text-decoration-none" href="#">
+                Sửa nhân viên
+            </a>
+        </div>
         <div class=" container-fluid px-4">
             <?php include '../error_success.php' ?>
           
