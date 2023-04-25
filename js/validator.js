@@ -1,0 +1,3 @@
+Validator.isEmail = function(){
+
+}

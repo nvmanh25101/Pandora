@@ -26,6 +26,29 @@ header {
 
 }
 
+.title-header{
+	position: relative;
+	background-color: #ffcad4;
+	display: flex;
+	height: 40px;
+	justify-content: center;
+}
+
+.title-header p{
+	line-height: 40px;
+	font-weight: bold;
+}
+
+.title-header button{
+	border: none;
+	height: 80%;
+}
+
+.title-header .close{
+	position: absolute;
+	right: 5px;
+	background: none;
+}
 
 .header-left {
 	display: flex;

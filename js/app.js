@@ -18,10 +18,6 @@ $(document).ready(function () {
       )
       .appendTo(ul);
   };
-
-
-
-
   $(".sub-menu").parent("li").addClass("has-child");
 
   var counter = 1;

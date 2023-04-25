@@ -9,8 +9,17 @@ require './database/connect.php';
 ?>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="shortcut icon" type="image" href="img/myLogo.png">
+<script src="js/app.js"></script>
 
   <header class="medium-header fixed-top">
+    <!-- <div id="title-header" class="title-header mb-3">
+        <p>SỞ HỮU MỘT BỘ VÒNG CHARM CHỈ TỪ 3,590,000đ</p>
+        <button id="title" class="title m-1">Mua ngay</button>
+        <button onclick="document.getElementById('title-header').style.display='none'" class="close">&times;</button>
+        <script>
+          
+        </script>
+    </div> -->
     <div class="site-header ">
       <div class="header-left col-md-6">
         <div id="mySidenav" class="sidenav">

@@ -16,6 +16,7 @@ require './database/connect.php';
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="js/app.js"></script>
+    <script src="js/validator.js"></script>
 </head>
 <body>
 <?php require './header.php'; ?>
@@ -26,37 +27,37 @@ require './database/connect.php';
                  style="border-radius: 8px; box-shadow: 0 4px 12px #00000026;">
                 <form class="form-signup text-center mb-5" action="process-signup.php" method="post">
                     <h1 class="titleSignup mt-3 pb-3">Đăng ký</h1>
-                    <div class="form-outline mb-4">
+                    <div class="form-group mb-4">
                         <input type="text" name="last_name" class="form-control" id="floatingInput" placeholder="Tên"
                                required>
                     </div>
-                    <div class="form-outline mb-4">
+                    <div class="form-group mb-4">
                         <input type="text" name="first_name" class="form-control" id="floatingInput" placeholder="Họ"
                                required>
                     </div>
-                    <div class="form-outline mb-4" style="float: left;">
+                    <div class="form-group mb-4" style="float: left;">
                         <input type="radio" class="gender me-1" name="gender" value="1" id="gender" autocomplete="off">
                         <label for="nam">Nam</label>
                         <input type="radio" class="gender me-1" name="gender" value="0" id="gender" autocomplete="off">
                         <label for="nu">Nữ</label>
                     </div>
-                    <div class="form-outline mb-4">
+                    <div class="form-group mb-4">
                         <input type="text" name="birthday" class="form-control" id="floatingInput"
                                placeholder="Ngày sinh:năm/tháng/ngày" required>
                     </div>
-                    <div class="form-outline mb-4">
-                        <input type="text" name="email" class="form-control" id="floatingInput" placeholder="Email"
+                    <div class="form-group mb-4">
+                        <input type="text" name="email" class="email form-control" id="floatingInput" placeholder="Email"
                                required>
                     </div>
-                    <div class="form-outline mb-4">
+                    <div class="form-group mb-4">
                         <input type="password" id="floatingInput" name="password" class="form-control form-control-lg"
                                placeholder="Mật khẩu" required>
                     </div>
-                    <div class="form-outline mb-4">
+                    <div class="form-group mb-4">
                         <input type="text" id="floatingInput" name="phonenumber" class="form-control form-control-lg"
                                placeholder="Số điện thoại" required>
                     </div>
-                    <div class="form-outline">
+                    <div class="form-group">
                         <select id="city-select" required class="form-control mb-3">
                             <option value="">Chọn Tỉnh / Thành phố</option>
                         </select>
@@ -69,7 +70,7 @@ require './database/connect.php';
                     </div>
                     <input name="address_last" hidden id="address-min">
 
-                    <div class="form-outline mb-4">
+                    <div class="form-group mb-4">
                         <input type="text" id="floatingInput" name="address" class="form-control form-control-lg"
                                placeholder="Địa chỉ cụ thể" required>
                     </div>
@@ -96,6 +97,8 @@ require './database/connect.php';
 
 <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
 <script src="js/app.js"></script>
+<script src="js/validator.js"></script>
+
 <script>
     $(document).ready(function () {
         $.getJSON('./assets/hanh_chinh/tinh_tp.json', function (data) {
@@ -131,5 +134,16 @@ require './database/connect.php';
         });
     })
 </script>
+
+<script>
+    Validator({
+        form: '.form-signup',
+        rules: [
+            // Validator.isRequired(''), 
+            Validator.isEmail('.floatingInput'),
+        ]
+    })
+</script>
+
 </body>
 </html>
