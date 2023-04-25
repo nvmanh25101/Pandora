@@ -14,10 +14,15 @@ if (isset($_POST['search'])) {
     $where = "products.name like '%$search%'";
 }
 
-$sql = "SELECT * FROM products order by id desc";
+$sql = "SELECT products.*, category_child.name as category_name FROM products
+  join category_child on category_child.id = products.category_child_id
+  where $where
+  order by products.id desc, products.status desc";
 $result = mysqli_query($connect, $sql);
 if (mysqli_num_rows($result) == 0) {
     $error = 'Không có sản phẩm nào';
+}  else {
+    $category_name = mysqli_fetch_array($result)['category_name'];
 }
 
 ?>
@@ -30,7 +35,6 @@ if (mysqli_num_rows($result) == 0) {
     <meta name="viewport" content="width=device-width">
     <title>Pandora Việt Nam</title>
     <link rel="shortcut icon" href="//theme.hstatic.net/200000103143/1000942575/14/favicon.png?v=1433" type="image/png">
-
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -110,118 +114,148 @@ if (mysqli_num_rows($result) == 0) {
 </div>
 
 <!-- product -->
-<div id="intro">
-    <div class="headline">
-        <h3>Charm Treo</h3>
-    </div>
+<?php if (isset($_GET['category']) || isset($_POST['search'])) { ?>
+    <div id="intro">
+        <div class="headline">
+            <h3><?= $category_name ?? $error ?></h3>
 
-    <?php
-    $sql = "select id from category_child where name = 'Charm treo'";
-    $result = mysqli_query($connect, $sql);
-    $category_child_id = mysqli_fetch_assoc($result)['id'];
-    $sql_pandora = "SELECT * FROM products WHERE category_child_id='$category_child_id' order by id desc";
-    $result_pandora = mysqli_query($connect, $sql_pandora);
-    ?>
+        </div>
+        <ul class="products">
+            <?php foreach($result as $each) { ?>
+                <li>
+                    <div class="product-item">
+                        <div class="product-top">
+                            <a href="./product.php?id=<?= $each['id'] ?>" class="product-thumb">
+                                <img src="./assets/images/products/<?= $each['image'] ?>" alt="">
 
-    <ul class="products">
-        <?php foreach ($result_pandora as $each) { ?>
-            <li>
-                <a href="./product.php?id=<?= $each['id'] ?>" class="product-item">
-                    <div class="product-top">
-                        <div  class="product-thumb">
-                            <img src="./assets/images/products/<?= $each['image'] ?>" alt="">
-
+                            </a>
                         </div>
-                    </div>
-                    <div class="product-info">
-                        <div  class="product-cat">
-                            <?= $each['name'] ?>
-                        </div>
+                        <div class="product-info">
+                            <div  class="product-cat">
+                                <?= $each['name'] ?>
+                            </div>
                             <p class="product-price">
                                 <?= number_format($each['price'], 0, '.', ',') ?>&#8363
                             </p>
-
-                    </div>
-                </a>
-            </li>
-        <?php } ?>
-
-</div>
-
-<div id="intro">
-    <div class="headline">
-        <h3>Vòng mềm</h3>
-    </div>
-
-    <?php
-    $sql = "select id from category_child where name = 'Vòng mềm'";
-    $result = mysqli_query($connect, $sql);
-    $category_child_id = mysqli_fetch_assoc($result)['id'];
-    $sql_pandora = "SELECT * FROM products WHERE category_child_id='$category_child_id' order by id desc";
-    $result_pandora = mysqli_query($connect, $sql_pandora);
-    ?>
-
-    <ul class="products">
-        <?php foreach ($result_pandora as $each) { ?>
-            <li>
-                <a href="./product.php?id=<?= $each['id'] ?>" class="product-item">
-                    <div class="product-top">
-                        <div class="product-thumb">
-                            <img src="./assets/images/products/<?= $each['image'] ?>" alt="">
-
                         </div>
                     </div>
-                    <div class="product-info">
-                        <div  class="product-cat">
-                            <?= $each['name'] ?>
-                        </div>
-                            <p class="product-price">
-                                <?= number_format($each['price'], 0, '.', ',') ?>&#8363
-                            </p>
-
-                    </div>
-                </a>
-            </li>
-        <?php } ?>
-</div>
-
-<div id="intro">
-    <div class="headline">
-        <h3>Nhẫn bạc</h3>
+                </li>
+            <?php } ?>
     </div>
+<?php } else { ?>
+    <div id="intro">
+        <div class="headline">
+            <h3>Charm Treo</h3>
+        </div>
 
-    <?php
-        $sql = "select id from category_child where name = 'Nhẫn bạc'";
+        <?php
+        $sql = "select id from category_child where name = 'Charm treo'";
         $result = mysqli_query($connect, $sql);
         $category_child_id = mysqli_fetch_assoc($result)['id'];
         $sql_pandora = "SELECT * FROM products WHERE category_child_id='$category_child_id' order by id desc";
         $result_pandora = mysqli_query($connect, $sql_pandora);
-    ?>
+        ?>
 
-    <ul class="products">
-        <?php foreach ($result_pandora as $each) { ?>
-            <li>
-                <a class="product-item" href="./product.php?id=<?= $each['id'] ?>">
-                    <div class="product-top">
-                        <div class="product-thumb">
-                            <img src="./assets/images/products/<?= $each['image'] ?>" alt="">
+        <ul class="products">
+            <?php foreach ($result_pandora as $each) { ?>
+                <li>
+                    <a href="./product.php?id=<?= $each['id'] ?>" class="product-item">
+                        <div class="product-top">
+                            <div  class="product-thumb">
+                                <img src="./assets/images/products/<?= $each['image'] ?>" alt="">
+
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div  class="product-cat">
+                                <?= $each['name'] ?>
+                            </div>
+                                <p class="product-price">
+                                    <?= number_format($each['price'], 0, '.', ',') ?>&#8363
+                                </p>
+                        </div>
+                    </a>
+                </li>
+            <?php } ?>
+
+    </div>
+
+    <div id="intro">
+        <div class="headline">
+            <h3>Vòng mềm</h3>
+        </div>
+
+        <?php
+        $sql = "select id from category_child where name = 'Vòng mềm'";
+        $result = mysqli_query($connect, $sql);
+        $category_child_id = mysqli_fetch_assoc($result)['id'];
+        $sql_pandora = "SELECT * FROM products WHERE category_child_id='$category_child_id' order by id desc, status desc";
+        $result_pandora = mysqli_query($connect, $sql_pandora);
+        ?>
+
+        <ul class="products">
+            <?php foreach ($result_pandora as $each) { ?>
+                <li>
+                    <a href="./product.php?id=<?= $each['id'] ?>" class="product-item">
+                        <div class="product-top">
+                            <div class="product-thumb">
+                                <img src="./assets/images/products/<?= $each['image'] ?>" alt="">
+
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div  class="product-cat">
+                                <?= $each['name'] ?>
+                            </div>
+                                <p class="product-price">
+                                    <?= number_format($each['price'], 0, '.', ',') ?>&#8363
+                                </p>
 
                         </div>
-                    </div>
-                    <div class="product-info">
-                        <div  class="product-cat">
-                            <?= $each['name'] ?>
-                        </div>
-                            <p class="product-price">
-                                <?= number_format($each['price'], 0, '.', ',') ?>&#8363
-                            </p>
+                    </a>
+                </li>
+            <?php } ?>
+    </div>
 
-                    </div>
-                </a>
-            </li>
-        <?php } ?>
-    </ul>
-</div>
+    <div id="intro">
+        <div class="headline">
+            <h3>Nhẫn bạc</h3>
+        </div>
+
+        <?php
+            $sql = "select id from category_child where name = 'Nhẫn bạc'";
+            $result = mysqli_query($connect, $sql);
+            $category_child_id = mysqli_fetch_assoc($result)['id'];
+            $sql_pandora = "SELECT * FROM products WHERE category_child_id='$category_child_id' order by id desc, status desc";
+            $result_pandora = mysqli_query($connect, $sql_pandora);
+        ?>
+
+        <ul class="products">
+            <?php foreach ($result_pandora as $each) { ?>
+                <li>
+                    <a class="product-item" href="./product.php?id=<?= $each['id'] ?>">
+                        <div class="product-top">
+                            <div class="product-thumb">
+                                <img src="./assets/images/products/<?= $each['image'] ?>" alt="">
+
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <div  class="product-cat">
+                                <?= $each['name'] ?>
+                            </div>
+                                <p class="product-price">
+                                    <?= number_format($each['price'], 0, '.', ',') ?>&#8363
+                                </p>
+
+                        </div>
+                    </a>
+                </li>
+            <?php } ?>
+        </ul>
+    </div>
+
+<?php } ?>
 
 <div id="intro">
     <div class="headline-last m-5" style="border-top: 5px solid #fbcad4">

@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap"
           rel="stylesheet">
     <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../assets/css/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
     <link rel="stylesheet" href="../../assets/css/sweetalert2.min.css">
     <link rel="stylesheet" href="../../assets/css/admin.css">
@@ -25,7 +24,7 @@
 <div class="main">
     <nav class="navbar navbar-vertical position-fixed top-0 start-0 bottom-0 p-0 navbar-collapse hide-on-mobile-tablet">
         <div class="navbar__content">
-            <a class="navbar-brand px-5 d-block" href="/">
+            <a class="navbar-brand px-5 d-block" href="../root">
                 <svg xmlns="http://www.w3.org/2000/svg" class="navbar-brand__img" version="1.1"
                      viewBox="0 0 283.5 58.9">
                     <polygon

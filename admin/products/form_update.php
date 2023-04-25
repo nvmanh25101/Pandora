@@ -8,7 +8,7 @@
         exit();
     }
 
-    if($_GET['admin_id'] != $_SESSION['id'] || $_SESSION['role'] != 2) {
+    if($_GET['admin_id'] != $_SESSION['id'] && $_SESSION['role'] != 2) {
         $_SESSION['error'] = 'Bạn không có quyền để truy cập!';
         header('location:index.php');
         exit();

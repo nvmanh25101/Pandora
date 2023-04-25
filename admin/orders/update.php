@@ -21,8 +21,8 @@ try {
         $result = mysqli_query($connect, $sql);
         $admin = mysqli_fetch_array($result);
         $user_admin_id = $admin['user_admin_id'];
-      if($user_admin_id != $_SESSION['id'] || $_SESSION['role'] != 2) {
-          throw new Exception("Bạn không có quyền để truy cập!!");
+      if($user_admin_id != $_SESSION['id'] && $_SESSION['role'] != '2') {
+          throw new Exception("Bạn không có quyền để truy cập!");
       } else {
           $sql = "update orders
             set status = '$status'
