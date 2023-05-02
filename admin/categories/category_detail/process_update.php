@@ -20,7 +20,7 @@ $category = $_POST['category'];
 require_once '../../../database/connect.php';
 
 
-$sql = "update category_detail
+$sql = "update category_child
 set name = ?,
 category_id = ?
 where id = '$id'";

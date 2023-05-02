@@ -195,7 +195,7 @@ $sum = mysqli_fetch_array($result)['sum_price'];
                 </button>
                 
                 <div class="mt-3 ms-5" style="text-align: center;">
-                    <a href="index.php" style="color: #d1b8c5">Tiếp tục mua sắm ></a>
+                    <a href="./index.php" style="color: #d1b8c5">Tiếp tục mua sắm ></a>
                 </div>
                 <div class="img-pay mt-3" style="display: flex; ">
                     <img class="ms-5" src="img/trustbadge.webp" alt="">

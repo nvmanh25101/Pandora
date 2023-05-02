@@ -42,7 +42,8 @@ if (mysqli_num_rows($resultEmail) > 0) {
 
     require './mail/mail.php';
 //    "http://" .
-    $url  =  $_SERVER['HTTP_HOST'] . "/pandora/mail";
+    // $url  =  $_SERVER['HTTP_HOST'] . "/mail";
+    $url  = "localhost/pandora/mail";
     $link = "<a href='$url/email_verification.php?email=$email&token=$token_verification'>Kích hoạt tài khoản</a>";
     sendmail($email, $name, $link);
 

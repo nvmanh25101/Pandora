@@ -9,7 +9,7 @@ if(empty($_GET['id'])) {
 $id = $_GET['id'];
 
 require_once '../../../database/connect.php';
-$sql = "delete from category_detail where id = '$id'";
+$sql = "delete from category_child where id = '$id'";
 
 mysqli_query($connect, $sql);
 $error = mysqli_error($connect);

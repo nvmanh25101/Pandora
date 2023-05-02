@@ -41,7 +41,7 @@ $sql = "select products.*, category_child.name as category_name, users.name as a
     left JOIN sizes
     ON product_size.size_id = sizes.id
     where $where
-    ORDER BY status desc,id DESC
+    ORDER BY id DESC,status desc
     limit $num_product_per_page offset $skip_page
     ";
 $result = mysqli_query($connect, $sql);

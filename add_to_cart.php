@@ -6,7 +6,7 @@
     $id = $_POST['product_id'];
 
     if (empty($_POST['size']) || empty($_POST['color']) || empty($_POST['material'])) {
-        $_SESSION['error'] = 'Vui lòng chọn size, màu sắc và chất liệu';
+        $_SESSION['error'] = 'Vui lòng chọn kích thước, màu sắc và chất liệu';
         header('location:product.php?id=' . $id);
         exit();
     }

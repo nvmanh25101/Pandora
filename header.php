@@ -8,18 +8,17 @@ require './database/connect.php';
 
 ?>
 <link rel="stylesheet" type="text/css" href="css/style.css">
-<link rel="shortcut icon" type="image" href="img/myLogo.png">
 <script src="js/app.js"></script>
 
   <header class="medium-header fixed-top">
-    <!-- <div id="title-header" class="title-header mb-3">
-        <p>SỞ HỮU MỘT BỘ VÒNG CHARM CHỈ TỪ 3,590,000đ</p>
-        <button id="title" class="title m-1">Mua ngay</button>
+    <div id="title-header" class="title-header mb-3">
+        <p>QUÀ TẶNG LÊN ĐẾN 3,000,000Đ</p>
+        <button id="title" class="title">MUA NGAY</button>
         <button onclick="document.getElementById('title-header').style.display='none'" class="close">&times;</button>
         <script>
           
         </script>
-    </div> -->
+    </div>
     <div class="site-header ">
       <div class="header-left col-md-6">
         <div id="mySidenav" class="sidenav">
@@ -155,4 +154,4 @@ require './database/connect.php';
       </ul>
     </nav>
   </header>
-  <div class="empty" style="height: 130px"></div>                      
+  <div class="empty" style="height: 186px"></div>                      

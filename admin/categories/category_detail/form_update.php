@@ -10,7 +10,7 @@ if (empty($_GET['id'])) {
 
 $id = $_GET['id'];
 require_once '../../../database/connect.php';
-$sql = "select * from category_detail where id = '$id'";
+$sql = "select * from category_child where id = '$id'";
 $result = mysqli_query($connect, $sql);
 $each = mysqli_fetch_array($result);
 
